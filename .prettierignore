@@ -1,0 +1,100 @@
+# =======================
+# 🚫 NO FORMATEAR ESTOS
+# =======================
+
+# =======================
+# 📦 DEPENDENCIES & BUILD
+# =======================
+node_modules/
+dist/
+build/
+coverage/
+storybook-static/
+
+# =======================
+# 🚀 NX & CACHE
+# =======================
+.nx/
+tmp/
+.cache/
+
+# =======================
+# 📝 AUTO-GENERATED
+# =======================
+**/*.generated.*
+**/generated/
+**/__generated__/
+
+# Build outputs
+*.tsbuildinfo
+.rollup.cache/
+
+# =======================
+# 🎨 ASSETS
+# =======================
+# Binary files
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.ico
+**/*.woff
+**/*.woff2
+**/*.ttf
+**/*.eot
+**/*.pdf
+
+# =======================
+# 📊 DATA FILES
+# =======================
+**/*.json
+!package.json
+!tsconfig*.json
+!.prettierrc.json
+
+# CSV, XML, etc
+**/*.csv
+**/*.xml
+
+# =======================
+# 📚 DOCUMENTATION
+# =======================
+# Changelog (usually auto-generated)
+CHANGELOG.md
+CHANGELOG.txt
+
+# Auto-generated docs
+docs/api/
+docs/build/
+
+# =======================
+# 🔒 SENSITIVE FILES
+# =======================
+.env*
+*.pem
+*.key
+
+# =======================
+# 🧪 TEST OUTPUTS
+# =======================
+test-results/
+screenshots/
+
+# =======================
+# 📝 SPECIFIC FORMATS
+# =======================
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Logs
+*.log
+
+# =======================
+# 🎯 KEEP FORMATTED
+# =======================
+# Use ! to force format these
+!src/**/*.json
+!libs/**/*.json
+!apps/**/*.json

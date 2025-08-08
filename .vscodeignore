@@ -1,0 +1,7 @@
+# .vscodeignore - Para optimizar VS Code
+node_modules/
+.nx/cache/
+dist/
+coverage/
+*.log
+storybook-static/

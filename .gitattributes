@@ -1,0 +1,74 @@
+# =======================
+# 🔄 GIT ATTRIBUTES
+# =======================
+# Handling line endings and file types
+
+# =======================
+# 📝 TEXT FILES
+# =======================
+* text=auto eol=lf
+
+# Source code
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.mdx text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.html text eol=lf
+*.xml text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Config files
+.*rc text eol=lf
+.*ignore text eol=lf
+Dockerfile* text eol=lf
+
+# =======================
+# 🎨 BINARY FILES
+# =======================
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg text eol=lf
+
+# Fonts
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+
+# =======================
+# 📦 ARCHIVES
+# =======================
+*.zip binary
+*.tar binary
+*.gz binary
+
+# =======================
+# 🎯 GENERATED FILES
+# =======================
+# Don't diff generated files
+dist/* linguist-generated=true
+build/* linguist-generated=true
+coverage/* linguist-generated=true
+storybook-static/* linguist-generated=true
+
+# =======================
+# 📊 LANGUAGE DETECTION
+# =======================
+# TypeScript as main language
+*.ts linguist-language=TypeScript
+*.tsx linguist-language=TypeScript
+
+# Exclude from language stats
+*.stories.* linguist-documentation=true
+*.test.* linguist-documentation=true
+*.spec.* linguist-documentation=true

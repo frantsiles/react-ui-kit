@@ -1,0 +1,99 @@
+# =======================
+# 🚫 NO LINT ESTOS ARCHIVOS
+# =======================
+
+# =======================
+# 📦 DEPENDENCIES & BUILD
+# =======================
+node_modules/
+dist/
+build/
+coverage/
+storybook-static/
+
+# =======================
+# 🚀 NX GENERATED
+# =======================
+.nx/
+tmp/
+
+# Auto-generated files
+**/*.generated.*
+**/generated/
+**/__generated__/
+
+# =======================
+# 📚 THIRD PARTY
+# =======================
+# Vendor files
+vendor/
+public/vendor/
+
+# CDN assets
+public/assets/vendors/
+
+# =======================
+# 🎨 ASSETS & MEDIA
+# =======================
+# Images, fonts, etc
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.svg
+**/*.ico
+**/*.woff
+**/*.woff2
+**/*.ttf
+**/*.eot
+
+# =======================
+# 📝 CONFIG FILES
+# =======================
+# Config files that don't need linting
+*.json
+!.eslintrc.json
+!tsconfig.json
+
+# Environment files
+.env*
+
+# =======================
+# 🧪 TEST OUTPUTS
+# =======================
+test-results/
+.nyc_output/
+junit.xml
+
+# =======================
+# 📚 STORYBOOK
+# =======================
+# Storybook build output
+chromatic-build/
+
+# Auto-generated Storybook files
+**/*.stories.js
+!**/*.stories.ts
+!**/*.stories.tsx
+
+# =======================
+# 🔧 TOOLING
+# =======================
+# Cache files
+.cache/
+.parcel-cache/
+.rollup.cache/
+
+# Logs
+*.log
+logs/
+
+# =======================
+# 🎯 SPECIFIC TO COMPONENTS
+# =======================
+# Design tokens generated
+tokens/build/
+style-dictionary/build/
+
+# Icon components auto-generated
+icons/generated/

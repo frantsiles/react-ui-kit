@@ -1,0 +1,8 @@
+# .gptignore - Para cuando uses IA para generar código
+node_modules/
+.nx/cache/
+dist/
+storybook-static/
+coverage/
+*.log
+.git/

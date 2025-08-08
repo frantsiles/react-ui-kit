@@ -1,0 +1,126 @@
+# =======================
+# 🎨 CHROMATIC CONFIG
+# =======================
+# Configuración para testing visual automático
+
+# Project settings
+projectToken: ${CHROMATIC_PROJECT_TOKEN}
+
+# Build settings
+buildScriptName: 'build-storybook'
+storybookBuildDir: 'storybook-static'
+
+# =======================
+# 🚀 PERFORMANCE
+# =======================
+# Skip builds for certain branches
+skip:
+  - 'dependabot/**'
+  - 'renovate/**'
+  - 'temp/**'
+
+# Only test specific files changed
+onlyChanged: true
+traceChanged: 'expanded'
+
+# =======================
+# 🎯 TESTING STRATEGY
+# =======================
+# Viewports to test
+modes:
+  - name: mobile
+    viewport: 375x667
+  - name: tablet
+    viewport: 768x1024
+  - name: desktop
+    viewport: 1200x800
+
+# =======================
+# 📊 REPORTING
+# =======================
+# Junit XML output for CI
+junitReport: true
+xmlReport: 'chromatic-results.xml'
+
+# =======================
+# 🔧 CI/CD INTEGRATION
+# =======================
+# Exit codes for CI
+exitOnceUploaded: true
+exitZeroOnChanges: false
+
+# Ignore specific stories for visual testing
+ignoreLastBuildOnBranch: 'main'
+
+# =======================
+# 📁 FILES TO IGNORE
+# =======================
+# Stories to skip in visual testing
+ignore:
+  - 'src/**/*.docs.stories.*'
+  - 'src/**/*.test.stories.*'
+  - 'libs/**/src/**/*.internal.stories.*'
+
+# =======================
+# 🎨 VISUAL SETTINGS
+# =======================
+# Threshold for visual changes
+threshold: 0.2
+
+# Animation handling
+pauseAnimationAtEnd: true
+delay: 1000
+
+# =======================
+# 🚀 BRANCH STRATEGY
+# =======================
+# Main branch configuration
+baseBranch: 'main'
+
+# Auto-accept changes on specific branches
+autoAcceptChanges:
+  - 'release/**'
+  - 'hotfix/**'
+
+# =======================
+# 📱 BROWSER SUPPORT
+# =======================
+# Browsers to test (Chromatic defaults)
+browsers:
+  - chrome
+  - safari
+  - firefox
+
+# =======================
+# 🔐 SECURITY
+# =======================
+# Don't capture sensitive data
+allowConsoleErrors: false
+diagnostics: false
+
+# =======================
+# 📈 PERFORMANCE BUDGET
+# =======================
+# Build timeout
+buildTimeout: 600000  # 10 minutes
+
+# Concurrent uploads
+concurrency: 4
+
+# =======================
+# 🎯 MONOREPO SPECIFIC
+# =======================
+# Working directory for Nx
+workingDir: './'
+
+# Storybook configuration directory
+storybookConfigDir: '.storybook'
+
+# =======================
+# 📋 NOTIFICATIONS
+# =======================
+# Slack notifications (if configured)
+# slackWebhook: ${SLACK_WEBHOOK_URL}
+
+# GitHub status checks
+githubToken: ${GITHUB_TOKEN}
