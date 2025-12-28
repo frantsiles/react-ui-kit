@@ -130,7 +130,7 @@ El UI Kit soporta múltiples temas mediante **variables CSS** controladas por el
   - Por ejemplo, en `<html>` o `<body>`.
 - Los temas disponibles (por ejemplo `light`, `dark`) ajustan los valores de las variables CSS que usan los componentes.
 
-Ejemplo básico:
+Ejemplo básico de marcado:
 
 ```tsx
 // index.html o layout principal
@@ -141,16 +141,21 @@ Ejemplo básico:
 </html>
 ```
 
+Puedes gestionar el tema manualmente modificando `data-theme`, o usar los helpers expuestos por `@my-ui/core`:
+
 ```tsx
 // En tu aplicación React
-const toggleTheme = () => {
-  const root = document.documentElement;
-  const current = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  root.setAttribute('data-theme', current);
-};
+import { Theme, applyTheme, toggleTheme } from '@my-ui/core';
+
+// Por ejemplo, al iniciar la app
+applyTheme(Theme.Light);
 
 function ThemeToggleButton() {
-  return <button onClick={toggleTheme}>Cambiar tema</button>;
+  const handleClick = () => {
+    toggleTheme(); // alterna entre light y dark
+  };
+
+  return <button onClick={handleClick}>Cambiar tema</button>;
 }
 ```
 

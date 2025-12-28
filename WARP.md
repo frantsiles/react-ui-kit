@@ -237,7 +237,26 @@ Estas reglas definen cómo se implementan los estilos y los temas en la librerí
 - La app consumidora es responsable de:
   - Establecer el atributo `data-theme`.
   - Cambiarlo cuando quiera alternar entre temas.
-- En el futuro se pueden ofrecer helpers (por ejemplo, funciones utilitarias para aplicar tema), pero sin introducir un provider obligatorio que acople a la app.
+
+### API de theming en `@my-ui/core`
+
+- El core expone un tipo central de tema como **string enum**:
+  - `Theme.Light = 'light'`, `Theme.Dark = 'dark'` (y futuros temas como `HighContrast`).
+- Helpers disponibles:
+  - `applyTheme(theme: Theme)` → aplica el tema estableciendo `data-theme` en `document.documentElement`.
+  - `getTheme(): Theme | null` → devuelve el tema actual leído de `data-theme`.
+  - `toggleTheme(): Theme` → alterna entre light/dark y devuelve el nuevo valor.
+- Estos helpers nunca modifican estilos directamente; solo gestionan el atributo `data-theme`. Todo el aspecto visual se resuelve mediante variables CSS.
+
+### Tokens y enums compartidos
+
+- Los design tokens en TypeScript viven centralizados en `@my-ui/tokens` (por ejemplo, `color`, `spacing`, `radius`, `font`).
+- `@my-ui/core` re-exporta:
+  - Un objeto `tokens` de solo lectura.
+  - Tipos derivados (`ColorToken`, `SpacingToken`, etc.) y, opcionalmente, helpers (`getColor`, `getSpacing`, ...).
+- Los componentes deben usar **enums y tipos compartidos** definidos en `@my-ui/core` para props repetidas, por ejemplo:
+  - `ButtonVariant`, `ButtonSize`, `TagVariant`, `Intent`, etc.
+- Regla: no definir variantes como strings sueltas en cada componente; siempre reutilizar los enums/tipos centrales para mantener un lenguaje común en todo el sistema.
 
 ## Pautas de accesibilidad del UI Kit
 
