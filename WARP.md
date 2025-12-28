@@ -325,3 +325,35 @@ Antes de aprobar una PR que introduce o modifica un componente:
 5. ¿Los estados importantes están comunicados con atributos nativos/ARIA?
 6. Si hay overlays (modal, menú, popover, tooltip), ¿la gestión de foco y cierre con `Esc` es correcta?
 7. ¿El contraste de los tokens utilizados es suficiente para su uso previsto?
+
+## Estructura y contrato de los componentes (`@my-ui/components`)
+
+- Todos los componentes viven en `packages/components/src/lib/<NombreComponente>/`.
+- Archivos mínimos por componente:
+  - `NombreComponente.tsx` – implementación React.
+  - `NombreComponente.module.css` – estilos con CSS Modules y variables CSS.
+  - `NombreComponente.stories.tsx` – stories de Storybook.
+  - `NombreComponente.test.tsx` – pruebas unitarias con Vitest.
+  - `index.ts` – re-exporta el componente y sus tipos públicos.
+- El archivo `packages/components/src/index.ts` re-exporta todos los componentes desde sus respectivos directorios `lib/<Componente>`.
+
+### Reglas para props y tipos
+
+- Props repetidas (como `variant`, `size`, `intent`, `tone`, etc.) deben usar enums y tipos definidos en `@my-ui/core`, no strings sueltas.
+- Los componentes deben exponer tipos públicos de props (`NombreComponenteProps`) desde su `index.ts` local para que puedan ser reutilizados por los consumidores.
+
+### Reglas de estilos
+
+- Se usan **exclusivamente** CSS Modules (`*.module.css`) para estilos de componentes.
+- Los estilos solo consumen design tokens a través de variables CSS (`var(--color-...)`, `var(--spacing-...)`, etc.).
+- No se permiten colores o tamaños hardcodeados cuando exista un token equivalente.
+
+### Reglas de accesibilidad y pruebas
+
+- Cada componente debe:
+  - Usar elementos HTML semánticos adecuados (`button`, `input`, `label`, `a`, etc.).
+  - Ser operable con teclado y mostrar foco visible.
+  - Comunicar estados importantes con atributos nativos/ARIA.
+- Cada nuevo componente o cambio significativo debe venir con:
+  - Pruebas unitarias (`*.test.tsx`) que cubran al menos render básico, interacción principal y algún aspecto de accesibilidad.
+  - Stories en Storybook (`*.stories.tsx`) que documenten los casos de uso principales.

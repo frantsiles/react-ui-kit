@@ -198,3 +198,21 @@ En resumen, los componentes vienen con **patrones de accesibilidad aplicados por
 - Proporcionar textos significativos y mensajes de error/ayuda.
 - Mantener temas y configuraciones visuales con buen contraste.
 - Diseñar flujos de navegación accesibles a nivel de página.
+
+## Componentes y estructura del paquete
+
+Los componentes del UI Kit se distribuyen desde el paquete `@my-ui/components`.  
+Internamente, cada componente vive en un directorio propio (`src/lib/Button`, `src/lib/Tag`, etc.) con:
+
+- Implementación React (`*.tsx`).
+- Estilos con CSS Modules (`*.module.css`) basados en design tokens.
+- Historias de Storybook (`*.stories.tsx`) para ejemplos interactivos.
+- Pruebas unitarias (`*.test.tsx`) para asegurar el comportamiento esperado.
+
+Como usuario del kit, normalmente importarás directamente desde `@my-ui/components`:
+
+```ts
+import { Button, Tag, Alert } from '@my-ui/components';
+```
+
+Los componentes comparten un conjunto de tipos y enums comunes expuestos por `@my-ui/core` (por ejemplo, variantes, tamaños, intents), lo que ayuda a mantener un API consistente en todo el sistema.
