@@ -1,0 +1,43 @@
+[2m> [22mvite build
+
+[36mvite v7.2.7 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 2 modules transformed.
+[31m✗[39m Build failed in 1.25s
+[31merror during build:
+[31m[vite]: Rollup failed to resolve import "react/jsx-runtime" from "C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/apps/playground/src/main.tsx".
+This is most likely unintended because it can break your application at runtime.
+If you do want to externalize this module explicitly add it to
+`build.rollupOptions.external`[31m
+    at viteLog (file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/vite@7.2.7_@types+node@25.0_11191f35334e5315c58bd20ad9c961c9/node_modules/vite/dist/node/chunks/config.js:33634:57)
+    at file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/vite@7.2.7_@types+node@25.0_11191f35334e5315c58bd20ad9c961c9/node_modules/vite/dist/node/chunks/config.js:33668:73
+    at onwarn (file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/@vitejs+plugin-react@5.1.2__a88ccaccbe59e66ff9b11a56f14039e1/node_modules/@vitejs/plugin-react/dist/index.js:76:7)
+    at file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/vite@7.2.7_@types+node@25.0_11191f35334e5315c58bd20ad9c961c9/node_modules/vite/dist/node/chunks/config.js:33668:28
+    at onRollupLog (file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/vite@7.2.7_@types+node@25.0_11191f35334e5315c58bd20ad9c961c9/node_modules/vite/dist/node/chunks/config.js:33663:63)
+    at onLog (file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/vite@7.2.7_@types+node@25.0_11191f35334e5315c58bd20ad9c961c9/node_modules/vite/dist/node/chunks/config.js:33466:4)
+    at file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/rollup@4.46.2/node_modules/rollup/dist/es/shared/node-entry.js:20866:32
+    at Object.logger [as onLog] (file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/rollup@4.46.2/node_modules/rollup/dist/es/shared/node-entry.js:22748:9)
+    at ModuleLoader.handleInvalidResolvedId (file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/rollup@4.46.2/node_modules/rollup/dist/es/shared/node-entry.js:21492:26)
+    at file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/rollup@4.46.2/node_modules/rollup/dist/es/shared/node-entry.js:21450:26[39m
+[2m> [22mvite build
+
+[36mvite v7.2.7 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 2 modules transformed.
+[31m✗[39m Build failed in 1.25s
+[31merror during build:
+[31m[vite]: Rollup failed to resolve import "react/jsx-runtime" from "C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/apps/playground/src/main.tsx".
+This is most likely unintended because it can break your application at runtime.
+If you do want to externalize this module explicitly add it to
+`build.rollupOptions.external`[31m
+    at viteLog (file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/vite@7.2.7_@types+node@25.0_11191f35334e5315c58bd20ad9c961c9/node_modules/vite/dist/node/chunks/config.js:33634:57)
+    at file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/vite@7.2.7_@types+node@25.0_11191f35334e5315c58bd20ad9c961c9/node_modules/vite/dist/node/chunks/config.js:33668:73
+    at onwarn (file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/@vitejs+plugin-react@5.1.2__a88ccaccbe59e66ff9b11a56f14039e1/node_modules/@vitejs/plugin-react/dist/index.js:76:7)
+    at file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/vite@7.2.7_@types+node@25.0_11191f35334e5315c58bd20ad9c961c9/node_modules/vite/dist/node/chunks/config.js:33668:28
+    at onRollupLog (file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/vite@7.2.7_@types+node@25.0_11191f35334e5315c58bd20ad9c961c9/node_modules/vite/dist/node/chunks/config.js:33663:63)
+    at onLog (file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/vite@7.2.7_@types+node@25.0_11191f35334e5315c58bd20ad9c961c9/node_modules/vite/dist/node/chunks/config.js:33466:4)
+    at file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/rollup@4.46.2/node_modules/rollup/dist/es/shared/node-entry.js:20866:32
+    at Object.logger [as onLog] (file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/rollup@4.46.2/node_modules/rollup/dist/es/shared/node-entry.js:22748:9)
+    at ModuleLoader.handleInvalidResolvedId (file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/rollup@4.46.2/node_modules/rollup/dist/es/shared/node-entry.js:21492:26)
+    at file:///C:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/node_modules/.pnpm/rollup@4.46.2/node_modules/rollup/dist/es/shared/node-entry.js:21450:26[39m
+Warning: command "vite build" exited with non-zero status code

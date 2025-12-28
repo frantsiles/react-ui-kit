@@ -1,0 +1,14 @@
+[2m> [22mvite build
+
+[36mvite v7.2.7 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 11 modules transformed.
+rendering chunks...
+
+[vite:dts] Start generate declaration files...
+computing gzip size...
+[2mdist/[22m[35mindex.css  [39m[1m[2m 3.43 kB[22m[1m[22m[2m │ gzip:  0.95 kB[22m
+[2mdist/[22m[36mindex.js   [39m[1m[2m78.15 kB[22m[1m[22m[2m │ gzip: 14.27 kB[22m
+[vite:dts] Declaration files built in 4091ms.
+
+[32m✓ built in 4.45s[39m

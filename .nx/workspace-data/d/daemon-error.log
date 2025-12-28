@@ -1,0 +1,26 @@
+Daemon process terminated and closed the connection
+
+Messages from the log:
+[NX v22.2.0 Daemon Server] - 2025-12-11T17:55:59.327Z - Closed a connection. Number of open connections: 1
+Time for 'plugin worker 3868 code loading' 17.9495
+Time for 'plugin worker 42184 code loading' 16.055000000000007
+[NX v22.2.0 Daemon Server] - 2025-12-11T17:55:59.423Z - Closed a connection. Number of open connections: 0
+Time for 'plugin worker 28764 code loading' 51.89
+Time for 'plugin worker 20632 code loading' 14.588900000000002
+[NX v22.2.0 Daemon Server] - 2025-12-11T17:55:59.776Z - Established a connection. Number of open connections: 1
+[NX v22.2.0 Daemon Server] - 2025-12-11T17:55:59.777Z - Closed a connection. Number of open connections: 0
+[NX v22.2.0 Daemon Server] - 2025-12-11T17:55:59.778Z - Established a connection. Number of open connections: 1
+[NX v22.2.0 Daemon Server] - 2025-12-11T17:56:00.856Z - Time taken for 'Load Nx Plugin: C:\Users\pachi\Documents\GitHub\frantsiles\react-ui-kit\node_modules\.pnpm\nx@22.2.0_@swc-node+registe_600c35918ba826cdfc91d66e1ed65791\node_modules\nx\src\plugins\package-json' 1814.1969ms
+[NX v22.2.0 Daemon Server] - 2025-12-11T17:56:00.985Z - Time taken for 'Load Nx Plugin: C:\Users\pachi\Documents\GitHub\frantsiles\react-ui-kit\node_modules\.pnpm\nx@22.2.0_@swc-node+registe_600c35918ba826cdfc91d66e1ed65791\node_modules\nx\src\plugins\js' 1945.7183999999997ms
+[NX v22.2.0 Daemon Server] - 2025-12-11T17:56:01.256Z - Time taken for 'loadDefaultNxPlugins' 2217.5022ms
+[NX v22.2.0 Daemon Server] - 2025-12-11T17:56:01.534Z - Received raw message of length 32
+[NX v22.2.0 Daemon Server] - 2025-12-11T17:56:01.535Z - Received json message of type REQUEST_PROJECT_GRAPH
+[NX v22.2.0 Daemon Server] - 2025-12-11T17:56:01.535Z - [REQUEST]: Client Request for Project Graph Received
+[NX v22.2.0 Daemon Server] - 2025-12-11T17:56:01.609Z - Started listening on: \\.\pipe\nx\C:\Users\pachi\AppData\Local\Temp\3e78d4d8fc5f80a4e17c\d.sock
+[NX v22.2.0 Daemon Server] - 2025-12-11T17:56:01.613Z - Closed a connection. Number of open connections: 0
+[NX v22.2.0 Daemon Server] - 2025-12-11T17:56:01.614Z - [WATCHER]: Stopping the watcher for C:\Users\pachi\Documents\GitHub\frantsiles\react-ui-kit (sources)
+[NX v22.2.0 Daemon Server] - 2025-12-11T17:56:01.614Z - [WATCHER]: Stopping the watcher for C:\Users\pachi\Documents\GitHub\frantsiles\react-ui-kit (outputs)
+
+
+
+More information: C:\Users\pachi\Documents\GitHub\frantsiles\react-ui-kit\.nx\workspace-data\d\daemon.log

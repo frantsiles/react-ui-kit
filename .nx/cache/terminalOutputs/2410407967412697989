@@ -1,0 +1,27 @@
+[2m> [22mvite build
+
+[36mvite v6.3.5 [32mbuilding for production...[36m[39m
+transforming...
+[32m✓[39m 8 modules transformed.
+rendering chunks...
+
+[vite:dts] Start generate declaration files...
+[96msrc/index.ts[0m:[93m5[0m:[93m15[0m - [91merror[0m[90m TS2835: [0mRelative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean './lib/theme.js'?
+
+[7m5[0m export * from './lib/theme';
+[7m [0m [91m              ~~~~~~~~~~~~~[0m
+[96msrc/index.ts[0m:[93m8[0m:[93m15[0m - [91merror[0m[90m TS2835: [0mRelative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean './lib/utils.js'?
+
+[7m8[0m export * from './lib/utils';
+[7m [0m [91m              ~~~~~~~~~~~~~[0m
+[96msrc/index.ts[0m:[93m11[0m:[93m15[0m - [91merror[0m[90m TS2835: [0mRelative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean './lib/types.js'?
+
+[7m11[0m export * from './lib/types';
+[7m  [0m [91m              ~~~~~~~~~~~~~[0m
+
+computing gzip size...
+[2mdist/[22m[35mindex.css  [39m[1m[2m 3.43 kB[22m[1m[22m[2m │ gzip:  0.95 kB[22m
+[2mdist/[22m[36mindex.js   [39m[1m[2m75.74 kB[22m[1m[22m[2m │ gzip: 13.56 kB[22m
+[vite:dts] Declaration files built in 2013ms.
+
+[32m✓ built in 2.26s[39m

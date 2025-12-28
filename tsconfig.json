@@ -1,0 +1,35 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/storybook"
+    },
+    {
+      "path": "./packages/core"
+    },
+    {
+      "path": "./packages/components"
+    },
+    {
+      "path": "./packages/icons"
+    },
+    {
+      "path": "./packages/tokens"
+    },
+    {
+      "path": "./apps/playground"
+    },
+    {
+      "path": "./e2e"
+    }
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs",
+      "moduleResolution": "node10",
+      "customConditions": null
+    }
+  }
+}

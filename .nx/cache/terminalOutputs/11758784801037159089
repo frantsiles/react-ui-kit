@@ -1,0 +1,13 @@
+[2m> [22mvitest
+
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90mC:/Users/pachi/Documents/GitHub/frantsiles/react-ui-kit/my-ui-library/packages/components[39m
+
+ [32m✓[39m src/lib/components.spec.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 31[2mms[22m[39m
+ [32m✓[39m src/lib/Button/Button.test.tsx [2m([22m[2m29 tests[22m[2m)[22m[32m 175[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m30 passed[39m[22m[90m (30)[39m
+[2m   Start at [22m 00:57:07
+[2m   Duration [22m 2.69s[2m (transform 213ms, setup 553ms, collect 887ms, tests 207ms, environment 2.11s, prepare 468ms)[22m
+

@@ -1,0 +1,9 @@
+{
+  "name": "@my-ui-library/storybook",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "@my-ui/core": "workspace:*",
+    "@my-ui/components": "workspace:*"
+  }
+}

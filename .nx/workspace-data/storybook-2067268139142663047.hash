@@ -1,0 +1,1784 @@
+{
+  "5302009128017789631": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "1765359772996758060": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "10137081836080626356": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "14732763724887031651": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "18185542915920729832": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "14589556425935548932": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "6711492625370982994": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "7974333405784556123": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "17729447776656310957": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "15776479288353963886": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "14853428649085845721": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "9296683762808303741": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "8999636832240023392": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "11046498631897227476": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "1432703376094646416": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "1482419219691161364": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "16110257245303774125": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "."
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "."
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @react-ui-kit/source --includeDependentProjects -- pnpm exec nx build-deps @react-ui-kit/source"
+    }
+  },
+  "992249684734851065": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "."
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "."
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @react-ui-kit/source --includeDependentProjects -- pnpm exec nx build-deps @react-ui-kit/source"
+    }
+  },
+  "6694042067151176996": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "."
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "."
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @react-ui-kit/source --includeDependentProjects -- pnpm exec nx build-deps @react-ui-kit/source"
+    }
+  },
+  "16743689852438832858": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "12656937100557619771": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "."
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "."
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @react-ui-kit/source --includeDependentProjects -- pnpm exec nx build-deps @react-ui-kit/source"
+    }
+  },
+  "9677121994045200756": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "."
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "."
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @react-ui-kit/source --includeDependentProjects -- pnpm exec nx build-deps @react-ui-kit/source"
+    }
+  },
+  "7069386003308074448": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "18383498190608233824": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "."
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "."
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @react-ui-kit/source --includeDependentProjects -- pnpm exec nx build-deps @react-ui-kit/source"
+    }
+  },
+  "13785388335823439412": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "."
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "."
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @react-ui-kit/source --includeDependentProjects -- pnpm exec nx build-deps @react-ui-kit/source"
+    }
+  },
+  "16016456673125171518": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "18335737647029491255": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "."
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "."
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @react-ui-kit/source --includeDependentProjects -- pnpm exec nx build-deps @react-ui-kit/source"
+    }
+  },
+  "16227869668256408880": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "17470867148275952842": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "."
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "."
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @react-ui-kit/source --includeDependentProjects -- pnpm exec nx build-deps @react-ui-kit/source"
+    }
+  },
+  "11504492075209489991": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "apps/storybook"
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "apps/storybook"
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "apps/storybook/storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @my-ui-library/storybook --includeDependentProjects -- pnpm exec nx build-deps @my-ui-library/storybook"
+    }
+  },
+  "4391807781662600366": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "."
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "."
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @react-ui-kit/source --includeDependentProjects -- pnpm exec nx build-deps @react-ui-kit/source"
+    }
+  },
+  "7409005940652904110": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "."
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "."
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @react-ui-kit/source --includeDependentProjects -- pnpm exec nx build-deps @react-ui-kit/source"
+    }
+  },
+  "10163626649451530425": {
+    "build-storybook": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "."
+      },
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/storybook-static",
+        "{options.output-dir}",
+        "{options.outputDir}",
+        "{options.o}"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "storybook"
+          ]
+        }
+      ]
+    },
+    "storybook": {
+      "continuous": true,
+      "command": "storybook dev",
+      "options": {
+        "cwd": "."
+      }
+    },
+    "static-storybook": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build-storybook",
+        "staticFilePath": "storybook-static"
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "pnpm exec nx watch --projects @react-ui-kit/source --includeDependentProjects -- pnpm exec nx build-deps @react-ui-kit/source"
+    }
+  }
+}

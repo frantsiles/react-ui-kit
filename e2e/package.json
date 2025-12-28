@@ -1,0 +1,10 @@
+{
+  "name": "@my-ui-library/react-ui-kit-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@my-ui-library/react-ui-kit"
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "run": {
+    "command": "nx run-many -t build",
+    "startTime": "2025-12-28T02:38:00.486Z",
+    "endTime": "2025-12-28T02:38:30.238Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "@my-ui/tokens:build",
+      "target": "build",
+      "projectName": "@my-ui/tokens",
+      "hash": "2085748808779837988",
+      "startTime": "2025-12-28T02:38:00.598Z",
+      "endTime": "2025-12-28T02:38:15.239Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@my-ui/icons:build",
+      "target": "build",
+      "projectName": "@my-ui/icons",
+      "hash": "9507607793702042981",
+      "startTime": "2025-12-28T02:38:00.598Z",
+      "endTime": "2025-12-28T02:38:17.486Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@my-ui/core:build",
+      "target": "build",
+      "projectName": "@my-ui/core",
+      "hash": "14339316613566595606",
+      "startTime": "2025-12-28T02:38:00.598Z",
+      "endTime": "2025-12-28T02:38:17.982Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@my-ui-library/react-ui-kit:build",
+      "target": "build",
+      "projectName": "@my-ui-library/react-ui-kit",
+      "hash": "5943844022655274301",
+      "startTime": "2025-12-28T02:38:16.768Z",
+      "endTime": "2025-12-28T02:38:23.534Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@my-ui/components:build",
+      "target": "build",
+      "projectName": "@my-ui/components",
+      "hash": "304884994214708003",
+      "startTime": "2025-12-28T02:38:18.024Z",
+      "endTime": "2025-12-28T02:38:26.512Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@my-ui-library/storybook:build",
+      "target": "build",
+      "projectName": "@my-ui-library/storybook",
+      "hash": "1340889453086880874",
+      "startTime": "2025-12-28T02:38:26.610Z",
+      "endTime": "2025-12-28T02:38:30.227Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    }
+  ]
+}
