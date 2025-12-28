@@ -2,81 +2,167 @@
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+✨ Tu nuevo y reluciente [workspace de Nx](https://nx.dev) está casi listo ✨.
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+[Conoce más sobre esta configuración de workspace y sus capacidades](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) o ejecuta `npx nx graph` para explorar visualmente lo que se creó. ¡Ahora vamos a ponerte al día!
 
-## Finish your CI setup
+## Termina la configuración de CI
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/GuoWvlfaWZ)
+[Haz clic aquí para terminar de configurar tu workspace](https://cloud.nx.app/connect/GuoWvlfaWZ)
 
+## Ejecutar tareas
 
-## Run tasks
-
-To run the dev server for your app, use:
+Para ejecutar el servidor de desarrollo de tu aplicación, usa:
 
 ```sh
 npx nx serve react-ui-kit
 ```
 
-To create a production bundle:
+Para crear un bundle de producción:
 
 ```sh
 npx nx build react-ui-kit
 ```
 
-To see all available targets to run for a project, run:
+Para ver todos los targets disponibles de un proyecto, ejecuta:
 
 ```sh
 npx nx show project react-ui-kit
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+Estos targets se [infieren automáticamente](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) o se definen en los archivos `project.json` o `package.json`.
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+[Más información sobre la ejecución de tareas en la documentación »](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-## Add new projects
+## Agregar nuevos proyectos
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+Aunque puedes agregar proyectos nuevos a tu workspace manualmente, probablemente quieras aprovechar los [plugins de Nx](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) y su funcionalidad de [generación de código](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects).
 
-Use the plugin's generator to create new projects.
+Usa el generador del plugin para crear nuevos proyectos.
 
-To generate a new application, use:
+Para generar una nueva aplicación, usa:
 
 ```sh
 npx nx g @nx/react:app demo
 ```
 
-To generate a new library, use:
+Para generar una nueva librería, usa:
 
 ```sh
 npx nx g @nx/react:lib mylib
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+Puedes usar `npx nx list` para obtener una lista de plugins instalados. Luego, ejecuta `npx nx list <plugin-name>` para conocer capacidades más específicas de cada plugin. Como alternativa, [instala Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) para explorar plugins y generadores desde tu IDE.
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+[Más información sobre los plugins de Nx »](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Explora el registro de plugins »](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
+[Más información sobre Nx en CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## Instalar Nx Console
 
-## Install Nx Console
+Nx Console es una extensión de editor que mejora tu experiencia de desarrollo. Te permite ejecutar tareas, generar código y mejora el autocompletado en tu IDE. Está disponible para VSCode e IntelliJ.
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+[Instalar Nx Console »](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## Enlaces útiles
 
-## Useful links
+Más información:
 
-Learn more:
+- [Más información sobre esta configuración de workspace](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
+- [Más información sobre Nx en CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Publicar paquetes con Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [¿Qué son los plugins de Nx?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
+Y únete a la comunidad de Nx:
 - [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Síguenos en X](https://twitter.com/nxdevtools) o [LinkedIn](https://www.linkedin.com/company/nrwl)
+- [Nuestro canal de Youtube](https://www.youtube.com/@nxdevtools)
+- [Nuestro blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+## Estilos y theming
+
+Este UI Kit utiliza **CSS Modules** y **design tokens con variables CSS** para definir la apariencia de los componentes.
+
+### Cómo están implementados los estilos
+
+- Cada componente incluye su propio archivo `*.module.css`, lo que evita fugas de estilos y conflictos con la aplicación.
+- No necesitas configurar Tailwind ni otros frameworks de utilidades para usar el kit.
+- Los estilos se basan en **design tokens** compartidos:
+  - Colores (`--color-primary`, `--color-bg`, …)
+  - Espaciados (`--spacing-sm`, `--spacing-md`, …)
+  - Radios (`--radius-sm`, `--radius-md`, …)
+  - Tipografías (`--font-body`, `--font-button`, …)
+
+Como consumidor del kit, normalmente solo trabajarás con props como `variant`, `size`, etc., y no tendrás que preocuparte por la implementación interna de CSS.
+
+### Temas (light, dark, etc.)
+
+El UI Kit soporta múltiples temas mediante **variables CSS** controladas por el atributo `data-theme`.
+
+- Por defecto, el tema se selecciona aplicando `data-theme` en un nodo alto del árbol:
+  - Por ejemplo, en `<html>` o `<body>`.
+- Los temas disponibles (por ejemplo `light`, `dark`) ajustan los valores de las variables CSS que usan los componentes.
+
+Ejemplo básico:
+
+```tsx
+// index.html o layout principal
+<html data-theme="light">
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+```
+
+```tsx
+// En tu aplicación React
+const toggleTheme = () => {
+  const root = document.documentElement;
+  const current = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', current);
+};
+
+function ThemeToggleButton() {
+  return <button onClick={toggleTheme}>Cambiar tema</button>;
+}
+```
+
+Los componentes del UI Kit automáticamente reflejarán el tema activo, ya que todos sus estilos dependen de las variables CSS definidas para cada tema.
+
+Si necesitas personalizar la apariencia (por ejemplo, cambiar el color primario o los radios), puedes sobrescribir las variables CSS en tu propia hoja de estilos, manteniendo la compatibilidad con los componentes del kit.
+
+## Accesibilidad
+
+Este UI Kit está diseñado con **accesibilidad integrada**. Los componentes siguen una serie de buenas prácticas para facilitar su uso con lectores de pantalla, teclado y distintas condiciones visuales.
+
+### Qué garantizan los componentes
+
+- **Navegación por teclado**:
+  - Los elementos interactivos (botones, toggles, enlaces, etc.) son accesibles con `Tab` / `Shift+Tab`.
+  - Los componentes se pueden activar con las teclas esperadas (`Enter`, `Space`, flechas, `Esc`, según el tipo de componente).
+- **Foco visible**:
+  - Todos los componentes interactivos muestran un indicador de foco claro cuando se navega con teclado.
+- **HTML semántico**:
+  - Se usan elementos nativos apropiados (`button`, `a`, `label`, `input`, etc.) siempre que es posible.
+- **Uso de ARIA cuando es necesario**:
+  - Estados como expandido, seleccionado, presionado o inválido se comunican mediante atributos ARIA (`aria-expanded`, `aria-selected`, `aria-pressed`, `aria-invalid`, etc.) además de la representación visual.
+- **Gestión de foco en componentes complejos**:
+  - Diálogos, menús, accordions y otros componentes avanzados manejan el foco y el cierre con teclado según patrones recomendados (por ejemplo, cerrar con `Esc` y devolver el foco al disparador).
+
+### Responsabilidades de la aplicación que consume el kit
+
+Aunque el kit implementa patrones de accesibilidad por defecto, hay aspectos que dependen de la aplicación:
+
+- **Etiquetas y textos**:
+  - Debes proporcionar textos claros y descriptivos en `label`, `aria-label` o el contenido de los componentes.
+- **Mensajes de error y ayuda**:
+  - Si tu lógica de negocio muestra errores o mensajes de ayuda, asegúrate de pasarlos a las props correspondientes para que se enlacen mediante `aria-describedby` cuando aplique.
+- **Theming y contraste**:
+  - El kit expone tokens de color y estilos pensados para cumplir contraste mínimo, pero si personalizas temas o tokens, verifica que el contraste siga siendo suficiente para texto y controles interactivos.
+- **Flujos de navegación complejos**:
+  - En flujos avanzados de la aplicación (por ejemplo, wizards, múltiples diálogos encadenados, etc.), revisa que la gestión del foco y la estructura de la página sigan siendo claras para lectores de pantalla.
+
+En resumen, los componentes vienen con **patrones de accesibilidad aplicados por defecto**, pero la app consumidora sigue siendo responsable de:
+- Proporcionar textos significativos y mensajes de error/ayuda.
+- Mantener temas y configuraciones visuales con buen contraste.
+- Diseñar flujos de navegación accesibles a nivel de página.

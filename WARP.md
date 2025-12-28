@@ -197,3 +197,112 @@ The UI kit is structured as a layered design system:
 - `targetDefaults` in `nx.json` configure `test` to depend on `^build`, so running `nx test` for a project will ensure its dependencies are built first.
 
 When adding new apps or libraries, prefer Nx generators (`pnpm exec nx g ...`) so that targets, TS configs, and inter-project dependencies stay consistent with the existing structure.
+
+## Pautas de estilos y theming del UI Kit
+
+Estas reglas definen cómo se implementan los estilos y los temas en la librería.
+
+### Estilos por componente
+
+- Cada componente React debe tener su propio archivo de estilos:
+  - `ComponentName.tsx`
+  - `ComponentName.module.css`
+- Se usan **solo CSS Modules** (`*.module.css`) para estilos de componentes.
+- No se permiten estilos globales, salvo:
+  - Reset/base global del kit.
+  - Definición de design tokens y temas (variables CSS).
+- Convenciones dentro de `*.module.css`:
+  - Clase raíz del componente: `root`.
+  - Clases internas descriptivas: `icon`, `label`, `content`, etc.
+- No se usan frameworks de utilidades (Tailwind) ni clases utilitarias dentro de la librería, salvo decisión explícita futura.
+
+### Design tokens
+
+- Los **design tokens** (colores, tipografías, espaciados, radios, etc.) se definen en código fuente (por ejemplo en `src/tokens`).
+- Los tokens se exponen a los componentes y a las apps mediante **variables CSS**:
+  - Ejemplos: `--color-primary`, `--spacing-sm`, `--radius-md`, `--font-button`.
+- Los componentes nunca deben hardcodear valores visuales directos (hex, px, etc.) cuando exista un token adecuado.
+  - Siempre que sea posible, usar `var(--token)`.
+
+### Theming
+
+- El theming se basa en **atributos/clases de tema** que cambian el set de variables CSS activas.
+- Convención por defecto:
+  - El tema se selecciona con `data-theme` en un nodo root (`html`, `body` o un contenedor alto).
+  - Ejemplos: `data-theme="light"`, `data-theme="dark"`.
+- La librería define estilos de tema en CSS, por ejemplo:
+  - `:root, :root[data-theme='light'] { ... }`
+  - `:root[data-theme='dark'] { ... }`
+- Los componentes solo leen variables (`var(--color-primary)`, etc.) y no conocen el tema activo.
+- La app consumidora es responsable de:
+  - Establecer el atributo `data-theme`.
+  - Cambiarlo cuando quiera alternar entre temas.
+- En el futuro se pueden ofrecer helpers (por ejemplo, funciones utilitarias para aplicar tema), pero sin introducir un provider obligatorio que acople a la app.
+
+## Pautas de accesibilidad del UI Kit
+
+Estas reglas aplican a **todos los componentes nuevos** y a cualquier cambio significativo en componentes existentes.
+
+### Principios generales
+
+- Todos los elementos interactivos deben ser navegables con teclado usando `Tab` / `Shift+Tab`.
+- Todos los elementos interactivos deben mostrar **un indicador de foco visible y claro**.
+  - No está permitido eliminar el `outline` sin proporcionar una alternativa equivalente o mejor.
+- Siempre que exista un elemento HTML semántico adecuado, se debe usar:
+  - `button` en lugar de `div` clickable.
+  - `a` para enlaces reales.
+  - `label` asociado a `input` para campos de formulario.
+- ARIA se usa solo para **complementar** o cuando no exista alternativa semántica nativa.
+  - Ejemplos: `aria-expanded`, `aria-pressed`, `aria-selected`, `aria-invalid`, `aria-describedby`.
+
+### Nombres accesibles y estados
+
+- Cada control debe tener un **nombre accesible**:
+  - Texto visible dentro del componente, o
+  - `aria-label`, o
+  - `aria-labelledby` apuntando a un texto visible.
+- Inputs y campos de formulario:
+  - Deben tener `label` asociado (`htmlFor` + `id`).
+  - Deben marcar errores usando `aria-invalid` y, cuando haya mensaje de error, enlazarlo con `aria-describedby`.
+- Estados importantes (disabled, error, selected, expanded, loading) deben tener:
+  - Representación visual clara.
+  - Atributos nativos o ARIA coherentes (`disabled`, `aria-disabled`, `aria-selected`, etc.).
+
+### Teclado y foco en componentes complejos
+
+- **Botones y toggles**
+  - Activables con `Enter` y `Space`.
+  - Los toggles deben usar `aria-pressed` cuando represente un estado presionado/activo.
+- **Accordions / colapsables**
+  - El trigger debe ser un `button` con `aria-expanded` y `aria-controls`.
+  - El panel puede usar `role="region"` y `aria-labelledby` apuntando al trigger.
+- **Diálogos / modales**
+  - Deben usar `role="dialog"` (o `<dialog>` nativo) y `aria-modal="true"`.
+  - Al abrir:
+    - El foco se mueve a un elemento significativo dentro del diálogo.
+  - Mientras el diálogo está abierto:
+    - El foco debe quedar atrapado dentro del diálogo.
+  - Al cerrar:
+    - Se restaura el foco al elemento que disparó la apertura.
+  - Deben poder cerrarse con `Esc`.
+- **Menús / popovers / selects personalizados**
+  - Navegación con flechas (`↑`, `↓`, `Home`, `End`) cuando aplique.
+  - `Enter`/`Space` para seleccionar.
+  - `Esc` para cerrar.
+
+### Contraste y visibilidad
+
+- Los **tokens de color** usados para texto, iconos e indicadores de estado deben respetar como mínimo el contraste AA.
+- No se debe depender solo del color para transmitir información crítica (usar también iconos, texto o cambios de borde/forma cuando sea necesario).
+
+### Checklist obligatoria para PRs de componentes
+
+Antes de aprobar una PR que introduce o modifica un componente:
+
+1. ¿Se puede usar el componente solo con teclado (incluyendo foco y activación)?
+2. ¿El foco es visible y no se ha eliminado sin alternativa?
+3. ¿Se utilizan los elementos HTML semánticos correctos?
+4. ¿El componente tiene nombre accesible adecuado?
+5. ¿Los estados importantes están comunicados con atributos nativos/ARIA?
+6. Si hay overlays (modal, menú, popover, tooltip), ¿la gestión de foco y cierre con `Esc` es correcta?
+7. ¿El contraste de los tokens utilizados es suficiente para su uso previsto?
