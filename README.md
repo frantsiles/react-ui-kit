@@ -6,6 +6,33 @@
 
 [Conoce más sobre esta configuración de workspace y sus capacidades](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) o ejecuta `npx nx graph` para explorar visualmente lo que se creó. ¡Ahora vamos a ponerte al día!
 
+## Visión y objetivo del UI Kit
+
+Este proyecto tiene como objetivo construir una **librería de controles reutilizables para aplicaciones web en React**, que sirva como base sólida para:
+
+- Acelerar el desarrollo de proyectos web internos y externos, ofreciendo componentes consistentes, accesibles y fáciles de integrar.
+- Funcionar como "núcleo" a partir del cual se puedan crear otras librerías y variantes derivadas (por ejemplo, kits específicos por marca, producto o cliente) sin perder coherencia en diseño y comportamiento.
+- Explorar hasta dónde se puede llegar combinando **experiencia previa**, **agentes de IA** y **buenas prácticas de ingeniería** para construir un diseño de sistema profesional, mantenible y orientado a producto.
+
+A medida que el proyecto evolucione, este README se actualizará para reflejar el estado actual del UI Kit (componentes disponibles, roadmap y guías de contribución).
+
+## Roadmap inicial
+
+1. **Fase 1 – Fundamentos del sistema de diseño**  
+   Definir la estructura del monorepo, los design tokens, el modelo de theming y las pautas de estilos, accesibilidad y seguridad que regirán todos los componentes.
+
+2. **Fase 2 – MVP de componentes**  
+   Construir un set mínimo de componentes esenciales (botones, inputs, selects, checkboxes, radios, switches, alerts, modals, tooltips, tabs, accordions), cada uno con estilos, historias de Storybook, tests y documentación básica.
+
+3. **Fase 3 – Calidad y automatización**  
+   Consolidar pruebas unitarias y de integración, cobertura mínima, pruebas visuales con Storybook/E2E, linting estricto y CI para validar cada cambio.
+
+4. **Fase 4 – Empaquetado y publicación**  
+   Ajustar el build para distribución como paquete npm (ESM/CJS + tipos), definir la estrategia de versionado (semver, releases 0.x) y establecer un flujo claro de publicación.
+
+5. **Fase 5 – Expansión y proyectos derivados**  
+   Ampliar el catálogo de componentes según necesidades reales, crear temas de marca y proyectos de ejemplo, y usar la librería como base para iniciativas de emprendimiento y productos derivados.
+
 ## Termina la configuración de CI
 
 [Haz clic aquí para terminar de configurar tu workspace](https://cloud.nx.app/connect/GuoWvlfaWZ)
