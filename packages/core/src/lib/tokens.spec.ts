@@ -1,4 +1,7 @@
-import { readFileSync } from 'node:fs';
+/// <reference types="vite/client" />
+// ?raw (y no node:fs) para que el test corra también en el navegador
+import tokensCss from '../styles/tokens.css?raw';
+import themeCss from '../styles/theme.css?raw';
 import { cn } from './utils.js';
 import {
   breakpoints,
@@ -11,11 +14,6 @@ import {
   mediaQuery,
   textStyles,
 } from './tokens.js';
-
-const read = (file: string) =>
-  readFileSync(new URL(`../styles/${file}`, import.meta.url), 'utf8');
-const tokensCss = read('tokens.css');
-const themeCss = read('theme.css');
 
 describe('tokens', () => {
   it('cada estilo de texto tiene tamaño, interlineado y peso, y llega a Tailwind', () => {
