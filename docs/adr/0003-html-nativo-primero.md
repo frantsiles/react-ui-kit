@@ -1,6 +1,6 @@
 # 0003 · HTML nativo primero; librería headless solo para controles complejos
 
-- **Estado:** Aceptado
+- **Estado:** Aceptado (la elección de librería se resolvió en el [ADR 0005](0005-react-aria-como-libreria-headless.md))
 - **Fecha:** 2026-11-27
 
 ## Contexto
