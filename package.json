@@ -67,6 +67,7 @@
     "playwright": "^1.65.1",
     "postcss": "^8.5.34",
     "prettier": "^3.10.1",
+    "remark-gfm": "4.0.1",
     "storybook": "^10.6.9",
     "tailwindcss": "^4.3.5",
     "tslib": "^2.9.1",
