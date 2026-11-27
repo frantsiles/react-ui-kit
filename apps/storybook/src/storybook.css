@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@import "../../../packages/core/src/styles/tokens.css";
+@import "../../../packages/core/src/styles/theme.css";
+
+/* Clases usadas por los componentes del kit */
+@source "../../../packages/components/src";
+@source "../../../packages/icons/src";
+@source "../../../packages/core/src";
+
+html {
+  background-color: var(--ui-color-surface);
+  color: var(--ui-color-fg);
+}

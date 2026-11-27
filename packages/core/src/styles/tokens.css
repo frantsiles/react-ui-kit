@@ -142,3 +142,84 @@
   --color-neutral-50: 255 255 255;
   --color-neutral-900: 0 0 0;
 }
+
+/* ==========================================================================
+   Tokens semánticos
+   Los componentes usan SOLO estos tokens (nunca la escala numérica directa),
+   así cada tema decide qué color cumple cada rol.
+   Contrastes verificados sobre --ui-color-surface:
+   - texto (fg, fg-muted, danger, etc.): >= 4.5:1  (WCAG 1.4.3)
+   - bordes de control y foco:           >= 3:1    (WCAG 1.4.11)
+   ========================================================================== */
+:root {
+  --ui-color-surface: rgb(255 255 255);
+  --ui-color-surface-muted: rgb(var(--color-neutral-100));
+  --ui-color-surface-disabled: rgb(var(--color-neutral-100));
+  --ui-color-fg: rgb(var(--color-neutral-900));
+  --ui-color-fg-muted: rgb(var(--color-neutral-600));
+  --ui-color-fg-disabled: rgb(var(--color-neutral-500));
+  --ui-color-border: rgb(var(--color-neutral-500));
+  --ui-color-border-subtle: rgb(var(--color-neutral-200));
+  --ui-color-border-hover: rgb(var(--color-neutral-700));
+  --ui-color-focus: rgb(var(--color-primary-600));
+  --ui-color-primary: rgb(var(--color-primary-700));
+  --ui-color-primary-soft: rgb(var(--color-primary-50));
+  --ui-color-danger: rgb(var(--color-error-700));
+  --ui-color-danger-soft: rgb(var(--color-error-50));
+  --ui-color-success: rgb(var(--color-success-800));
+  --ui-color-success-soft: rgb(var(--color-success-50));
+  --ui-color-warning: rgb(var(--color-warning-800));
+  --ui-color-warning-soft: rgb(var(--color-warning-50));
+
+  /* Tamaños de control (alto mínimo). md/lg superan el objetivo táctil de 24px (WCAG 2.5.8) */
+  --ui-control-height-sm: 2rem;   /* 32px */
+  --ui-control-height-md: 2.5rem; /* 40px */
+  --ui-control-height-lg: 3rem;   /* 48px */
+
+  --ui-focus-ring-width: 2px;
+  --ui-focus-ring-offset: 2px;
+  --ui-duration-fast: 120ms;
+}
+
+[data-theme="dark"] {
+  --ui-color-surface: rgb(var(--color-neutral-50));        /* 23 23 23 en oscuro */
+  --ui-color-surface-muted: rgb(var(--color-neutral-100));
+  --ui-color-surface-disabled: rgb(var(--color-neutral-100));
+  --ui-color-focus: rgb(var(--color-primary-400));
+  --ui-color-primary: rgb(var(--color-primary-300));
+  --ui-color-primary-soft: rgb(30 58 138 / 0.35);
+  --ui-color-danger: rgb(var(--color-error-400));
+  --ui-color-danger-soft: rgb(127 29 29 / 0.35);
+  --ui-color-success: rgb(var(--color-success-400));
+  --ui-color-success-soft: rgb(20 83 45 / 0.35);
+  --ui-color-warning: rgb(var(--color-warning-400));
+  --ui-color-warning-soft: rgb(120 53 15 / 0.35);
+}
+
+[data-theme="high-contrast"] {
+  --ui-color-surface: rgb(255 255 255);
+  --ui-color-surface-muted: rgb(255 255 255);
+  --ui-color-surface-disabled: rgb(229 229 229);
+  --ui-color-fg: rgb(0 0 0);
+  --ui-color-fg-muted: rgb(0 0 0);
+  --ui-color-fg-disabled: rgb(64 64 64);
+  --ui-color-border: rgb(0 0 0);
+  --ui-color-border-subtle: rgb(0 0 0);
+  --ui-color-border-hover: rgb(0 0 0);
+  --ui-color-focus: rgb(0 0 238);
+  --ui-color-primary: rgb(0 0 160);
+  --ui-color-primary-soft: rgb(255 255 255);
+  --ui-color-danger: rgb(160 0 0);
+  --ui-color-danger-soft: rgb(255 255 255);
+  --ui-color-success: rgb(0 100 0);
+  --ui-color-success-soft: rgb(255 255 255);
+  --ui-color-warning: rgb(110 60 0);
+  --ui-color-warning-soft: rgb(255 255 255);
+  --ui-focus-ring-width: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ui-duration-fast: 0ms;
+  }
+}

@@ -108,19 +108,25 @@ Y únete a la comunidad de Nx:
 
 ## Estilos y theming
 
-Este UI Kit utiliza **CSS Modules** y **design tokens con variables CSS** para definir la apariencia de los componentes.
+Este UI Kit usa **Tailwind CSS v4** sobre **design tokens en variables CSS**.
 
 ### Cómo están implementados los estilos
 
-- Cada componente incluye su propio archivo `*.module.css`, lo que evita fugas de estilos y conflictos con la aplicación.
-- No necesitas configurar Tailwind ni otros frameworks de utilidades para usar el kit.
-- Los estilos se basan en **design tokens** compartidos:
-  - Colores (`--color-primary`, `--color-bg`, …)
-  - Espaciados (`--spacing-sm`, `--spacing-md`, …)
-  - Radios (`--radius-sm`, `--radius-md`, …)
-  - Tipografías (`--font-body`, `--font-button`, …)
+- Los componentes usan solo **tokens semánticos** (`--ui-color-surface`, `--ui-color-fg`, `--ui-color-border`, `--ui-color-focus`, `--ui-color-danger`, …), nunca la escala numérica directa. Cada tema decide qué color cumple cada rol.
+- `@my-ui/core/styles/theme.css` expone esos tokens a Tailwind con el prefijo `ui-` (`bg-ui-surface`, `text-ui-fg`, `border-ui-danger`…), así no chocan con el tema de tu app.
+- Los contrastes de los tokens cumplen WCAG AA en los tres temas: texto ≥ 4.5:1, bordes de control y foco ≥ 3:1.
 
-Como consumidor del kit, normalmente solo trabajarás con props como `variant`, `size`, etc., y no tendrás que preocuparte por la implementación interna de CSS.
+### Configuración en la app que consume el kit
+
+```css
+/* tu hoja principal de Tailwind */
+@import "tailwindcss";
+@import "@my-ui/core/styles/tokens.css";
+@import "@my-ui/core/styles/theme.css";
+
+/* para que Tailwind genere las clases que usan los componentes */
+@source "../node_modules/@my-ui";
+```
 
 ### Temas (light, dark, etc.)
 
@@ -145,10 +151,10 @@ Puedes gestionar el tema manualmente modificando `data-theme`, o usar los helper
 
 ```tsx
 // En tu aplicación React
-import { Theme, applyTheme, toggleTheme } from '@my-ui/core';
+import { applyTheme, toggleTheme } from '@my-ui/core';
 
-// Por ejemplo, al iniciar la app
-applyTheme(Theme.Light);
+// Por ejemplo, al iniciar la app ('light' | 'dark' | 'high-contrast')
+applyTheme('light');
 
 function ThemeToggleButton() {
   const handleClick = () => {
@@ -201,18 +207,25 @@ En resumen, los componentes vienen con **patrones de accesibilidad aplicados por
 
 ## Componentes y estructura del paquete
 
-Los componentes del UI Kit se distribuyen desde el paquete `@my-ui/components`.  
-Internamente, cada componente vive en un directorio propio (`src/lib/Button`, `src/lib/Tag`, etc.) con:
+| Paquete | Contenido |
+| --- | --- |
+| `@my-ui/core` | Tokens (`styles/tokens.css`, `styles/theme.css`), temas, `cn`, clases de foco, tipos comunes |
+| `@my-ui/icons` | `createIcon` y el set de íconos (`IconSearch`, `IconCheck`, …) generado desde [Lucide](https://lucide.dev) (ISC) |
+| `@my-ui/components` | Controles: `Label`, `HelpText`, `ErrorMessage`, `Field`, `Input`, `Textarea`, `PasswordInput`, `SearchInput`, `Tag`, `Badge`, `VisuallyHidden` |
 
-- Implementación React (`*.tsx`).
-- Estilos con CSS Modules (`*.module.css`) basados en design tokens.
-- Historias de Storybook (`*.stories.tsx`) para ejemplos interactivos.
-- Pruebas unitarias (`*.test.tsx`) para asegurar el comportamiento esperado.
+Cada componente tiene implementación (`*.tsx`), pruebas con chequeo de accesibilidad axe (`*.spec.tsx`) e historias en `apps/storybook/src/stories`. Storybook incluye selector de tema (claro, oscuro, alto contraste), de dirección (LTR/RTL) y el panel de accesibilidad.
 
-Como usuario del kit, normalmente importarás directamente desde `@my-ui/components`:
+```tsx
+import { Field, Input, PasswordInput, Tag } from '@my-ui/components';
+import { IconMail } from '@my-ui/icons';
 
-```ts
-import { Button, Tag, Alert } from '@my-ui/components';
+<Field label="Correo electrónico" required error={errors.email}>
+  <Input type="email" autoComplete="email" startIcon={<IconMail />} />
+</Field>
 ```
 
-Los componentes comparten un conjunto de tipos y enums comunes expuestos por `@my-ui/core` (por ejemplo, variantes, tamaños, intents), lo que ayuda a mantener un API consistente en todo el sistema.
+`Field` conecta solo la etiqueta, el texto de ayuda y el error con el control (`htmlFor`, `aria-describedby`, `aria-invalid`, `required`).
+
+### Íconos
+
+Los íconos son decorativos por defecto (`aria-hidden`). Si un ícono transmite información por sí solo, pásale `label`. Para sumar íconos al set, agrégalos a `packages/icons/scripts/generate-icons.mjs` y corre `pnpm --filter @my-ui/icons generate`.
