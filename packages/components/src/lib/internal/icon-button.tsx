@@ -21,7 +21,7 @@ export function InlineIconButton({
       type={type}
       className={cn(
         'inline-flex size-6 shrink-0 items-center justify-center rounded-sm text-ui-fg-muted',
-        'transition-colors duration-[var(--ui-duration-fast)] hover:text-ui-fg',
+        'transition-colors duration-(--ui-duration-fast) ease-ui-standard hover:text-ui-fg',
         'disabled:pointer-events-none disabled:text-ui-fg-disabled',
         focusRing,
         className,

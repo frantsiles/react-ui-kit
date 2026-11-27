@@ -178,15 +178,120 @@
   --ui-color-success-soft: rgb(var(--color-success-50));
   --ui-color-warning: rgb(var(--color-warning-800));
   --ui-color-warning-soft: rgb(var(--color-warning-50));
-
-  /* Tamaños de control (alto mínimo). md/lg superan el objetivo táctil de 24px (WCAG 2.5.8) */
-  --ui-control-height-sm: 2rem;   /* 32px */
-  --ui-control-height-md: 2.5rem; /* 40px */
-  --ui-control-height-lg: 3rem;   /* 48px */
+  /* Fondo de bloques elevados (Card, Popover, Dialog). En claro es igual a la
+     superficie y la elevación la da la sombra; en oscuro las sombras casi no se
+     ven, así que la superficie se aclara un poco. */
+  --ui-color-surface-raised: rgb(255 255 255);
 
   --ui-focus-ring-width: 2px;
   --ui-focus-ring-offset: 2px;
-  --ui-duration-fast: 120ms;
+
+  /* Elevación. Cada nivel acompaña a un tipo de bloque, no a un tamaño. */
+  --ui-shadow-raised: 0 1px 2px 0 rgb(0 0 0 / 0.06), 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  --ui-shadow-overlay: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --ui-shadow-modal: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* ==========================================================================
+   Tokens que no dependen del tema
+   Solo en :root: se heredan dentro de cualquier contenedor con data-theme, así
+   un tema por sección no los reinicia (p. ej. la densidad o el movimiento
+   reducido).
+   ========================================================================== */
+:root {
+  /* Tipografía. Tamaños en rem (respetan el tamaño de letra del navegador,
+     WCAG 1.4.4) e interlineado sin unidad (escala con el texto, WCAG 1.4.12). */
+  --ui-font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --ui-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+    monospace;
+
+  --ui-font-weight-regular: 400;
+  --ui-font-weight-medium: 500;
+  --ui-font-weight-semibold: 600;
+  --ui-font-weight-bold: 700;
+
+  /* Estilos de texto por rol: tamaño / interlineado / peso */
+  --ui-text-caption-size: 0.75rem;      /* 12px */
+  --ui-text-caption-line-height: 1.3333; /* 16px */
+  --ui-text-caption-weight: var(--ui-font-weight-regular);
+
+  --ui-text-body-sm-size: 0.875rem;     /* 14px */
+  --ui-text-body-sm-line-height: 1.4286; /* 20px */
+  --ui-text-body-sm-weight: var(--ui-font-weight-regular);
+
+  --ui-text-body-size: 1rem;            /* 16px */
+  --ui-text-body-line-height: 1.5;      /* 24px */
+  --ui-text-body-weight: var(--ui-font-weight-regular);
+
+  --ui-text-body-lg-size: 1.125rem;     /* 18px */
+  --ui-text-body-lg-line-height: 1.5556; /* 28px */
+  --ui-text-body-lg-weight: var(--ui-font-weight-regular);
+
+  --ui-text-label-size: 0.875rem;       /* 14px */
+  --ui-text-label-line-height: 1.4286;  /* 20px */
+  --ui-text-label-weight: var(--ui-font-weight-medium);
+
+  --ui-text-heading-sm-size: 1rem;      /* 16px */
+  --ui-text-heading-sm-line-height: 1.5;
+  --ui-text-heading-sm-weight: var(--ui-font-weight-semibold);
+
+  --ui-text-heading-md-size: 1.25rem;   /* 20px */
+  --ui-text-heading-md-line-height: 1.4; /* 28px */
+  --ui-text-heading-md-weight: var(--ui-font-weight-semibold);
+
+  --ui-text-heading-lg-size: 1.5rem;    /* 24px */
+  --ui-text-heading-lg-line-height: 1.3333; /* 32px */
+  --ui-text-heading-lg-weight: var(--ui-font-weight-semibold);
+
+  --ui-text-heading-xl-size: 1.875rem;  /* 30px */
+  --ui-text-heading-xl-line-height: 1.2; /* 36px */
+  --ui-text-heading-xl-weight: var(--ui-font-weight-bold);
+
+  --ui-text-display-size: 2.25rem;      /* 36px */
+  --ui-text-display-line-height: 1.1111; /* 40px */
+  --ui-text-display-weight: var(--ui-font-weight-bold);
+
+  /* Ancho de línea cómodo para leer párrafos */
+  --ui-measure: 65ch;
+
+  /* Capas (z-index). Saltos de 100 para que la app pueda intercalar las suyas.
+     Popover va sobre Modal para que un Select dentro de un Dialog se vea.
+     Lo que use el top layer del navegador (<dialog> modal, API popover) no
+     necesita z-index. */
+  --ui-z-sticky: 100;
+  --ui-z-modal: 300;
+  --ui-z-popover: 400;
+  --ui-z-toast: 500;
+  --ui-z-tooltip: 600;
+
+  /* Movimiento */
+  --ui-duration-fast: 120ms;   /* hover, foco, cambios de color */
+  --ui-duration-normal: 200ms; /* popovers, expandir y contraer */
+  --ui-duration-slow: 300ms;   /* modales, drawers */
+  --ui-ease-standard: cubic-bezier(0.2, 0, 0, 1); /* cambios dentro de la pantalla */
+  --ui-ease-enter: cubic-bezier(0, 0, 0.2, 1);    /* algo que aparece */
+  --ui-ease-exit: cubic-bezier(0.4, 0, 1, 1);     /* algo que se va */
+
+  /* Tamaños de control (alto mínimo). Todos superan el objetivo táctil de 24px
+     (WCAG 2.5.8), también en densidad compacta. */
+  --ui-control-height-sm: 2rem;   /* 32px */
+  --ui-control-height-md: 2.5rem; /* 40px */
+  --ui-control-height-lg: 3rem;   /* 48px */
+}
+
+/* Densidad: data-density="compact" en <html> o en una sección (tablas, barras
+   de herramientas). "comfortable" es el valor por defecto. */
+[data-density="compact"] {
+  --ui-control-height-sm: 1.75rem; /* 28px */
+  --ui-control-height-md: 2.25rem; /* 36px */
+  --ui-control-height-lg: 2.75rem; /* 44px */
+}
+
+[data-density="comfortable"] {
+  --ui-control-height-sm: 2rem;
+  --ui-control-height-md: 2.5rem;
+  --ui-control-height-lg: 3rem;
 }
 
 [data-theme="dark"] {
@@ -202,6 +307,11 @@
   --ui-color-success-soft: rgb(20 83 45 / 0.35);
   --ui-color-warning: rgb(var(--color-warning-400));
   --ui-color-warning-soft: rgb(120 53 15 / 0.35);
+  --ui-color-surface-raised: rgb(31 31 31);
+
+  --ui-shadow-raised: 0 1px 2px 0 rgb(0 0 0 / 0.4), 0 1px 3px 0 rgb(0 0 0 / 0.5);
+  --ui-shadow-overlay: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+  --ui-shadow-modal: 0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.6);
 }
 
 [data-theme="high-contrast"] {
@@ -223,11 +333,23 @@
   --ui-color-success-soft: rgb(255 255 255);
   --ui-color-warning: rgb(110 60 0);
   --ui-color-warning-soft: rgb(255 255 255);
+  --ui-color-surface-raised: rgb(255 255 255);
   --ui-focus-ring-width: 3px;
+
+  /* En alto contraste la elevación la dan los bordes, no las sombras (igual
+     que con colores forzados, donde el navegador elimina las sombras). */
+  --ui-shadow-raised: none;
+  --ui-shadow-overlay: none;
+  --ui-shadow-modal: none;
 }
 
+/* Movimiento reducido: las transiciones duran casi nada en lugar de 0, porque
+   con 0 el navegador no dispara transitionend y los componentes que esperan
+   ese evento para desmontar un overlay se quedarían colgados. */
 @media (prefers-reduced-motion: reduce) {
   :root {
-    --ui-duration-fast: 0ms;
+    --ui-duration-fast: 0.01ms;
+    --ui-duration-normal: 0.01ms;
+    --ui-duration-slow: 0.01ms;
   }
 }

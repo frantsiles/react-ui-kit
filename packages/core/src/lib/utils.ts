@@ -1,8 +1,36 @@
 import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { extendTailwindMerge } from 'tailwind-merge';
+import {
+  containerSizes,
+  easings,
+  elevations,
+  fontFamilies,
+  fontWeights,
+  textStyles,
+} from './tokens.js';
+
+const ui = (names: readonly string[]) => names.map((name) => `ui-${name}`);
 
 /**
- * Utility function to merge class names with Tailwind CSS conflict resolution
+ * tailwind-merge no conoce los tokens del kit: sin esto trata `text-ui-body`
+ * (tamaño) y `text-ui-fg` (color) como la misma propiedad y descarta una.
+ */
+const twMerge = extendTailwindMerge({
+  extend: {
+    theme: {
+      text: ui(textStyles),
+      font: ui(fontFamilies),
+      'font-weight': ui(fontWeights),
+      shadow: ui(elevations),
+      ease: ui(easings),
+      container: ui(Object.keys(containerSizes)),
+    },
+  },
+});
+
+/**
+ * Une clases y resuelve conflictos de Tailwind: la última gana. Pon el
+ * `className` del usuario al final.
  */
 export function cn(...inputs: ClassValue[]): string {
   return twMerge(clsx(inputs));

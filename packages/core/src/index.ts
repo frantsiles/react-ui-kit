@@ -7,6 +7,9 @@ export * from './lib/theme.js';
 // Export utility functions
 export * from './lib/utils.js';
 
+// Nombres de tokens (tipografía, elevación, capas, breakpoints, densidad)
+export * from './lib/tokens.js';
+
 // Export accessibility helpers
 export * from './lib/a11y.js';
 

@@ -33,5 +33,80 @@
 
   --spacing-ui-control-sm: var(--ui-control-height-sm);
   --spacing-ui-control-md: var(--ui-control-height-md);
+  --color-ui-surface-raised: var(--ui-color-surface-raised);
+
+  --spacing-ui-control-sm: var(--ui-control-height-sm);
+  --spacing-ui-control-md: var(--ui-control-height-md);
   --spacing-ui-control-lg: var(--ui-control-height-lg);
+
+  /* Tipografía: text-ui-body aplica tamaño, interlineado y peso a la vez */
+  --font-ui-sans: var(--ui-font-sans);
+  --font-ui-mono: var(--ui-font-mono);
+  --font-weight-ui-regular: var(--ui-font-weight-regular);
+  --font-weight-ui-medium: var(--ui-font-weight-medium);
+  --font-weight-ui-semibold: var(--ui-font-weight-semibold);
+  --font-weight-ui-bold: var(--ui-font-weight-bold);
+  --text-ui-caption: var(--ui-text-caption-size);
+  --text-ui-caption--line-height: var(--ui-text-caption-line-height);
+  --text-ui-caption--font-weight: var(--ui-text-caption-weight);
+  --text-ui-body-sm: var(--ui-text-body-sm-size);
+  --text-ui-body-sm--line-height: var(--ui-text-body-sm-line-height);
+  --text-ui-body-sm--font-weight: var(--ui-text-body-sm-weight);
+  --text-ui-body: var(--ui-text-body-size);
+  --text-ui-body--line-height: var(--ui-text-body-line-height);
+  --text-ui-body--font-weight: var(--ui-text-body-weight);
+  --text-ui-body-lg: var(--ui-text-body-lg-size);
+  --text-ui-body-lg--line-height: var(--ui-text-body-lg-line-height);
+  --text-ui-body-lg--font-weight: var(--ui-text-body-lg-weight);
+  --text-ui-label: var(--ui-text-label-size);
+  --text-ui-label--line-height: var(--ui-text-label-line-height);
+  --text-ui-label--font-weight: var(--ui-text-label-weight);
+  --text-ui-heading-sm: var(--ui-text-heading-sm-size);
+  --text-ui-heading-sm--line-height: var(--ui-text-heading-sm-line-height);
+  --text-ui-heading-sm--font-weight: var(--ui-text-heading-sm-weight);
+  --text-ui-heading-md: var(--ui-text-heading-md-size);
+  --text-ui-heading-md--line-height: var(--ui-text-heading-md-line-height);
+  --text-ui-heading-md--font-weight: var(--ui-text-heading-md-weight);
+  --text-ui-heading-lg: var(--ui-text-heading-lg-size);
+  --text-ui-heading-lg--line-height: var(--ui-text-heading-lg-line-height);
+  --text-ui-heading-lg--font-weight: var(--ui-text-heading-lg-weight);
+  --text-ui-heading-xl: var(--ui-text-heading-xl-size);
+  --text-ui-heading-xl--line-height: var(--ui-text-heading-xl-line-height);
+  --text-ui-heading-xl--font-weight: var(--ui-text-heading-xl-weight);
+  --text-ui-display: var(--ui-text-display-size);
+  --text-ui-display--line-height: var(--ui-text-display-line-height);
+  --text-ui-display--font-weight: var(--ui-text-display-weight);
+
+  /* Elevación */
+  --shadow-ui-raised: var(--ui-shadow-raised);
+  --shadow-ui-overlay: var(--ui-shadow-overlay);
+  --shadow-ui-modal: var(--ui-shadow-modal);
+
+  /* Movimiento (las duraciones no tienen espacio en el tema de Tailwind:
+     se usan como duration-(--ui-duration-fast)) */
+  --ease-ui-standard: var(--ui-ease-standard);
+  --ease-ui-enter: var(--ui-ease-enter);
+  --ease-ui-exit: var(--ui-ease-exit);
+}
+
+/*
+ * Breakpoints y tamaños de contenedor. Van sin `inline` y con valores fijos
+ * porque las media queries y container queries no aceptan var(). Mantener
+ * sincronizado con `breakpoints` y `containerSizes` de @my-ui/core (un test lo
+ * verifica).
+ *
+ *   ui-md:…   pantalla de al menos 48rem   (media query, para la página)
+ *   @ui-md:…  contenedor de al menos 36rem (container query, para bloques)
+ */
+@theme {
+  --breakpoint-ui-sm: 40rem;
+  --breakpoint-ui-md: 48rem;
+  --breakpoint-ui-lg: 64rem;
+  --breakpoint-ui-xl: 80rem;
+
+  --container-ui-xs: 20rem;
+  --container-ui-sm: 24rem;
+  --container-ui-md: 36rem;
+  --container-ui-lg: 48rem;
+  --container-ui-xl: 64rem;
 }

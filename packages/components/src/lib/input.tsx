@@ -68,7 +68,7 @@ export function Input({
         ref={mergeRefs(innerRef, ref)}
         readOnly={readOnly}
         className={cn(
-          'min-w-0 flex-1 self-stretch bg-transparent py-1.5 outline-hidden',
+          'min-w-0 flex-1 self-stretch bg-transparent outline-hidden',
           'placeholder:text-ui-fg-muted disabled:cursor-not-allowed',
           inputClassName,
         )}

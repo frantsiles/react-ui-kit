@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { MotionPreview } from '../components/token-preview';
+
+<Meta title="Fundamentos/Movimiento" />
+
+# Movimiento
+
+El movimiento explica qué pasó (algo apareció, se expandió, se fue), no decora. Es corto, y desaparece si la persona pidió reducirlo.
+
+<MotionPreview />
+
+| Token | Valor | Para qué |
+| --- | --- | --- |
+| `--ui-duration-fast` | 120 ms | Hover, foco, cambios de color |
+| `--ui-duration-normal` | 200 ms | Popovers, expandir y contraer |
+| `--ui-duration-slow` | 300 ms | Modales y drawers |
+| `--ui-ease-standard` | `cubic-bezier(0.2, 0, 0, 1)` | Cambios dentro de la pantalla |
+| `--ui-ease-enter` | `cubic-bezier(0, 0, 0.2, 1)` | Algo que aparece (desacelera) |
+| `--ui-ease-exit` | `cubic-bezier(0.4, 0, 1, 1)` | Algo que se va (acelera) |
+
+```tsx
+<div className="transition-colors duration-(--ui-duration-fast) ease-ui-standard">…</div>
+```
+
+Tailwind no tiene un espacio de tema para duraciones, por eso se escriben como `duration-(--ui-duration-…)`; las curvas sí: `ease-ui-standard`, `ease-ui-enter`, `ease-ui-exit`.
+
+## Movimiento reducido
+
+Con `prefers-reduced-motion: reduce`, las tres duraciones pasan a `0.01ms`: los cambios son instantáneos. No son `0` a propósito: con duración `0` el navegador no dispara `transitionend`, y un overlay que espera ese evento para desmontarse se quedaría en pantalla.
+
+- Usa **siempre** los tokens de duración, nunca `duration-200` o milisegundos fijos: así el movimiento reducido funciona sin código extra.
+- Nada parpadea más de 3 veces por segundo (WCAG 2.3.1), y nada se mueve solo más de 5 segundos sin un control para pausarlo (WCAG 2.2.2).

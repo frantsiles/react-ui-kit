@@ -31,6 +31,7 @@ Un proyecto concreto: `pnpm exec nx run <proyecto>:<target>` (p. ej. `@my-ui/com
 ## Reglas que no se rompen
 
 - **Estilos:** solo tokens semánticos con prefijo `ui-` (`bg-ui-surface`, `text-ui-danger`). Nunca colores de la paleta ni hex. Combina con `cn()`, con el `className` del usuario al final.
+- **Tokens del resto:** tipografía `text-ui-<rol>` y `font-ui-*`; sombras `shadow-ui-*`; capas `z-(--ui-z-*)`; movimiento `duration-(--ui-duration-*)` y `ease-ui-*`; breakpoints `ui-sm:` (nunca `sm:`) y container queries `@ui-md:`. Nunca `text-sm`, `z-50` ni `duration-200`.
 - **Foco:** `focusRing` / `fieldFocusRing` de `@my-ui/core`. Nunca `outline-none` sin reemplazo ni foco con `box-shadow`.
 - **API:** `size` (`sm|md|lg`), `tone`, `variant`, y booleanos con nombre HTML (`disabled`, `required`, `readOnly`, `invalid`). Nunca `isDisabled` en la API pública.
 - **`ref`** como prop (React 19), apuntando al elemento interactivo principal. Las props restantes van a ese elemento.

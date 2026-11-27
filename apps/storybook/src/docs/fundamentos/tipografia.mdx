@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { TypeScale } from '../components/token-preview';
+
+<Meta title="Fundamentos/Tipografía" />
+
+# Tipografía
+
+Los componentes usan **estilos de texto por rol**, no tamaños sueltos. Cada estilo define tamaño, interlineado y peso juntos. Así `text-ui-body-sm` es el texto de ayuda en todo el kit, y cambiarlo es cambiar un token.
+
+<TypeScale />
+
+## Uso
+
+```tsx
+<h2 className="text-ui-heading-lg">Datos de facturación</h2>
+<p className="text-ui-body text-ui-fg-muted">…</p>
+<code className="font-ui-mono">npm i</code>
+```
+
+- `text-ui-<estilo>` aplica tamaño, interlineado y peso. Para cambiar solo el peso, agrega `font-ui-medium`, `font-ui-semibold`… y gana la clase de peso.
+- El **nivel del encabezado** (`h1`…`h6`) lo decide la estructura de la página, no el estilo: un `h2` puede verse como `heading-md`. El componente `Heading` (Fase 1) separará ambas cosas.
+- En campos de texto, usa `text-ui-body ui-sm:text-ui-body-sm`: 16 px en móvil evita que iOS haga zoom al enfocar.
+- Para párrafos largos, limita el ancho de línea con `max-w-(--ui-measure)` (65 caracteres).
+
+| Token | Valores |
+| --- | --- |
+| `--ui-font-sans` | Fuentes del sistema (sin descargas, buen rendimiento y soporte de idiomas) |
+| `--ui-font-mono` | Monoespaciada del sistema |
+| `--ui-font-weight-*` | `regular` 400, `medium` 500, `semibold` 600, `bold` 700 |
+| `--ui-text-<estilo>-size`, `-line-height`, `-weight` | Los de la tabla de arriba |
+
+## Accesibilidad
+
+- **Tamaños en `rem`:** respetan el tamaño de letra que la persona configuró en el navegador y el zoom al 200 % (WCAG 1.4.4).
+- **Interlineado sin unidad:** escala con el texto. Si alguien aplica sus propios espaciados (interlineado 1.5, espacio entre párrafos 2×, WCAG 1.4.12), nada se corta: no fijes altos en contenedores de texto.
+- **Nada de texto en imágenes** ni tamaños menores que `caption` (12 px).
+- El peso no comunica por sí solo: un texto en negrita no reemplaza a un encabezado real.
