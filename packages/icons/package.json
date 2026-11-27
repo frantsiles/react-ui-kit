@@ -16,6 +16,14 @@
   },
   "files": [
     "dist",
+    "LICENSE-lucide",
     "!**/*.tsbuildinfo"
-  ]
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "generate": "node scripts/generate-icons.mjs"
+  },
+  "peerDependencies": {
+    "react": "^19.2.1"
+  }
 }

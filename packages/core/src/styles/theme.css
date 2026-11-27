@@ -1,0 +1,37 @@
+/*
+ * Puente entre los tokens semánticos y Tailwind CSS v4.
+ *
+ * Uso en la app que consume el kit:
+ *   @import "tailwindcss";
+ *   @import "@my-ui/core/styles/tokens.css";
+ *   @import "@my-ui/core/styles/theme.css";
+ *   @source "../node_modules/@my-ui";
+ *
+ * `inline` hace que las utilidades referencien la variable (var(--ui-…)) en lugar
+ * de copiar su valor, así cambiar de tema con data-theme no requiere recompilar.
+ * Todas las utilidades llevan el prefijo `ui-` para no chocar con el tema de la app.
+ */
+@theme inline {
+  --color-ui-surface: var(--ui-color-surface);
+  --color-ui-surface-muted: var(--ui-color-surface-muted);
+  --color-ui-surface-disabled: var(--ui-color-surface-disabled);
+  --color-ui-fg: var(--ui-color-fg);
+  --color-ui-fg-muted: var(--ui-color-fg-muted);
+  --color-ui-fg-disabled: var(--ui-color-fg-disabled);
+  --color-ui-border: var(--ui-color-border);
+  --color-ui-border-subtle: var(--ui-color-border-subtle);
+  --color-ui-border-hover: var(--ui-color-border-hover);
+  --color-ui-focus: var(--ui-color-focus);
+  --color-ui-primary: var(--ui-color-primary);
+  --color-ui-primary-soft: var(--ui-color-primary-soft);
+  --color-ui-danger: var(--ui-color-danger);
+  --color-ui-danger-soft: var(--ui-color-danger-soft);
+  --color-ui-success: var(--ui-color-success);
+  --color-ui-success-soft: var(--ui-color-success-soft);
+  --color-ui-warning: var(--ui-color-warning);
+  --color-ui-warning-soft: var(--ui-color-warning-soft);
+
+  --spacing-ui-control-sm: var(--ui-control-height-sm);
+  --spacing-ui-control-md: var(--ui-control-height-md);
+  --spacing-ui-control-lg: var(--ui-control-height-lg);
+}

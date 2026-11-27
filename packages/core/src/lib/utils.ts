@@ -41,9 +41,13 @@ export function throttle<T extends (...args: any[]) => any>(
 
 /**
  * Utility function to generate unique IDs
+ *
+ * @deprecated No usar para asociar elementos (label ↔ input, aria-describedby):
+ * genera valores distintos en servidor y cliente y rompe la hidratación con SSR.
+ * En componentes React usa `useId()`.
  */
 export function generateId(prefix = 'id'): string {
-  return `${prefix}-${Math.random().toString(36).substr(2, 9)}`;
+  return `${prefix}-${Math.random().toString(36).slice(2, 11)}`;
 }
 
 /**

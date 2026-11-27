@@ -17,5 +17,13 @@
   "files": [
     "dist",
     "!**/*.tsbuildinfo"
-  ]
+  ],
+  "sideEffects": false,
+  "dependencies": {
+    "@my-ui/core": "workspace:*",
+    "@my-ui/icons": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^19.2.1"
+  }
 }

@@ -7,7 +7,7 @@ const config = {
     options: {},
   },
   stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: [getAbsolutePath("@storybook/addon-docs")],
+  addons: [getAbsolutePath("@storybook/addon-docs"), getAbsolutePath("@storybook/addon-a11y")],
 };
 
 export default config;

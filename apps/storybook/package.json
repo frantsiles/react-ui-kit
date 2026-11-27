@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "@my-ui/core": "workspace:*",
-    "@my-ui/components": "workspace:*"
+    "@my-ui/components": "workspace:*",
+    "@my-ui/icons": "workspace:*"
   }
 }
