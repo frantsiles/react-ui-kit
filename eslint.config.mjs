@@ -10,6 +10,12 @@ export default [
   {
     ignores: [
       '**/dist',
+      '**/build',
+      '**/coverage',
+      '**/storybook-static',
+      '**/node_modules',
+      '.nx',
+      'tmp',
       '**/vite.config.*.timestamp*',
       '**/vitest.config.*.timestamp*',
     ],

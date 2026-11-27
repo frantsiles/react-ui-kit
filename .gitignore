@@ -14,8 +14,9 @@ pnpm-debug.log*
 *.swp
 
 # Build outputs
-/dist/
-/build/
+dist/
+build/
+out-tsc/
 storybook-static/
 .storybook-out/
 coverage/
