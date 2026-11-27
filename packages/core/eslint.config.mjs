@@ -12,6 +12,8 @@ export default [
             '{projectRoot}/eslint.config.{js,cjs,mjs,ts,cts,mts}',
             '{projectRoot}/vite.config.{js,ts,mjs,mts}',
           ],
+          // vite es la herramienta de build (target inferido por @nx/vite), no una dependencia de runtime
+          ignoredDependencies: ['vite'],
         },
       ],
     },
