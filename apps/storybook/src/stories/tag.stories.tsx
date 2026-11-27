@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, userEvent, within } from 'storybook/test';
-import { Badge, Tag } from '@my-ui/components';
+import { Tag } from '@my-ui/components';
 import { IconCheck, IconCircleAlert, IconInfo, IconTriangleAlert } from '@my-ui/icons';
 
 const meta = {
@@ -11,6 +11,7 @@ const meta = {
   argTypes: {
     tone: { control: 'select', options: ['neutral', 'primary', 'success', 'warning', 'danger'] },
     size: { control: 'inline-radio', options: ['sm', 'md'] },
+    icon: { control: false },
   },
 } satisfies Meta<typeof Tag>;
 
@@ -28,6 +29,15 @@ export const Tonos: Story = {
       <Tag tone="success" icon={<IconCheck />}>Aprobado</Tag>
       <Tag tone="warning" icon={<IconTriangleAlert />}>Vence pronto</Tag>
       <Tag tone="danger" icon={<IconCircleAlert />}>Rechazado</Tag>
+    </div>
+  ),
+};
+
+export const Tamanos: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-center gap-2">
+      <Tag size="sm">Pequeño</Tag>
+      <Tag size="md">Mediano</Tag>
     </div>
   ),
 };
@@ -58,19 +68,6 @@ export const Truncado: Story = {
   render: () => (
     <div className="w-48">
       <Tag>Un nombre de categoría muy largo que no cabe</Tag>
-    </div>
-  ),
-};
-
-export const BadgeConteo: StoryObj<typeof Badge> = {
-  name: 'Badge',
-  render: () => (
-    <div className="flex items-center gap-4 text-ui-fg">
-      <button type="button" className="inline-flex items-center gap-2 rounded-md border border-ui-border px-3 py-1.5">
-        Mensajes <Badge tone="danger" srText="sin leer">3</Badge>
-      </button>
-      <Badge tone="success">Nuevo</Badge>
-      <Badge tone="warning">Beta</Badge>
     </div>
   ),
 };

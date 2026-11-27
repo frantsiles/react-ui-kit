@@ -1,0 +1,56 @@
+import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks';
+import { IconCheck, IconCircleAlert, IconSearch } from '@my-ui/icons';
+import { DoDont } from '../docs/components/do-dont';
+import * as IconStories from './icon.stories';
+
+<Meta of={IconStories} />
+
+# Iconografía
+
+Íconos SVG como componentes React, basados en [Lucide](https://lucide.dev) (licencia ISC). Heredan el color del texto (`currentColor`) y, sin `size`, miden `1em`: escalan con la letra y con el zoom.
+
+<Primary />
+<Controls />
+
+## Decorativo o significativo
+
+La pregunta es: **si quito el ícono, ¿se pierde información?**
+
+- **No** (hay texto al lado que ya lo dice): es **decorativo**. No pases nada; queda con `aria-hidden` y el lector de pantalla lo ignora.
+- **Sí** (el ícono está solo): es **significativo**. Pásale `label` y se expone como `role="img"` con ese nombre.
+
+<DoDont
+  doContent={<span className="inline-flex items-center gap-1 text-ui-success"><IconCheck label="Aprobado" /> </span>}
+  doCaption={<>Ícono solo con <code>label</code>: el lector anuncia "Aprobado, imagen".</>}
+  dontContent={<span className="inline-flex items-center gap-1 text-ui-success"><IconCheck label="Aprobado" /> Aprobado</span>}
+  dontCaption={<>Con texto al lado, el <code>label</code> sobra: el lector dice "Aprobado" dos veces.</>}
+/>
+
+Si el ícono está dentro de un botón sin texto, el nombre va en el **botón** (`aria-label`), no en el ícono.
+
+## Tamaños
+
+| `size` | px | Uso |
+| --- | --- | --- |
+| (sin size) | `1em` | Junto a texto, el caso más común |
+| `xs` | 12 | Dentro de tags pequeños |
+| `sm` | 16 | Dentro de inputs y botones |
+| `md` | 20 | Íconos sueltos en listas |
+| `lg` | 24 | Íconos de navegación |
+| `xl` | 32 | Ilustrativos |
+
+## RTL
+
+Las flechas y chevrons (`IconArrowLeft`, `IconArrowRight`, `IconChevronLeft`, `IconChevronRight`) se espejan solos con `dir="rtl"`. Cámbialo en la barra superior y mira la galería.
+
+## Agregar íconos
+
+El set crece de forma deliberada: no se importan los ~2000 de Lucide.
+
+1. Agrega el nombre a `ICONS` en `packages/icons/scripts/generate-icons.mjs`.
+2. Corre `pnpm --filter @my-ui/icons generate`.
+3. Haz commit del `src/generated/icons.ts` resultante.
+
+Cada ícono es un export independiente, así que el bundle solo incluye los que importas.
+
+<Stories />

@@ -213,7 +213,13 @@ En resumen, los componentes vienen con **patrones de accesibilidad aplicados por
 | `@my-ui/icons` | `createIcon` y el set de íconos (`IconSearch`, `IconCheck`, …) generado desde [Lucide](https://lucide.dev) (ISC) |
 | `@my-ui/components` | Controles: `Label`, `HelpText`, `ErrorMessage`, `Field`, `Input`, `Textarea`, `PasswordInput`, `SearchInput`, `Tag`, `Badge`, `VisuallyHidden` |
 
-Cada componente tiene implementación (`*.tsx`), pruebas con chequeo de accesibilidad axe (`*.spec.tsx`) e historias en `apps/storybook/src/stories`. Storybook incluye selector de tema (claro, oscuro, alto contraste), de dirección (LTR/RTL) y el panel de accesibilidad.
+Cada componente tiene implementación (`*.tsx`), pruebas con chequeo de accesibilidad axe (`*.spec.tsx`), historias y una página de documentación (`*.stories.tsx` y `*.mdx` en `apps/storybook/src/stories`).
+
+## Documentación
+
+- **Storybook** es la documentación de uso: fundamentos (tokens, temas, foco, íconos), guías (accesibilidad, formularios, seguridad) y una página por componente con ejemplos, props y "hacer / evitar". Se publica en GitHub Pages en cada merge a `main`: https://frantsiles.github.io/react-ui-kit/
+  - En local: `pnpm exec nx run @my-ui-library/storybook:storybook`
+- **Decisiones de arquitectura** en [`docs/adr`](docs/adr/README.md).
 
 ```tsx
 import { Field, Input, PasswordInput, Tag } from '@my-ui/components';

@@ -46,6 +46,21 @@ const preview: Preview = {
     // 'error' hace fallar el test de la historia si axe encuentra violaciones
     a11y: { test: 'error' },
     controls: { expanded: true },
+    options: {
+      storySort: {
+        order: [
+          'Introducción',
+          'Fundamentos',
+          ['Colores y tokens', 'Temas', 'Foco y teclado', 'Iconografía'],
+          'Guías',
+          ['Accesibilidad', 'Formularios', 'Seguridad'],
+          'Etiquetas',
+          'Inputs',
+          ['Field', 'Input', 'PasswordInput', 'SearchInput', 'Textarea'],
+          'Decisiones de arquitectura',
+        ],
+      },
+    },
   },
 };
 

@@ -1,0 +1,55 @@
+import { Meta, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import { Field, Input } from '@my-ui/components';
+import { DoDont } from '../docs/components/do-dont';
+import * as FieldStories from './field.stories';
+
+<Meta of={FieldStories} />
+
+# Field
+
+Agrupa **etiqueta, control, ayuda y error**, y los conecta entre sí. Es la forma recomendada de usar cualquier input del kit.
+
+<Primary />
+<Controls />
+
+## Qué conecta
+
+| `Field` recibe | Se traduce en el control |
+| --- | --- |
+| `label` | `<label for={id}>`, el nombre accesible del control |
+| `description` | `HelpText` + `aria-describedby` |
+| `error` | `ErrorMessage` + `aria-describedby` + `aria-invalid="true"` + borde de error |
+| `required` | Atributo `required` + asterisco visual |
+| `disabled` | Atributo `disabled` |
+| `size` | Tamaño del control |
+| `id` | id del control (por defecto, uno estable con `useId`) |
+
+Las props que pongas directamente en el control ganan sobre las del `Field`.
+
+## Mensajes de error
+
+<DoDont
+  doContent={<Field label="Correo" error="Ingresa un correo como nombre@dominio.com" className="w-full"><Input defaultValue="ana@" /></Field>}
+  doCaption="Dice cómo corregirlo, con un ejemplo."
+  dontContent={<Field label="Correo" error="Formato inválido" className="w-full"><Input defaultValue="ana@" /></Field>}
+  dontCaption="Dice que algo está mal, pero no qué hacer."
+/>
+
+- **Cuándo mostrarlo:** al salir del campo o al enviar, no en cada tecla. Ver [Guías/Formularios](?path=/docs/guías-formularios--docs).
+- **El error no se anuncia solo** al aparecer: se lee cuando el usuario vuelve al campo. Por eso, al enviar con errores, mueve el foco al primer campo inválido.
+
+## Controles propios
+
+Si construyes un control propio, `useFieldControl` le da la misma integración:
+
+<Source
+  language="tsx"
+  code={`import { useFieldControl } from '@my-ui/components';
+
+function ColorInput(props: ColorInputProps) {
+  const { size, invalid, ...inputProps } = useFieldControl(props);
+  return <input type="color" {...inputProps} />;
+}`}
+/>
+
+<Stories />

@@ -1,0 +1,36 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Label } from '@my-ui/components';
+import { DoDont } from '../docs/components/do-dont';
+import * as LabelStories from './label.stories';
+
+<Meta of={LabelStories} />
+
+# Label
+
+La etiqueta de un control de formulario. Dentro de un [`Field`](?path=/docs/inputs-field--docs) se asocia sola; suelta, usa `htmlFor`.
+
+<Primary />
+<Controls />
+
+## Reglas
+
+- **Siempre visible.** Si el espacio no alcanza, usa `Field` con `hideLabel`, pero solo cuando el contexto visual es obvio (un buscador con lupa).
+- **Clic en la etiqueta enfoca el control.** Agranda el área de clic, algo especialmente útil en móvil.
+- **Requerido u opcional, no ambos.** Si la mayoría de los campos son obligatorios, marca los opcionales (`optional`). Si la mayoría son opcionales, marca los requeridos (`required`).
+- El asterisco de `required` es solo visual. Lo que anuncia "requerido" es el atributo `required` del control, que `Field` pone solo.
+
+<DoDont
+  doContent={
+    <div className="flex w-full flex-col gap-1.5">
+      <Label htmlFor="dd-label-1">Correo electrónico</Label>
+      <input id="dd-label-1" placeholder="nombre@dominio.com" className="rounded-md border border-ui-border bg-ui-surface px-3 py-2" />
+    </div>
+  }
+  doCaption="Etiqueta visible y placeholder como ejemplo del formato."
+  dontContent={
+    <input aria-label="Correo electrónico" placeholder="Correo electrónico" className="w-full rounded-md border border-ui-border bg-ui-surface px-3 py-2" />
+  }
+  dontCaption="Placeholder como etiqueta: desaparece al escribir y suele tener poco contraste."
+/>
+
+<Stories />

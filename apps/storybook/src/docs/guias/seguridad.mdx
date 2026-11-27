@@ -1,0 +1,25 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guías/Seguridad" />
+
+# Seguridad
+
+Un kit de UI no hace segura una aplicación, pero sí puede evitar abrir agujeros y empujar hacia buenas prácticas.
+
+## Lo que hace el kit
+
+- **Sin `dangerouslySetInnerHTML`.** Ningún componente inserta HTML como texto. Los íconos se generan como datos y se dibujan con React, que escapa todo el contenido. Así no hay vía para inyectar scripts (XSS) a través del kit.
+- **El kit no guarda ni registra valores.** Los inputs son elementos nativos. El kit nunca escribe lo que el usuario teclea en logs, `localStorage` ni analítica.
+- **Contraseñas** (`PasswordInput`):
+  - **Permite pegar.** Bloquearlo empuja a usar contraseñas cortas y rompe los gestores de contraseñas.
+  - **`autoComplete`** `current-password` por defecto; usa `new-password` en registro y cambio de contraseña para que el gestor proponga una segura.
+  - **Sin corrector ni mayúsculas automáticas**, para que el teclado del móvil no aprenda la contraseña.
+  - **Mostrar la contraseña** reduce errores al escribirla. Es decisión del usuario y se anuncia con `aria-pressed`.
+
+## Lo que le toca a tu app
+
+- **Validación en el cliente = usabilidad, no seguridad.** Cualquier validación del navegador se puede saltar. El servidor valida siempre, con las mismas reglas o más estrictas.
+- **No confíes en `maxLength` ni `pattern`** para limitar lo que llega al servidor.
+- **Mensajes de error que no filtren información.** En el login, "Correo o contraseña incorrectos" y no "Ese correo no existe".
+- **Contenido de terceros.** Si muestras en un `Tag` o `Badge` texto que escribió un usuario, React lo escapa. No lo conviertas a HTML.
+- **`autoComplete="off"`** casi nunca es buena idea: los navegadores lo ignoran en contraseñas y solo empeora la experiencia.

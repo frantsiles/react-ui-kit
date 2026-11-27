@@ -8,7 +8,7 @@ const allIcons = Object.entries(Icons).filter(
 );
 
 const meta = {
-  title: 'Fundamentos/Icon',
+  title: 'Fundamentos/Iconografía',
   component: IconSearch,
   args: { size: 'lg' },
   argTypes: {

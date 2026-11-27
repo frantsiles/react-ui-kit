@@ -1,0 +1,28 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as SearchStories from './search-input.stories';
+
+<Meta of={SearchStories} />
+
+# SearchInput
+
+Campo de búsqueda con lupa y botón para limpiar.
+
+<Primary />
+<Controls />
+
+## Comportamiento
+
+- Es un `<input type="search">`: en móvil, la tecla Enter dice "Buscar".
+- **Limpiar** (con el botón o con `Escape`):
+  - dispara `onChange` con valor vacío, así funciona igual controlado o no;
+  - llama a `onClear`;
+  - devuelve el foco al campo.
+- `Escape` con texto limpia y **no se propaga**, para no cerrar el diálogo que contiene el buscador. Con el campo vacío, `Escape` sí se propaga.
+- La "x" nativa del navegador está oculta; se usa un botón accesible propio ("Limpiar búsqueda", configurable con `clearLabel`).
+
+## Accesibilidad
+
+- Necesita nombre accesible: úsalo dentro de un `Field` (con `hideLabel` si la lupa basta visualmente) o pásale `aria-label`.
+- Envuélvelo en `<form role="search">` cuando sea la búsqueda principal de la página: los lectores de pantalla lo ofrecen como región.
+
+<Stories />

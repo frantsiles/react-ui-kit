@@ -1,0 +1,59 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { TokenRoles, TokenTable } from '../components/token-table';
+
+<Meta title="Fundamentos/Colores y tokens" />
+
+# Colores y tokens
+
+El kit tiene dos capas de tokens:
+
+1. **Escalas base** (`--color-neutral-500`, `--color-primary-600`…): la paleta. Los componentes **no** las usan directamente.
+2. **Tokens semánticos** (`--ui-color-fg`, `--ui-color-border`, `--ui-color-danger`…): roles. Son lo único que usan los componentes.
+
+Así, un tema solo tiene que decidir qué color cumple cada rol, y el contraste se garantiza en un único lugar.
+
+## Contraste en los tres temas
+
+Calculado en vivo desde el CSS. Requisitos WCAG 2.2 AA:
+
+- **Texto** sobre su fondo: al menos **4.5:1** (criterio 1.4.3).
+- **Bordes de controles y foco** sobre la superficie: al menos **3:1** (criterio 1.4.11).
+
+<TokenTable />
+
+## Qué token usar
+
+<TokenRoles />
+
+## En Tailwind
+
+`@my-ui/core/styles/theme.css` expone los tokens como colores de Tailwind con el prefijo `ui-`, para no chocar con el tema de tu app:
+
+```tsx
+<div className="border border-ui-border bg-ui-surface text-ui-fg">…</div>
+<p className="text-ui-danger">…</p>
+```
+
+Se registran con `@theme inline`: las clases apuntan a la variable (`var(--ui-color-fg)`), no a un valor fijo. Por eso cambiar de tema no requiere recompilar.
+
+## Personalizar
+
+Sobrescribe los tokens semánticos en tu CSS, no las escalas base:
+
+```css
+:root {
+  --ui-color-focus: rgb(124 58 237);
+}
+```
+
+Si cambias un token, revisa esta página: la tabla de arriba marca en rojo cualquier contraste insuficiente.
+
+## Tamaños de control
+
+| Token | Valor | Uso |
+| --- | --- | --- |
+| `--ui-control-height-sm` | 32 px | Interfaces densas (tablas, barras de filtros) |
+| `--ui-control-height-md` | 40 px | Por defecto |
+| `--ui-control-height-lg` | 48 px | Pantallas táctiles, formularios principales |
+
+Todos superan el área táctil mínima de 24 × 24 px (WCAG 2.5.8).
