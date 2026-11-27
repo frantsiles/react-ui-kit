@@ -1,0 +1,65 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introducción" />
+
+# React UI Kit
+
+Librería de componentes React accesibles, construida sobre **elementos HTML nativos**, **Tailwind CSS v4** y **design tokens** en variables CSS.
+
+Esta documentación es la referencia viva del kit: cada ejemplo es un componente real, y las historias pasan chequeos automáticos de accesibilidad (axe) en cada cambio.
+
+## Principios
+
+1. **Accesible por defecto.** Lo correcto es lo que pasa si no configuras nada: íconos ocultos a lectores de pantalla, etiquetas asociadas, errores conectados con `aria-describedby`, foco siempre visible.
+2. **Nativo primero.** Usamos `<input>`, `<label>` y `<button>` reales. Funcionan con formularios, `FormData`, las Actions de React 19, el autocompletado y los gestores de contraseñas sin código extra.
+3. **Tokens semánticos.** Los componentes nunca usan un color "azul 600": usan *roles* (`fg`, `border`, `danger`). Cada tema decide qué color cumple cada rol, con el contraste verificado.
+4. **Responsivo sin esfuerzo.** Los controles ocupan el ancho de su contenedor, usan letra de 16 px en móvil y funcionan con zoom al 200 %.
+
+## Paquetes
+
+| Paquete | Para qué |
+| --- | --- |
+| `@my-ui/core` | Tokens (`styles/tokens.css`, `styles/theme.css`), temas, `cn`, clases de foco |
+| `@my-ui/icons` | `createIcon` y el set de íconos |
+| `@my-ui/components` | Los componentes |
+
+## Instalación
+
+```bash
+pnpm add @my-ui/core @my-ui/icons @my-ui/components
+```
+
+En la hoja principal de Tailwind de tu app:
+
+```css
+@import "tailwindcss";
+@import "@my-ui/core/styles/tokens.css";
+@import "@my-ui/core/styles/theme.css";
+
+/* para que Tailwind genere las clases que usan los componentes */
+@source "../node_modules/@my-ui";
+```
+
+## Primer uso
+
+```tsx
+import { Field, Input } from '@my-ui/components';
+import { IconMail } from '@my-ui/icons';
+
+export function EmailField({ error }: { error?: string }) {
+  return (
+    <Field label="Correo electrónico" required error={error}>
+      <Input type="email" autoComplete="email" startIcon={<IconMail />} />
+    </Field>
+  );
+}
+```
+
+## Cómo leer esta documentación
+
+- **Fundamentos:** tokens, temas, foco e iconografía. Lo que comparten todos los componentes.
+- **Guías:** accesibilidad, formularios y seguridad. Cómo combinar los componentes bien.
+- **Etiquetas** e **Inputs:** cada componente con ejemplos, props, cuándo usarlo y qué evitar.
+- **Decisiones de arquitectura:** por qué el kit es como es.
+
+Usa la barra superior para cambiar **tema** (claro, oscuro, alto contraste) y **dirección** (LTR/RTL), y el panel **Accessibility** para ver el resultado de axe en cada historia.

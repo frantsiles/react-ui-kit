@@ -6,7 +6,7 @@ const config = {
     name: getAbsolutePath("@storybook/react-vite"),
     options: {},
   },
-  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [getAbsolutePath("@storybook/addon-docs"), getAbsolutePath("@storybook/addon-a11y")],
 };
 

@@ -1,0 +1,30 @@
+import { Meta, Canvas, Source } from '@storybook/addon-docs/blocks';
+import * as FormStories from './form.stories';
+import formSource from './form.stories.tsx?raw';
+
+<Meta of={FormStories} />
+
+# Formularios
+
+Cómo combinar los controles para que un formulario sea fácil de completar, también con teclado y lector de pantalla.
+
+<Canvas of={FormStories.Validacion} />
+
+## El patrón
+
+1. **Etiqueta visible en cada campo**, con `Field`.
+2. **Marca lo excepcional:** si casi todo es obligatorio, marca los opcionales.
+3. **Ayuda antes del error:** si hay un formato o un límite, dilo en `description` desde el principio.
+4. **Valida al enviar** y, después del primer envío, **al salir de cada campo** (`onBlur`). Nunca en cada tecla: interrumpe y llena el lector de pantalla de avisos.
+5. **Al enviar con errores, enfoca el primer campo inválido.** Es lo que hace que el lector de pantalla lea el error.
+6. **Mensajes que dicen cómo corregir:** "Ingresa un correo como nombre@dominio.com", no "Formato inválido".
+7. **Confirma el éxito** en una región `role="status"`, que el lector anuncia sin mover el foco.
+8. **`noValidate` en el `<form>`** si usas tu propia validación, para que el navegador no muestre sus globos además de tus mensajes.
+
+## Código del ejemplo
+
+<Source language="tsx" code={formSource} />
+
+## Seguridad
+
+La validación en el cliente es para la usabilidad. El servidor valida siempre. Ver [Guías/Seguridad](?path=/docs/guías-seguridad--docs).

@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Fundamentos/Foco y teclado" />
+
+# Foco y teclado
+
+Todo lo que se puede usar con el mouse se puede usar con el teclado, y siempre se ve dónde está el foco.
+
+## El anillo de foco
+
+- Aparece con `:focus-visible`: al navegar con teclado sí, al hacer clic en un botón no. En los campos de texto aparece siempre, porque el navegador considera que ahí el foco siempre es relevante.
+- Es un `outline` de 2 px (3 px en alto contraste) con separación de 2 px, en el color `--ui-color-focus` (contraste ≥ 3:1).
+- Es **`outline` y no `box-shadow`** a propósito: en el modo de colores forzados de Windows las sombras se eliminan, y un foco hecho con sombra desaparecería.
+
+En `Input`, el anillo se dibuja en el contenedor visible, pero solo cuando el foco está en el `<input>`. Los botones internos (mostrar contraseña, limpiar búsqueda) tienen su propio anillo.
+
+Para tus propios elementos, usa las clases de `@my-ui/core`:
+
+```tsx
+import { cn, focusRing } from '@my-ui/core';
+
+<a href="/perfil" className={cn('rounded-sm', focusRing)}>Mi perfil</a>
+```
+
+## Teclado por componente
+
+| Componente | Tecla | Acción |
+| --- | --- | --- |
+| Todos | `Tab` / `Shift+Tab` | Siguiente / anterior elemento enfocable |
+| `Label` / `Field` | Clic en la etiqueta | Enfoca el control |
+| `PasswordInput` | `Tab` → `Enter` o `Espacio` | Muestra u oculta la contraseña |
+| `SearchInput` | `Escape` | Limpia el campo (y no cierra el diálogo que lo contiene) |
+| `SearchInput` | `Enter` | Envía el formulario de búsqueda |
+| `Tag` removible | `Tab` → `Enter` o `Espacio` | Quita el tag |
+
+## Lo que no hace el kit (y le toca a tu app)
+
+- **Mover el foco tras una acción.** Por ejemplo, al enviar un formulario con errores, enfoca el primer campo inválido (ver *Guías/Formularios*). Al quitar un tag, decide a dónde va el foco si el tag desaparece.
+- **Orden de tabulación.** Sigue el orden del DOM. No uses `tabIndex` positivos.

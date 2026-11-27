@@ -1,0 +1,45 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Tag } from '@my-ui/components';
+import { IconCheck } from '@my-ui/icons';
+import { DoDont } from '../docs/components/do-dont';
+import * as TagStories from './tag.stories';
+
+<Meta of={TagStories} />
+
+# Tag
+
+Etiqueta visual para categorizar o mostrar selecciones: filtros aplicados, destinatarios, categorías.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** categorías de un elemento, filtros aplicados que se pueden quitar, valores elegidos en un selector múltiple.
+- **No:** para conteos o estados muy compactos usa [`Badge`](?path=/docs/etiquetas-badge--docs). Si el tag se activa y desactiva (un filtro alternable), no es un tag: es un botón o un checkbox.
+
+## Tonos
+
+| `tone` | Uso |
+| --- | --- |
+| `neutral` | Categorías sin carga semántica |
+| `primary` | Selecciones del usuario, información |
+| `success` | Estado correcto o aprobado |
+| `warning` | Requiere atención pronto |
+| `danger` | Error, rechazado o vencido |
+
+<DoDont
+  doContent={<Tag tone="success" icon={<IconCheck />}>Aprobado</Tag>}
+  doCaption="El estado se entiende por el texto y el ícono, no solo por el color (WCAG 1.4.1)."
+  dontContent={<span className="flex gap-2"><Tag tone="success">●</Tag><Tag tone="danger">●</Tag></span>}
+  dontCaption="Solo color: invisible para personas con daltonismo y vacío para lectores de pantalla."
+/>
+
+## Accesibilidad
+
+- El botón de quitar es un `<button>` real con nombre **"Quitar \{texto\}"** y área táctil de 24 × 24 px.
+- Si el contenido no es texto plano, pasa `removeLabel`; en desarrollo hay un aviso en la consola si falta.
+- Al quitar un tag, decide a dónde va el foco (por ejemplo, al tag siguiente o al campo de búsqueda).
+- El texto largo se trunca y queda completo en el tooltip nativo (`title`).
+
+<Stories />

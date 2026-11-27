@@ -73,7 +73,7 @@ function SignUpForm() {
 }
 
 const meta = {
-  title: 'Inputs/Formulario',
+  title: 'Guías/Formularios',
   component: SignUpForm,
 } satisfies Meta<typeof SignUpForm>;
 

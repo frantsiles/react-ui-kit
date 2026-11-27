@@ -1,0 +1,61 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Field, Input, Tag, Badge } from '@my-ui/components';
+import { IconCheck, IconMail } from '@my-ui/icons';
+import { ThemeShowcase } from '../components/do-dont';
+
+<Meta title="Fundamentos/Temas" />
+
+# Temas
+
+El kit trae tres temas: **claro**, **oscuro** y **alto contraste**. Se eligen con el atributo `data-theme`.
+
+<ThemeShowcase>
+  <Field label="Correo electrónico" error="Ingresa un correo válido">
+    <Input type="email" startIcon={<IconMail />} defaultValue="ana@" />
+  </Field>
+  <div className="flex flex-wrap gap-2">
+    <Tag tone="success" icon={<IconCheck />}>Aprobado</Tag>
+    <Badge tone="danger">3</Badge>
+  </div>
+</ThemeShowcase>
+
+## Tema de toda la app
+
+```html
+<html data-theme="dark">
+```
+
+O con los helpers de `@my-ui/core`:
+
+```tsx
+import { applyTheme, getTheme, toggleTheme } from '@my-ui/core';
+
+applyTheme('dark'); // 'light' | 'dark' | 'high-contrast'
+toggleTheme();      // alterna claro ↔ oscuro
+```
+
+## Tema por sección
+
+`data-theme` funciona en cualquier contenedor, no solo en `<html>`. Los tokens se recalculan dentro de él (así se construyó el ejemplo de arriba):
+
+```tsx
+<aside data-theme="dark">…</aside>
+```
+
+## Respetar la preferencia del sistema
+
+El kit no decide el tema por ti. Para seguir la preferencia del sistema operativo:
+
+```tsx
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+applyTheme(prefersDark ? 'dark' : 'light');
+```
+
+## Alto contraste
+
+- El tema **alto contraste** es para usuarios que lo eligen dentro de tu app: negro sobre blanco, bordes negros y anillo de foco de 3 px.
+- El **modo de colores forzados** de Windows es otra cosa: el sistema reemplaza los colores. El kit lo soporta sin configuración, porque el foco usa `outline` (las sombras desaparecen en ese modo) y los tags y badges tienen borde.
+
+## Movimiento reducido
+
+Con `prefers-reduced-motion: reduce`, el token `--ui-duration-fast` pasa a `0ms` y las transiciones de los controles se desactivan.

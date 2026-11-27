@@ -1,0 +1,60 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Field, Input } from '@my-ui/components';
+import { IconMail } from '@my-ui/icons';
+import { DoDont } from '../docs/components/do-dont';
+import * as InputStories from './input.stories';
+
+<Meta of={InputStories} />
+
+# Input
+
+Campo de texto de una línea sobre un `<input>` nativo. Úsalo dentro de un [`Field`](?path=/docs/inputs-field--docs).
+
+<Primary />
+<Controls />
+
+## Props propias
+
+- `startIcon` / `endIcon`: íconos **decorativos** (quedan ocultos a lectores de pantalla).
+- `endAdornment`: contenido **interactivo** al final, por ejemplo un botón. Así están hechos `PasswordInput` y `SearchInput`.
+- `className` se aplica al **contenedor visible** (el borde); `inputClassName`, al `<input>` interno.
+- El resto de props van al `<input>`: `value`, `defaultValue`, `onChange`, `name`, `ref`…
+
+Funciona **controlado** (`value` + `onChange`) o **no controlado** (`defaultValue`), y con `FormData` y las Actions de React 19.
+
+## Teclado móvil y autocompletado
+
+Elegir bien `type`, `inputMode` y `autoComplete` ahorra más fricción que cualquier detalle visual:
+
+| Dato | Props |
+| --- | --- |
+| Correo | `type="email" autoComplete="email"` |
+| Teléfono | `type="tel" inputMode="tel" autoComplete="tel"` |
+| Código SMS | `inputMode="numeric" autoComplete="one-time-code"` |
+| Nombre | `autoComplete="given-name"` / `"family-name"` |
+| Dirección | `autoComplete="street-address"` |
+| Monto | `inputMode="decimal"` (no `type="number"`) |
+
+<DoDont
+  doContent={<Field label="Correo" className="w-full"><Input type="email" autoComplete="email" startIcon={<IconMail />} /></Field>}
+  doCaption="type y autoComplete correctos: teclado con @ en móvil y autocompletado del navegador."
+  dontContent={<Field label="Correo" className="w-full"><Input autoComplete="off" /></Field>}
+  dontCaption="Texto genérico y autocompletado desactivado: más tecleo y más errores."
+/>
+
+## Deshabilitado o solo lectura
+
+| | `disabled` | `readOnly` |
+| --- | --- | --- |
+| Se puede enfocar | No | Sí |
+| Se puede seleccionar y copiar | No | Sí |
+| Se envía con el formulario | **No** | Sí |
+| Uso | La opción no aplica ahora | El dato existe pero no se edita aquí |
+
+## Responsivo
+
+- Ocupa el ancho de su contenedor: el layout lo decide el formulario, no el input.
+- La letra es de 16 px en móvil para que iOS no haga zoom al enfocar, y baja a 14 px desde el breakpoint `sm` (en `sm` y `md`).
+- Clic en cualquier parte del contenedor enfoca el input.
+
+<Stories />

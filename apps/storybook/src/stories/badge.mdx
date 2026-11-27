@@ -1,0 +1,36 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Badge } from '@my-ui/components';
+import { DoDont } from '../docs/components/do-dont';
+import * as BadgeStories from './badge.stories';
+
+<Meta of={BadgeStories} />
+
+# Badge
+
+Indicador compacto de estado o conteo. No es interactivo.
+
+<Primary />
+<Controls />
+
+## Badge o Tag
+
+| | `Badge` | `Tag` |
+| --- | --- | --- |
+| Contenido | Número o palabra corta | Texto, opcionalmente con ícono |
+| Se puede quitar | No | Sí (`onRemove`) |
+| Uso típico | "3" mensajes, "Beta", "Nuevo" | Categorías, filtros aplicados |
+
+## Accesibilidad
+
+Un número suelto no dice nada a un lector de pantalla. Usa `srText` para agregar contexto que solo se lee, no se ve:
+
+<DoDont
+  doContent={<button type="button" className="rounded-md border border-ui-border px-3 py-1.5">Mensajes <Badge tone="danger" srText="sin leer">3</Badge></button>}
+  doCaption={<>Con <code>srText</code>, el lector anuncia "Mensajes 3 sin leer".</>}
+  dontContent={<button type="button" className="rounded-md border border-ui-border px-3 py-1.5">Mensajes <Badge tone="danger">3</Badge></button>}
+  dontCaption={'Sin contexto, el lector anuncia "Mensajes 3": ¿tres qué?'}
+/>
+
+No uses `aria-label` en el badge: en un `<span>` los lectores de pantalla no lo anuncian de forma fiable.
+
+<Stories />

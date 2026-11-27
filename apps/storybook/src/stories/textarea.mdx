@@ -1,0 +1,19 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as TextareaStories from './textarea.stories';
+
+<Meta of={TextareaStories} />
+
+# Textarea
+
+Texto de varias líneas. Se integra con [`Field`](?path=/docs/inputs-field--docs) igual que `Input`.
+
+<Primary />
+<Controls />
+
+## Comportamiento
+
+- Se redimensiona **solo en vertical**, para no romper el layout.
+- `rows` es 3 por defecto. Elígelo según el texto esperado: un textarea demasiado chico invita a respuestas cortas.
+- Si hay un límite (`maxLength`), dilo en la `description`. El navegador corta el texto en silencio al llegar al límite.
+
+<Stories />

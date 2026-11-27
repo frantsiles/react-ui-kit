@@ -1,0 +1,14 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Decisiones de arquitectura" />
+
+# Decisiones de arquitectura
+
+Las decisiones técnicas importantes se registran como **ADR** (Architecture Decision Record) en el repositorio, en [`docs/adr`](https://github.com/frantsiles/react-ui-kit/tree/main/docs/adr), para revisarlas en PRs junto al código.
+
+| # | Decisión | En pocas palabras |
+| --- | --- | --- |
+| [0001](https://github.com/frantsiles/react-ui-kit/blob/main/docs/adr/0001-tailwind-y-tokens-semanticos.md) | Tailwind CSS v4 sobre tokens semánticos | Los componentes solo usan roles de color; cada tema decide los valores. La app necesita Tailwind v4. |
+| [0002](https://github.com/frantsiles/react-ui-kit/blob/main/docs/adr/0002-iconos-generados-desde-lucide.md) | Íconos generados desde Lucide | API y accesibilidad propias; trazos de Lucide (ISC) generados por un script. |
+| [0003](https://github.com/frantsiles/react-ui-kit/blob/main/docs/adr/0003-html-nativo-primero.md) | HTML nativo primero | Los controles básicos usan elementos nativos; la librería headless se elige con el primer control complejo. |
+| [0004](https://github.com/frantsiles/react-ui-kit/blob/main/docs/adr/0004-documentacion-en-storybook.md) | Documentación en Storybook | Uso en Storybook, decisiones en el repo, publicación en GitHub Pages. |

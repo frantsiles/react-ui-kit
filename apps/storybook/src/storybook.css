@@ -2,7 +2,8 @@
 @import "../../../packages/core/src/styles/tokens.css";
 @import "../../../packages/core/src/styles/theme.css";
 
-/* Clases usadas por los componentes del kit */
+/* Clases de esta app (historias y páginas MDX) y de los paquetes del kit */
+@source "./";
 @source "../../../packages/components/src";
 @source "../../../packages/icons/src";
 @source "../../../packages/core/src";

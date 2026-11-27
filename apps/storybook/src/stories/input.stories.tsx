@@ -1,20 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { expect, userEvent, within } from 'storybook/test';
-import { Field, Input, PasswordInput, SearchInput, Textarea } from '@my-ui/components';
+import { Field, Input } from '@my-ui/components';
 import { IconMail, IconUser } from '@my-ui/icons';
 
 const meta = {
   title: 'Inputs/Input',
   component: Input,
-  args: { size: 'md', placeholder: 'nombre@dominio.com' },
+  args: { size: 'md', placeholder: 'nombre@dominio.com', disabled: false, readOnly: false, invalid: false },
   argTypes: {
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg'] },
-    disabled: { control: 'boolean' },
-    readOnly: { control: 'boolean' },
-    invalid: { control: 'boolean' },
+    startIcon: { control: false },
+    endIcon: { control: false },
+    endAdornment: { control: false },
   },
   render: (args) => (
-    <Field label="Correo electrónico" description="Te enviaremos la confirmación aquí" size={args.size}>
+    <Field label="Correo electrónico" size={args.size}>
       <Input type="email" autoComplete="email" startIcon={<IconMail />} {...args} />
     </Field>
   ),
@@ -37,14 +36,6 @@ export const Tamanos: Story = {
   ),
 };
 
-export const ConError: Story = {
-  render: () => (
-    <Field label="Correo electrónico" required error="Ingresa un correo como nombre@dominio.com">
-      <Input type="email" autoComplete="email" defaultValue="ana@" startIcon={<IconMail />} />
-    </Field>
-  ),
-};
-
 export const DeshabilitadoYSoloLectura: Story = {
   render: () => (
     <div className="flex max-w-sm flex-col gap-4">
@@ -58,55 +49,18 @@ export const DeshabilitadoYSoloLectura: Story = {
   ),
 };
 
-export const Contrasena: Story = {
+/** `type`, `inputMode` y `autoComplete` deciden el teclado en móvil y el autocompletado. */
+export const TecladoCorrecto: Story = {
   render: () => (
-    <Field label="Contraseña nueva" description="Mínimo 12 caracteres. Puedes pegarla desde tu gestor.">
-      <PasswordInput autoComplete="new-password" />
-    </Field>
-  ),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const toggle = canvas.getByRole('button', { name: 'Mostrar contraseña' });
-    await userEvent.click(toggle);
-    await expect(toggle).toHaveAttribute('aria-pressed', 'true');
-    await userEvent.click(toggle);
-  },
-};
-
-export const Busqueda: Story = {
-  render: () => (
-    <Field label="Buscar productos" hideLabel>
-      <SearchInput placeholder="Buscar productos" defaultValue="zapatillas" />
-    </Field>
-  ),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByRole('button', { name: 'Limpiar búsqueda' }));
-    await expect(canvas.getByRole('searchbox')).toHaveValue('');
-    await expect(canvas.getByRole('searchbox')).toHaveFocus();
-  },
-};
-
-export const AreaDeTexto: Story = {
-  render: () => (
-    <Field label="Comentario" optional description="Máximo 500 caracteres">
-      <Textarea maxLength={500} />
-    </Field>
-  ),
-};
-
-/** Ocupa el ancho de su contenedor: prueba el viewport móvil o el zoom al 200%. */
-export const Responsivo: Story = {
-  render: () => (
-    <div className="grid gap-4 sm:grid-cols-2">
-      <Field label="Nombre" required>
-        <Input autoComplete="given-name" />
+    <div className="flex max-w-sm flex-col gap-4">
+      <Field label="Correo">
+        <Input type="email" autoComplete="email" />
       </Field>
-      <Field label="Apellido" required>
-        <Input autoComplete="family-name" />
-      </Field>
-      <Field label="Teléfono" optional className="sm:col-span-2">
+      <Field label="Teléfono">
         <Input type="tel" inputMode="tel" autoComplete="tel" />
+      </Field>
+      <Field label="Código de verificación" description="6 dígitos">
+        <Input inputMode="numeric" autoComplete="one-time-code" maxLength={6} />
       </Field>
     </div>
   ),
