@@ -49,7 +49,7 @@ export default defineConfig({
       'apps/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
     ],
     exclude: [
-      'node_modules/',
+      '**/node_modules/**',
       'dist/',
       '.nx/',
       'coverage/',
