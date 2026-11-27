@@ -6,7 +6,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 Librería de componentes React accesibles, construida sobre **elementos HTML nativos**, **Tailwind CSS v4** y **design tokens** en variables CSS.
 
-Esta documentación es la referencia viva del kit: cada ejemplo es un componente real, y las historias pasan chequeos automáticos de accesibilidad (axe) en cada cambio.
+Esta documentación es la referencia viva del kit: cada ejemplo es un componente real. Cada componente tiene tests con chequeo automático de accesibilidad (axe) que corren en el CI en cada cambio; el panel *Accessibility* de cada historia muestra el mismo chequeo en vivo.
 
 ## Principios
 
@@ -60,6 +60,7 @@ export function EmailField({ error }: { error?: string }) {
 - **Fundamentos:** tokens, temas, foco e iconografía. Lo que comparten todos los componentes.
 - **Guías:** accesibilidad, formularios y seguridad. Cómo combinar los componentes bien.
 - **Etiquetas** e **Inputs:** cada componente con ejemplos, props, cuándo usarlo y qué evitar.
+- **Hoja de ruta:** qué viene, en qué orden y cuándo un componente se considera terminado.
 - **Decisiones de arquitectura:** por qué el kit es como es.
 
 Usa la barra superior para cambiar **tema** (claro, oscuro, alto contraste) y **dirección** (LTR/RTL), y el panel **Accessibility** para ver el resultado de axe en cada historia.

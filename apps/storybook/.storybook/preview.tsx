@@ -50,6 +50,7 @@ const preview: Preview = {
       storySort: {
         order: [
           'Introducción',
+          'Hoja de ruta',
           'Fundamentos',
           ['Colores y tokens', 'Temas', 'Foco y teclado', 'Iconografía'],
           'Guías',

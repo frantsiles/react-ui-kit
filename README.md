@@ -220,6 +220,7 @@ Cada componente tiene implementación (`*.tsx`), pruebas con chequeo de accesibi
 - **Storybook** es la documentación de uso: fundamentos (tokens, temas, foco, íconos), guías (accesibilidad, formularios, seguridad) y una página por componente con ejemplos, props y "hacer / evitar". Se publica en GitHub Pages en cada merge a `main`: https://frantsiles.github.io/react-ui-kit/
   - En local: `pnpm exec nx run @my-ui-library/storybook:storybook`
 - **Decisiones de arquitectura** en [`docs/adr`](docs/adr/README.md).
+- **Hoja de ruta** en [`docs/ROADMAP.md`](docs/ROADMAP.md): fases, dependencias, estado de cada componente y definición de terminado.
 
 ```tsx
 import { Field, Input, PasswordInput, Tag } from '@my-ui/components';
