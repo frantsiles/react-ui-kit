@@ -55,7 +55,7 @@ Sin componentes visibles: prepara todo lo que las fases siguientes necesitan.
 | Tarea | Por qué | Estado |
 | --- | --- | --- |
 | ADR 0005: librería headless → [React Aria Components](https://github.com/frantsiles/react-ui-kit/blob/main/docs/adr/0005-react-aria-como-libreria-headless.md) | Base de overlays, colecciones y navegación | ✅ |
-| Guía de convenciones de API y definición de terminado (`CONTRIBUTING.md`, `AGENTS.md`) | Que todo el kit se use igual, también al trabajar con IA | ⏳ |
+| Guía de convenciones de API y definición de terminado ([`CONTRIBUTING.md`](https://github.com/frantsiles/react-ui-kit/blob/main/CONTRIBUTING.md), [`AGENTS.md`](https://github.com/frantsiles/react-ui-kit/blob/main/AGENTS.md), plantilla de PR) | Que todo el kit se use igual, también al trabajar con IA | ✅ |
 | Tokens de tipografía semántica, elevación, z-index, movimiento, breakpoints y densidad | Los necesitan Text, Card, overlays y layout | ⏳ |
 | Historias de Storybook como tests en el CI (incluido el chequeo de accesibilidad) | Hoy el CI corre los tests unitarios con axe, pero no las historias | ⏳ |
 | Regresión visual por historia y tema | Detectar cambios visuales no buscados | ⏳ |

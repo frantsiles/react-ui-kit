@@ -3,12 +3,13 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "start": "nx run playground:dev",
-    "dev": "nx run playground:dev",
+    "dev": "nx run @my-ui-library/react-ui-kit:dev",
+    "storybook": "nx run @my-ui-library/storybook:storybook",
     "build": "nx run-many -t build",
-    "preview": "nx run playground:preview",
-    "storybook": "nx run storybook:storybook",
-    "build-storybook": "nx run storybook:build-storybook"
+    "build-storybook": "nx run @my-ui-library/storybook:build-storybook",
+    "lint": "nx run-many -t lint",
+    "test": "nx run-many -t test",
+    "typecheck": "nx run-many -t typecheck --projects=@my-ui/core,@my-ui/icons,@my-ui/components"
   },
   "private": true,
   "dependencies": {
