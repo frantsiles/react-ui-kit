@@ -1,0 +1,54 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as ContextMenuStories from './context-menu.stories';
+
+<Meta of={ContextMenuStories} />
+
+# Menú contextual
+
+Un [`Menu`](?path=/docs/colecciones-menu--docs) que se abre junto al puntero con clic derecho o pulsación larga.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** como **atajo** para acciones sobre un elemento (una fila, una tarjeta, un archivo) que también están a la vista, por ejemplo en un `Menu` con botón "Más opciones".
+- **No:**
+  - **Como único camino a una acción:** el clic derecho no se descubre, no existe igual en todos los dispositivos y muchos usuarios de teclado o lector de pantalla no lo usan.
+  - **Sobre texto o enlaces comunes:** reemplazar el menú del navegador quita "Copiar", "Abrir en otra pestaña" y similares.
+
+## Uso
+
+```tsx
+<ContextMenuTrigger label="Acciones de la factura 2041">
+  <Card tabIndex={0}>…</Card>
+  <Menu onAction={(accion) => ejecutar(accion)}>
+    <MenuItem value="duplicar">Duplicar</MenuItem>
+    <MenuItem value="eliminar" tone="danger">Eliminar</MenuItem>
+  </Menu>
+</ContextMenuTrigger>
+```
+
+- **`ContextMenuTrigger`:** primero el área, después el mismo `Menu` (con `MenuItem`, `MenuSection` y `MenuSeparator`) que usa `MenuTrigger`.
+- **`label`** (obligatorio): nombre del menú. No hay un botón que lo nombre, así que di de qué son las acciones.
+- **El área** tiene que ser enfocable (`tabIndex={0}` o un elemento interactivo), para abrirlo con el teclado.
+- **Abierto:** `open` / `onOpenChange` para controlarlo. `disabled` deja el menú del navegador.
+
+### Hacer y evitar
+
+- **Hacer:** las mismas acciones, con los mismos nombres y en el mismo orden, en un `Menu` visible.
+- **Evitar:** acciones que solo existen aquí.
+
+## Accesibilidad
+
+Usa el patrón [Menu de WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/) (`role="menu"`), igual que `Menu`. No hay un patrón APG específico para el menú contextual.
+
+- **Cómo se abre:**
+  - **Mouse:** clic derecho, junto al puntero.
+  - **Teclado:** `Shift+F10` o la tecla Menú con el foco en el área. El menú se abre debajo del área.
+  - **Táctil:** pulsación larga (medio segundo). Moverse antes la cancela, para no confundirla con un desplazamiento.
+- **Al abrir,** el foco va al primer ítem. Flechas recorren, `Enter` ejecuta y `Escape` cierra. Al cerrar, el foco vuelve al área.
+- **El nombre** del menú es `label`; el lector lo anuncia al entrar.
+- **Descubrible:** como no hay nada visible que diga que existe, las acciones tienen que estar también en otro lugar (WCAG 2.1.1, Teclado; y por usabilidad).
+
+<Stories />

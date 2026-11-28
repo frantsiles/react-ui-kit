@@ -108,7 +108,7 @@ Los bloques se adaptan al ancho de **su contenedor** (container queries), no al 
 | Combobox | Combobox | Select | 🚧 |
 | Multiselect | Combobox | Combobox, Tag | 🚧 |
 | Menu (menú de acciones) | Menu Button | Popover | 🚧 |
-| Menú contextual | Menu | Menu + clic derecho o pulsación larga | ⏳ |
+| Menú contextual | Menu | Menu + clic derecho o pulsación larga | 🚧 |
 
 ### Fase 5 · Navegación
 
