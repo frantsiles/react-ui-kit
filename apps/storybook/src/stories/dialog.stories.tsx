@@ -65,6 +65,18 @@ const meta = {
 export default meta;
 type Story = StoryObj<StoryArgs>;
 
+/**
+ * El diálogo está fijo y centrado en la ventana: la historia ocupa todo el
+ * alto (menos el padding) para que la captura lo incluya entero.
+ */
+const fullHeight: Story['decorators'] = [
+  (Story) => (
+    <div className="min-h-[calc(100dvh-2rem)]">
+      <Story />
+    </div>
+  ),
+];
+
 /** El foco entra al diálogo, `Tab` no sale de él y `Escape` lo cierra devolviendo el foco al botón. */
 export const Basico: Story = {
   play: async ({ canvasElement }) => {
@@ -82,6 +94,7 @@ export const Basico: Story = {
 
 /** Abierto al montar (`defaultOpen`), para ver su aspecto. */
 export const Abierto: Story = {
+  decorators: fullHeight,
   render: (args) => (
     <DialogTrigger defaultOpen>
       <Button>Eliminar factura</Button>
@@ -108,6 +121,7 @@ export const Abierto: Story = {
 
 /** Con mucho contenido solo el cuerpo se desplaza; el título y el pie quedan a la vista. */
 export const ContenidoLargo: Story = {
+  decorators: fullHeight,
   render: (args) => (
     <DialogTrigger defaultOpen>
       <Button>Ver términos</Button>
