@@ -9,5 +9,6 @@ Cada archivo registra una decisión importante: el contexto, qué se decidió, q
 | [0003](0003-html-nativo-primero.md) | HTML nativo primero; librería headless solo para controles complejos | Aceptado |
 | [0004](0004-documentacion-en-storybook.md) | Documentación en Storybook; decisiones en el repositorio | Aceptado |
 | [0005](0005-react-aria-como-libreria-headless.md) | React Aria Components como librería headless | Aceptado |
+| [0006](0006-regresion-visual.md) | Regresión visual con Vitest, capturas en el repositorio | Aceptado |
 
 Plantilla: copia cualquiera de los existentes y numera con el siguiente número libre.

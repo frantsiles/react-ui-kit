@@ -1,0 +1,67 @@
+name: Actualizar capturas
+
+# Genera o actualiza las capturas de referencia de la regresión visual
+# (apps/storybook/src/stories/__screenshots__) en el mismo entorno que el CI y
+# las commitea en la rama del PR. Ver docs/adr/0006-regresion-visual.md.
+#
+# Uso: agregar la etiqueta "actualizar-capturas" al PR. GitHub deja el CI del
+# commit del bot esperando aprobación: apruébalo en el PR ("Approve workflows
+# to run"). Antes de mergear, revisa las imágenes en "Files changed".
+
+on:
+  pull_request:
+    types: [labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: capturas-${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  actualizar:
+    if: github.event.label.name == 'actualizar-capturas' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.8.0
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+
+      # --update reescribe las referencias; los tests de render, play y axe
+      # siguen corriendo y fallan si hay errores
+      - name: Generar capturas
+        working-directory: apps/storybook
+        run: pnpm exec vitest run --update
+
+      - name: Commitear capturas
+        run: |
+          git add apps/storybook/src/stories/__screenshots__
+          if git diff --cached --quiet; then
+            echo "Sin cambios en las capturas"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "test(storybook): actualiza capturas de referencia"
+          git push
+
+      - name: Quitar la etiqueta
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr edit ${{ github.event.pull_request.number }} --remove-label actualizar-capturas

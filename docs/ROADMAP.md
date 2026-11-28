@@ -58,7 +58,7 @@ Sin componentes visibles: prepara todo lo que las fases siguientes necesitan.
 | Guía de convenciones de API y definición de terminado ([`CONTRIBUTING.md`](https://github.com/frantsiles/react-ui-kit/blob/main/CONTRIBUTING.md), [`AGENTS.md`](https://github.com/frantsiles/react-ui-kit/blob/main/AGENTS.md), plantilla de PR) | Que todo el kit se use igual, también al trabajar con IA | ✅ |
 | Tokens de tipografía semántica, elevación, z-index, movimiento, breakpoints y densidad | Los necesitan Text, Card, overlays y layout | ✅ |
 | Historias de Storybook como tests en el CI (incluido el chequeo de accesibilidad) | Cada historia corre en Chromium en los tres temas, con su `play` y axe (contraste incluido) | ✅ |
-| Regresión visual por historia y tema | Detectar cambios visuales no buscados | ⏳ |
+| Regresión visual por historia y tema ([ADR 0006](https://github.com/frantsiles/react-ui-kit/blob/main/docs/adr/0006-regresion-visual.md)) | Detectar cambios visuales no buscados | ✅ |
 | Proveedor de idioma (textos internos y RTL) | Traducir "Mostrar contraseña", "Quitar…", etc. sin prop por prop | ⏳ |
 | Reglas de capas con etiquetas de Nx | Hacer cumplir la dirección única de dependencias | ⏳ |
 

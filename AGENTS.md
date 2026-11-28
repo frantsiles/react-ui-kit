@@ -51,6 +51,7 @@ Un componente nuevo incluye, en el mismo PR:
 - `apps/storybook/src/stories/<nombre>.stories.tsx` y `<nombre>.mdx` (cuándo usarlo, hacer / evitar, accesibilidad).
 - Estado actualizado en `docs/ROADMAP.md`.
 - `pnpm lint`, `pnpm test` (incluye cada historia como test, con axe en los tres temas), `pnpm typecheck` y `pnpm build-storybook` en verde.
+- Si hay cambios visuales o historias nuevas: etiqueta `actualizar-capturas` en el PR (las capturas de referencia se generan en el CI, nunca en local).
 
 ## Git
 

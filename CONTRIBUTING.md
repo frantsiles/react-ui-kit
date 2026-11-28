@@ -172,6 +172,14 @@ Cada historia de Storybook también es un test (`@storybook/addon-vitest`): se r
 pnpm exec nx run @my-ui-library/storybook:test   # solo las historias
 ```
 
+### Regresión visual
+
+En el CI, cada historia también se **captura en los tres temas** y se compara con su referencia en `apps/storybook/src/stories/__screenshots__` ([ADR 0006](docs/adr/0006-regresion-visual.md)). En local no se compara, porque las fuentes se renderizan distinto en cada sistema.
+
+- **Si cambiaste algo visual a propósito** (o agregaste una historia): pon la etiqueta `actualizar-capturas` en el PR. El workflow regenera las capturas en el entorno del CI y las commitea en tu rama. GitHub deja el CI de ese commit esperando aprobación: apruébalo en el PR (*Approve workflows to run*) o sube cualquier commit tuyo. Revisa las imágenes en *Files changed* antes de mergear.
+- **Si falla sin que lo esperaras:** descarga el artefacto `regresion-visual` del CI, que trae la captura actual y la diferencia.
+- **No generes las referencias en tu máquina**, salvo para probar (`VISUAL=1`): no coincidirían con el CI.
+
 ## Documentación
 
 Cada componente tiene una página MDX adjunta a sus historias (`<Meta of={…Stories} />`) con estas secciones:

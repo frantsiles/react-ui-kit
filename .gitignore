@@ -39,3 +39,6 @@ Thumbs.db
 # Vite / Vitest temporary files
 vite.config.*.timestamp*
 vitest.config.*.timestamp*
+
+# Adjuntos de Vitest (capturas actuales y diferencias cuando falla la regresión visual)
+.vitest-attachments
