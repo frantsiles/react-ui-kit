@@ -161,6 +161,17 @@ Cada componente cubre como mínimo:
 
 Usa `userEvent` (no `fireEvent`), salvo para eventos que el usuario no puede producir.
 
+### Historias como tests
+
+Cada historia de Storybook también es un test (`@storybook/addon-vitest`): se renderiza en Chromium en **los tres temas** (claro, oscuro y alto contraste), ejecuta su función `play` si la tiene y pasa **axe** con `a11y.test: 'error'`. En el navegador real axe sí mide el contraste, cosa que jsdom no puede.
+
+- Una historia con violaciones de accesibilidad hace fallar el CI. Si una regla no aplica de verdad, desactívala solo en esa historia (`parameters.a11y.config.rules`) y explica por qué en un comentario.
+- Las historias de algo interactivo llevan `play` con la interacción principal (`storybook/test`: `userEvent`, `expect`, `within`).
+
+```bash
+pnpm exec nx run @my-ui-library/storybook:test   # solo las historias
+```
+
 ## Documentación
 
 Cada componente tiene una página MDX adjunta a sus historias (`<Meta of={…Stories} />`) con estas secciones:

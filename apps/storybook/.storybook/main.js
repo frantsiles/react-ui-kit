@@ -18,6 +18,7 @@ const config = {
       },
     },
     getAbsolutePath("@storybook/addon-a11y"),
+    getAbsolutePath("@storybook/addon-vitest"),
   ],
 };
 

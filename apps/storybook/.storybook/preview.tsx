@@ -3,7 +3,8 @@ import '../src/storybook.css';
 
 /** Aplica el tema elegido en la barra de herramientas (data-theme en <html>). */
 const withTheme: Decorator = (Story, context) => {
-  const theme = context.globals['theme'] as string;
+  // En los tests de historias, cada proyecto de Vitest fija su tema (vitest.setup.ts)
+  const theme = globalThis.__UI_TEST_THEME__ ?? (context.globals['theme'] as string);
   const root = document.documentElement;
   if (theme === 'light') root.removeAttribute('data-theme');
   else root.setAttribute('data-theme', theme);

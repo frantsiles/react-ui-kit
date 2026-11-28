@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, userEvent, within } from 'storybook/test';
 import { Field, Input } from '@my-ui/components';
 
 const meta = {
@@ -29,11 +30,26 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Basico: Story = {};
+export const Basico: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByRole('textbox', { name: 'Correo electrónico' });
+    await expect(input).toHaveAccessibleDescription('Te enviaremos la confirmación aquí');
+    // Clic en la etiqueta enfoca el control
+    await userEvent.click(canvas.getByText('Correo electrónico'));
+    await expect(input).toHaveFocus();
+  },
+};
 
 /** El error dice cómo corregir, lleva ícono y marca el control con aria-invalid. */
 export const ConError: Story = {
   args: { required: true, error: 'Ingresa un correo como nombre@dominio.com' },
+  play: async ({ canvasElement }) => {
+    const input = within(canvasElement).getByRole('textbox', { name: /Correo electrónico/ });
+    await expect(input).toBeInvalid();
+    await expect(input).toBeRequired();
+    await expect(input).toHaveAccessibleDescription(/Ingresa un correo como nombre@dominio.com/);
+  },
 };
 
 export const Opcional: Story = {
