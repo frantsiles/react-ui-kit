@@ -116,7 +116,7 @@ Los bloques se adaptan al ancho de **su contenedor** (container queries), no al 
 
 | Componente | Patrón APG | Estado |
 | --- | --- | --- |
-| Tabs | Tabs | ⏳ |
+| Tabs | Tabs | 🚧 |
 | Accordion / Disclosure | Accordion, Disclosure | ⏳ |
 | Breadcrumbs | Breadcrumb | ⏳ |
 | Pagination | Landmark `nav` | ⏳ |

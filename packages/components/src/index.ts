@@ -113,6 +113,16 @@ export { Skeleton, type SkeletonProps, type SkeletonShape } from './lib/acciones
 export { Spinner, type SpinnerProps } from './lib/acciones/spinner';
 export { Stack, type StackProps } from './lib/layout/stack';
 export { Switch, type SwitchProps } from './lib/acciones/switch';
+export {
+  Tab,
+  TabList,
+  TabPanel,
+  Tabs,
+  type TabListProps,
+  type TabPanelProps,
+  type TabProps,
+  type TabsProps,
+} from './lib/navegacion/tabs';
 export { Tag, type TagProps } from './lib/fundamentos/tag';
 export { Text, type TextProps, type TextTone, type TextVariant } from './lib/acciones/text';
 export { Textarea, type TextareaProps } from './lib/fundamentos/textarea';

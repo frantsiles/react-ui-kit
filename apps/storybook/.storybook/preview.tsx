@@ -108,6 +108,8 @@ const preview: Preview = {
           ['Popover', 'Tooltip', 'Dialog', 'AlertDialog', 'Drawer', 'Toast'],
           'Colecciones',
           ['ListBox', 'Select', 'Combobox', 'Multiselect', 'Menu', 'Menú contextual'],
+          'Navegación',
+          ['Tabs'],
           'Avisos',
           'Carga',
           ['Spinner', 'Skeleton'],
