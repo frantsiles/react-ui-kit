@@ -1,0 +1,43 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Link } from '@my-ui/components';
+import { DoDont } from '../docs/components/do-dont';
+import * as LinkStories from './link.stories';
+
+<Meta of={LinkStories} />
+
+# Link
+
+Navega a otra página, a otra parte de la misma o a otro sitio. Es un `<a>` nativo.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** cuando el resultado es **ir a otro lugar** (cambia la URL).
+- **No:** para acciones (guardar, abrir un diálogo, borrar): usa [`Button`](?path=/docs/acciones-button--docs). Un botón que parece enlace, o al revés, confunde a quien usa lector de pantalla o teclado (Espacio activa botones, no enlaces).
+
+## Reglas de uso
+
+- **El texto dice a dónde lleva** y se entiende solo: "Ver todas las facturas", no "Haz clic aquí". Los lectores de pantalla listan los enlaces sin el texto que los rodea.
+- **Siempre subrayado.** El color solo no distingue un enlace del texto (WCAG 1.4.1). Al pasar el mouse el subrayado se engrosa.
+- **`external`** cuando abre en otra pestaña: agrega `target="_blank"` con `rel="noopener noreferrer"`, un ícono y el aviso "(se abre en una pestaña nueva)", traducido con `LocaleProvider` y sobrescribible con `newTabLabel`. Abre otra pestaña solo si hay una razón (no perder un formulario a medio llenar); si no, deja que la persona decida.
+- **Tamaño:** toma el de su contenedor. Dentro de un `Text` se ve como ese texto.
+- **Routers** (React Router, Next.js): la integración llegará con la navegación (Fase 5). Mientras tanto, `Link` sirve para enlaces de documento completo.
+
+<DoDont
+  doContent={<span>Revisa las <Link href="#facturas">facturas de este mes</Link>.</span>}
+  doCaption="El enlace se entiende fuera de la frase."
+  dontContent={<span>Para ver las facturas, <Link href="#facturas">haz clic aquí</Link>.</span>}
+  dontCaption={'En la lista de enlaces del lector solo se oye "haz clic aquí".'}
+/>
+
+## Accesibilidad
+
+- Patrón [ARIA APG: Link](https://www.w3.org/WAI/ARIA/apg/patterns/link/). Al ser `<a href>` nativo, `Enter` lo activa, el menú contextual ofrece "abrir en otra pestaña" y el navegador marca los visitados.
+- `href` es obligatorio: un `<a>` sin `href` no es un enlace ni recibe foco.
+- Para el enlace de la página actual en una navegación, pasa `aria-current="page"`.
+- El ícono de `external` es decorativo; el aviso va en texto oculto, así lo leen todos los lectores. En RTL el ícono se espeja.
+- Foco con `focusRing`, visible también en colores forzados.
+
+<Stories />

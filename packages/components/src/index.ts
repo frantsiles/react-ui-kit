@@ -5,10 +5,17 @@ export { ButtonGroup, type ButtonGroupProps } from './lib/acciones/button-group'
 export { Divider, type DividerProps } from './lib/acciones/divider';
 export { ErrorMessage, type ErrorMessageProps } from './lib/fundamentos/error-message';
 export { Field, useFieldControl, type FieldProps } from './lib/fundamentos/field';
+export {
+  Heading,
+  type HeadingLevel,
+  type HeadingProps,
+  type HeadingSize,
+} from './lib/acciones/heading';
 export { HelpText, type HelpTextProps } from './lib/fundamentos/help-text';
 export { IconButton, type IconButtonProps } from './lib/acciones/icon-button';
 export { Input, type InputProps } from './lib/fundamentos/input';
 export { Label, type LabelProps } from './lib/fundamentos/label';
+export { Link, type LinkProps } from './lib/acciones/link';
 export {
   LocaleProvider,
   useLocale,
@@ -20,6 +27,7 @@ export { SearchInput, type SearchInputProps } from './lib/fundamentos/search-inp
 export { Skeleton, type SkeletonProps, type SkeletonShape } from './lib/acciones/skeleton';
 export { Spinner, type SpinnerProps } from './lib/acciones/spinner';
 export { Tag, type TagProps } from './lib/fundamentos/tag';
+export { Text, type TextProps, type TextTone, type TextVariant } from './lib/acciones/text';
 export { Textarea, type TextareaProps } from './lib/fundamentos/textarea';
 export { VisuallyHidden, type VisuallyHiddenProps } from './lib/fundamentos/visually-hidden';
 export type { ControlSize, Tone } from './lib/fundamentos/types';

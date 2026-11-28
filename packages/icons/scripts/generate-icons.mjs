@@ -17,7 +17,13 @@ const require = createRequire(import.meta.url);
 const here = path.dirname(fileURLToPath(import.meta.url));
 
 /** Íconos direccionales: se espejan automáticamente en contextos RTL. */
-const RTL_MIRRORED = new Set(['arrow-left', 'arrow-right', 'chevron-left', 'chevron-right']);
+const RTL_MIRRORED = new Set([
+  'arrow-left',
+  'arrow-right',
+  'chevron-left',
+  'chevron-right',
+  'external-link',
+]);
 
 /**
  * Nombre en el kit (kebab-case). Si Lucide usa otro nombre, se indica como
@@ -36,6 +42,7 @@ const ICONS = [
   'copy',
   'download',
   'ellipsis',
+  'external-link',
   'eye',
   'eye-off',
   'info',
