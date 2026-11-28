@@ -36,6 +36,10 @@ export type Layer = (typeof layers)[number];
 /** Curvas de movimiento (`ease-ui-<curva>`). */
 export const easings = ['standard', 'enter', 'exit'] as const;
 
+/** Escala de espaciado (`gap-ui-<paso>`, `p-ui-<paso>`). Se reduce en densidad compacta. */
+export const spaces = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
+export type Space = (typeof spaces)[number];
+
 /** Densidades (`data-density` en `<html>` o en una sección). */
 export const densities = ['comfortable', 'compact'] as const;
 export type Density = (typeof densities)[number];

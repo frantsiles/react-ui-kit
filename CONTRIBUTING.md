@@ -148,6 +148,7 @@ No uses `isDisabled`, `color`, `kind`, `type` (para variantes) ni sinónimos de 
 - **Combina clases con `cn()`** de `@my-ui/core`, siempre con el `className` del usuario al final para que pueda sobrescribir.
 - **Foco:** usa `focusRing` (o `fieldFocusRing` en contenedores de inputs) de `@my-ui/core`. Nunca `outline-none` sin reemplazo, ni foco hecho con `box-shadow`.
 - **Tipografía** con estilos por rol (`text-ui-body`, `text-ui-label`, `text-ui-heading-md`…), no con `text-sm` o `font-medium` sueltos. Pesos con `font-ui-*`.
+- **Espaciado de layout** con la escala `--ui-space-*` (`gap-ui-md`, `p-ui-lg`), o con `Stack` e `Inline`; se achica en densidad compacta. Dentro de un componente valen los pasos de Tailwind (`gap-2`).
 - **Tamaños de control** con `min-h-ui-control-{sm,md,lg}` (responden a la densidad); texto de 16 px en móvil (`text-ui-body ui-sm:text-ui-body-sm`) para que iOS no haga zoom.
 - **Elevación** con `shadow-ui-{raised,overlay,modal}` + `bg-ui-surface-raised` + borde (en alto contraste no hay sombras). **Capas** con `z-(--ui-z-…)`, nunca números sueltos.
 - **Responsivo:** los controles ocupan el ancho de su contenedor (`w-full`); el layout lo decide quien los usa. Breakpoints con prefijo `ui-` (`ui-sm:`), nunca `sm:`; para bloques de contenido, container queries (`@ui-md:`).

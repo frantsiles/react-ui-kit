@@ -102,6 +102,8 @@ const preview: Preview = {
           ['Button', 'IconButton', 'ButtonGroup', 'Link'],
           'Selección',
           ['Checkbox', 'CheckboxGroup', 'RadioGroup', 'Switch'],
+          'Layout',
+          ['Stack', 'Inline'],
           'Avisos',
           'Carga',
           ['Spinner', 'Skeleton'],

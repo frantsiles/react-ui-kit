@@ -12,6 +12,7 @@ import {
   fontWeights,
   layers,
   mediaQuery,
+  spaces,
   textStyles,
 } from './tokens.js';
 
@@ -55,6 +56,13 @@ describe('tokens', () => {
     expect(mediaQuery('md')).toBe('(min-width: 48rem)');
   });
 
+  it('cada paso de espaciado existe y llega a Tailwind', () => {
+    for (const space of spaces) {
+      expect(tokensCss).toContain(`--ui-space-${space}:`);
+      expect(themeCss).toContain(`--spacing-ui-${space}: var(--ui-space-${space});`);
+    }
+  });
+
   it('cada densidad redefine los tamaños de control', () => {
     for (const density of densities) {
       expect(tokensCss).toMatch(
@@ -74,6 +82,11 @@ describe('tokens', () => {
 describe('cn con tokens del kit', () => {
   it('no confunde tamaño de texto con color', () => {
     expect(cn('text-ui-body text-ui-fg')).toBe('text-ui-body text-ui-fg');
+  });
+
+  it('resuelve conflictos de espaciado del kit con los de Tailwind', () => {
+    expect(cn('gap-2', 'gap-ui-md')).toBe('gap-ui-md');
+    expect(cn('p-ui-sm', 'px-ui-lg')).toBe('p-ui-sm px-ui-lg');
   });
 
   it('resuelve conflictos entre tokens del mismo tipo', () => {

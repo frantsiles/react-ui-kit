@@ -82,7 +82,7 @@ Los bloques se adaptan al ancho de **su contenedor** (container queries), no al 
 
 | Componente | Para qué | Estado |
 | --- | --- | --- |
-| Stack, Inline | Espaciado vertical y horizontal consistente, sin márgenes sueltos | ⏳ |
+| Stack, Inline | Espaciado vertical y horizontal consistente, sin márgenes sueltos | 🚧 |
 | Grid de layout | Columnas que se reacomodan | ⏳ |
 | Container | Ancho máximo y márgenes de página | ⏳ |
 | Card / Panel (encabezado, cuerpo, pie) | Bloques de contenido | ⏳ |
