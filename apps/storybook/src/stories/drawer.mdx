@@ -1,0 +1,75 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as DrawerStories from './drawer.stories';
+
+<Meta of={DrawerStories} />
+
+# Drawer
+
+Panel modal que entra desde un borde de la pantalla. También se lo conoce como _sheet_.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:**
+  - filtros u opciones de un listado, sin perder de vista la página;
+  - el detalle de un elemento de una lista;
+  - un formulario corto o mediano;
+  - en móviles, una hoja inferior (`placement="bottom"`) con acciones.
+- **No:**
+  - **Una tarea corta que pide atención total:** usa [`Dialog`](?path=/docs/overlays-dialog--docs).
+  - **Confirmar algo destructivo:** usa [`AlertDialog`](?path=/docs/overlays-alertdialog--docs).
+  - **Unas pocas opciones junto a un botón:** usa [`Popover`](?path=/docs/overlays-popover--docs), que no bloquea la página.
+  - **Navegación que siempre está a la vista:** usa `SideNav` (Fase 5). El `Drawer` solo la reemplaza en pantallas angostas.
+  - **Flujos largos o con varios pasos:** mejor una página propia, que se puede enlazar y recargar.
+
+## Uso
+
+```tsx
+<DialogTrigger>
+  <Button variant="outline">Filtros</Button>
+  <Drawer title="Filtros" description="Se aplican al listado de facturas.">
+    {({ close }) => (
+      <>
+        <DialogBody>…</DialogBody>
+        <DialogFooter>
+          <Button onClick={close}>Aplicar filtros</Button>
+        </DialogFooter>
+      </>
+    )}
+  </Drawer>
+</DialogTrigger>
+```
+
+- **Las mismas partes que `Dialog`:** `DialogTrigger`, `DialogBody` y `DialogFooter`, y las mismas props: `title` o `aria-label`, `description`, `dismissable`, `closeButton`, `closeLabel`, `open` / `onOpenChange`.
+- **`placement`:**
+  - `end` (por defecto): al final de la línea. A la derecha en LTR, a la izquierda en RTL.
+  - `start`: al inicio de la línea, como un menú.
+  - `bottom`: hoja inferior a todo el ancho. Llega hasta el 85 % del alto, así siempre se ve que hay una página atrás.
+- **`size`** (solo laterales): `sm` 20rem, `md` 24rem (por defecto), `lg` 36rem. Nunca más ancho que la pantalla.
+- **Alto:** los laterales ocupan todo el alto. Si el contenido no entra, solo `DialogBody` se desplaza; el título y el pie quedan a la vista.
+
+### Hacer y evitar
+
+- **Hacer:** un título que diga qué hay adentro ("Filtros", "Factura 2041").
+- **Hacer:** la acción principal última en el pie, y "Limpiar" o "Cancelar" antes.
+- **Evitar:** abrir un `Drawer` desde otro. Si hace falta un segundo nivel, cambia el contenido del mismo panel o usa una página.
+- **Evitar:** `dismissable={false}` salvo que un clic afuera haga perder datos.
+
+## Accesibilidad
+
+Patrón: [Dialog (Modal) de WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/). Visualmente es un panel lateral, pero para el lector de pantalla es un diálogo modal.
+
+- **`role="dialog"`** con `aria-modal`: el nombre es el título y la descripción es `description`.
+- **Foco:**
+  - Al abrir, entra al panel.
+  - `Tab` y `Shift+Tab` recorren solo su contenido.
+  - `Escape` lo cierra, y también el botón "Cerrar" o un clic afuera.
+  - Al cerrar, el foco vuelve al botón que lo abrió.
+- **Página de atrás:** queda inerte, sin scroll, y se oscurece con `bg-ui-overlay`.
+- **Dirección:** `start` y `end` son lógicos y la animación entra desde el borde correcto en RTL.
+- **Zoom y pantallas chicas:** el panel nunca pasa del ancho de la ventana y su contenido se desplaza (WCAG 1.4.10).
+- **Movimiento:** se desliza desde su borde; con "reducir movimiento" el cambio es instantáneo.
+
+<Stories />

@@ -36,6 +36,12 @@ export {
   type DialogTriggerProps,
 } from './lib/overlays/dialog';
 export { Divider, type DividerProps } from './lib/acciones/divider';
+export {
+  Drawer,
+  type DrawerPlacement,
+  type DrawerProps,
+  type DrawerSize,
+} from './lib/overlays/drawer';
 export { ErrorMessage, type ErrorMessageProps } from './lib/fundamentos/error-message';
 export { Field, useFieldControl, type FieldProps } from './lib/fundamentos/field';
 export {
