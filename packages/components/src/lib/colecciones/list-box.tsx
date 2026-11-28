@@ -53,7 +53,11 @@ export type ListBoxProps = ListBoxName &
     ref?: Ref<HTMLDivElement> | undefined;
   };
 
-const ListBoxSizeContext = createContext<ControlSize>('md');
+/** Tamaño de las opciones. Interno: `Select` lo da a sus `ListBoxItem`. */
+export const ListBoxSizeContext = createContext<ControlSize>('md');
+
+/** Contenedor de la lista sin borde, para usarla dentro de un panel (`Select`). Interno. */
+export const listBoxListClasses = 'flex flex-col gap-px overflow-auto p-ui-xs text-ui-fg outline-hidden';
 
 function toKeys(value: string | null | readonly string[] | undefined): Iterable<string> | undefined {
   if (value === undefined) return undefined;

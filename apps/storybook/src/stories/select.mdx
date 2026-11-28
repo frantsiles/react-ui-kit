@@ -1,0 +1,62 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as SelectStories from './select.stories';
+
+<Meta of={SelectStories} />
+
+# Select
+
+Lista desplegable para elegir una opción, con opciones propias: ícono, descripción y secciones.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** elegir una opción entre 5 y 15, en un formulario, cuando las opciones necesitan más que texto (ícono, descripción, grupos) o cuando tiene que verse igual en todos los navegadores.
+- **No:**
+  - **Opciones de solo texto:** [`NativeSelect`](?path=/docs/inputs-nativeselect--docs) es más liviano y en el teléfono abre la lista del sistema.
+  - **Pocas opciones (hasta 4 o 5):** [`RadioGroup`](?path=/docs/selección-radiogroup--docs), que las muestra todas sin abrir nada.
+  - **Muchas opciones o que conviene buscar:** `Combobox` (Fase 4).
+  - **Elegir varias:** [`CheckboxGroup`](?path=/docs/selección-checkboxgroup--docs) o `Multiselect` (Fase 4).
+  - **Acciones** ("Exportar", "Eliminar"): `Menu` (Fase 4).
+
+## Uso
+
+```tsx
+<Field label="Cliente" error={error}>
+  <Select name="cliente" value={cliente} onChange={setCliente}>
+    <ListBoxItem value="clavo">Ferretería El Clavo</ListBoxItem>
+    <ListBoxItem value="aurora" description="Cliente desde 2021">Panadería La Aurora</ListBoxItem>
+    <ListBoxItem value="cerrada" disabled>Librería Cerrada</ListBoxItem>
+  </Select>
+</Field>
+```
+
+- **Dentro de un `Field`:** la etiqueta nombra el botón, y `description`, `error`, `required`, `disabled` y `size` pasan solos. Fuera de un `Field`, nómbralo con `aria-label` o `aria-labelledby`.
+- **Opciones:** las mismas `ListBoxItem` y `ListBoxSection` de [`ListBox`](?path=/docs/colecciones-listbox--docs).
+- **Valor:** `value` (`string` o `null`) con `onChange`, o `defaultValue`.
+- **Formularios:** con `name`, el valor se envía con el `<form>` como si fuera un `<select>`.
+- **Sin elegir:** muestra "Elige una opción" (de `useMessages()`); se cambia con `placeholder`.
+- **Abierto:** `open` / `onOpenChange` para controlarlo, o `defaultOpen`.
+
+### Hacer y evitar
+
+- **Hacer:** una etiqueta que diga qué se elige ("Cliente"), no "Selecciona".
+- **Hacer:** si "ninguno" es una respuesta válida, inclúyelo como opción, con un texto claro.
+- **Evitar:** cambiar la página o enviar el formulario al elegir. Elegir tiene que ser reversible hasta que la persona confirme.
+
+## Accesibilidad
+
+Patrón: [Select-Only Combobox de WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/). Lo implementa React Aria como un botón que abre un `listbox`.
+
+- **El botón:** su nombre es la etiqueta del `Field` y después el valor elegido ("Cliente, Panadería La Aurora"); anuncia que abre una lista (`aria-haspopup="listbox"`) y si está abierta (`aria-expanded`). La ayuda y el error se leen como descripción.
+- **Teclado:**
+  - Con el foco en el botón: flecha abajo, `Enter` o `Espacio` abren la lista; escribir letras elige la opción que coincide sin abrirla.
+  - En la lista: flechas, `Inicio` y `Fin` recorren (saltan las deshabilitadas), letras buscan, `Enter` elige y cierra, `Escape` cierra sin cambiar.
+  - Al cerrar, el foco vuelve al botón.
+  - Un clic en la etiqueta abre la lista, igual que un clic en el botón.
+- **La opción elegida** lleva una marca ✓, no solo color (WCAG 1.4.1).
+- **Validación:** la muestra el `Field`; el navegador no muestra su propio globo.
+- **Táctil y zoom:** el botón mide lo mismo que un `Input` y la lista se acomoda si no entra debajo.
+
+<Stories />
