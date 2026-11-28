@@ -74,7 +74,7 @@ Sin componentes visibles: prepara todo lo que las fases siguientes necesitan.
 | Radio, RadioGroup (Radio Group) | Field, Label | 🚧 |
 | Switch (Switch) | Field, Label | 🚧 |
 | NativeSelect | Field | 🚧 |
-| Alert / Banner en línea | Icon, Button | ⏳ |
+| Alert / Banner en línea | Icon, Button | 🚧 |
 
 ### Fase 2 · Layout: bloques de contenido que se adaptan
 

@@ -6,6 +6,10 @@
  * obliga a completarlos todos).
  */
 export interface Messages {
+  /** Botón para cerrar un `Alert`. */
+  'alert.dismiss': string;
+  /** Prefijo oculto de `Alert` según su tono, para no depender del color ni del ícono. */
+  'alert.tone': (tone: 'neutral' | 'primary' | 'success' | 'warning' | 'danger') => string;
   /** Etiqueta del campo opcional en `Label` / `Field`. */
   'label.optional': string;
   /** Aviso de `Link` con `external`, después del texto del enlace. */
@@ -23,6 +27,9 @@ export interface Messages {
 }
 
 const es: Messages = {
+  'alert.dismiss': 'Cerrar aviso',
+  'alert.tone': (tone) =>
+    ({ neutral: 'Nota', primary: 'Información', success: 'Listo', warning: 'Advertencia', danger: 'Error' })[tone],
   'label.optional': '(opcional)',
   'link.newTab': '(se abre en una pestaña nueva)',
   'passwordInput.show': 'Mostrar contraseña',
@@ -33,6 +40,9 @@ const es: Messages = {
 };
 
 const en: Messages = {
+  'alert.dismiss': 'Dismiss',
+  'alert.tone': (tone) =>
+    ({ neutral: 'Note', primary: 'Info', success: 'Success', warning: 'Warning', danger: 'Error' })[tone],
   'label.optional': '(optional)',
   'link.newTab': '(opens in a new tab)',
   'passwordInput.show': 'Show password',
