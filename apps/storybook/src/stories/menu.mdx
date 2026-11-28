@@ -37,6 +37,7 @@ Lista de acciones que abre un botón: "Editar", "Duplicar", "Eliminar".
 - **Acciones:** `onAction` del `Menu` recibe el `value` del ítem elegido; cada `MenuItem` también acepta su propio `onAction`. El menú se cierra solo al elegir.
 - **Ítems:** `icon` (decorativo), `description` (texto secundario), `shortcut` (solo lo muestra: el atajo lo implementa la app), `tone="danger"` para lo destructivo y `disabled`.
 - **Grupos:** `MenuSection` con título, o `MenuSeparator` entre grupos sin título.
+- **Menú contextual:** el mismo `Menu` se abre con clic derecho dentro de un [`ContextMenuTrigger`](?path=/docs/colecciones-menú-contextual--docs).
 - **Nombre:** por defecto el menú se llama como el botón que lo abre. Con un `IconButton` genérico ("Más opciones"), usa `aria-label` para decir de qué son las acciones.
 
 ### Hacer y evitar

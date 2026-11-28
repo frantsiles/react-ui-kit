@@ -1,11 +1,25 @@
-import { Children, isValidElement, type DOMAttributes, type ReactElement, type ReactNode, type Ref } from 'react';
+import {
+  Children,
+  isValidElement,
+  useRef,
+  useState,
+  type DOMAttributes,
+  type KeyboardEvent as ReactKeyboardEvent,
+  type MouseEvent as ReactMouseEvent,
+  type PointerEvent as ReactPointerEvent,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from 'react';
 import {
   Header as AriaHeader,
   Menu as AriaMenu,
+  MenuContext as AriaMenuContext,
   MenuItem as AriaMenuItem,
   MenuSection as AriaMenuSection,
   MenuTrigger as AriaMenuTrigger,
   Popover as AriaPopover,
+  PopoverContext as AriaPopoverContext,
   Pressable,
   Separator as AriaSeparator,
   type Key,
@@ -185,4 +199,124 @@ export function MenuSection({ title, children, className }: MenuSectionProps) {
 /** Línea que separa grupos de acciones. */
 export function MenuSeparator({ className }: { className?: string | undefined }) {
   return <AriaSeparator className={cn('my-ui-xs border-t border-ui-border-subtle', className)} />;
+}
+
+export interface ContextMenuTriggerProps {
+  /** Primero el área que tiene el menú (un elemento enfocable), después el `Menu`. */
+  children: ReactNode;
+  /** Nombre del menú, que no tiene botón que lo nombre ("Acciones de la factura 2041"). */
+  label: string;
+  /** Abierto (controlado). */
+  open?: boolean | undefined;
+  onOpenChange?: ((open: boolean) => void) | undefined;
+  /** Desactiva el menú: el clic derecho muestra el menú del navegador. */
+  disabled?: boolean | undefined;
+}
+
+/** Pulsación larga en pantallas táctiles (iOS no dispara `contextmenu`). */
+const LONG_PRESS_MS = 500;
+/** Moverse más que esto cancela la pulsación larga: es un desplazamiento. */
+const LONG_PRESS_TOLERANCE = 10;
+
+/**
+ * Abre un `Menu` junto al puntero con clic derecho, con pulsación larga en
+ * táctil o con `Shift+F10` / tecla Menú cuando el área tiene el foco. Es un
+ * atajo: las mismas acciones tienen que estar también a la vista (un `Menu`
+ * con botón, por ejemplo), porque el menú contextual no se descubre.
+ */
+export function ContextMenuTrigger({ children, label, open, onOpenChange, disabled = false }: ContextMenuTriggerProps) {
+  const [area, ...rest] = Children.toArray(children);
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
+  const isOpen = open ?? uncontrolledOpen;
+  const [point, setPoint] = useState({ x: 0, y: 0 });
+  const anchorRef = useRef<HTMLSpanElement>(null);
+  const longPress = useRef<{ timer: ReturnType<typeof setTimeout>; x: number; y: number } | null>(null);
+
+  const setOpen = (next: boolean) => {
+    if (open === undefined) setUncontrolledOpen(next);
+    onOpenChange?.(next);
+  };
+
+  const openAt = (x: number, y: number) => {
+    setPoint({ x, y });
+    setOpen(true);
+  };
+
+  const cancelLongPress = () => {
+    if (longPress.current) clearTimeout(longPress.current.timer);
+    longPress.current = null;
+  };
+
+  const handleContextMenu = (event: ReactMouseEvent) => {
+    if (disabled) return;
+    event.preventDefault();
+    cancelLongPress();
+    // Con el teclado (Shift+F10, tecla Menú) algunos navegadores dan (0, 0): se abre bajo el elemento
+    if (event.clientX === 0 && event.clientY === 0) {
+      openBelow(event.target as Element);
+    } else {
+      openAt(event.clientX, event.clientY);
+    }
+  };
+
+  const openBelow = (target: Element) => {
+    const rect = target.getBoundingClientRect();
+    openAt(rect.left, rect.bottom);
+  };
+
+  // Shift+F10 y la tecla Menú: se manejan aquí (y no se espera al contextmenu
+  // del navegador) para que funcionen igual en todos y no abran dos veces
+  const handleKeyDown = (event: ReactKeyboardEvent) => {
+    if (disabled) return;
+    if (event.key === 'ContextMenu' || (event.shiftKey && event.key === 'F10')) {
+      event.preventDefault();
+      openBelow(event.target as Element);
+    }
+  };
+
+  const handlePointerDown = (event: ReactPointerEvent) => {
+    if (disabled || event.pointerType !== 'touch') return;
+    const { clientX: x, clientY: y } = event;
+    cancelLongPress();
+    longPress.current = { timer: setTimeout(() => openAt(x, y), LONG_PRESS_MS), x, y };
+  };
+
+  const handlePointerMove = (event: ReactPointerEvent) => {
+    const start = longPress.current;
+    if (start && Math.hypot(event.clientX - start.x, event.clientY - start.y) > LONG_PRESS_TOLERANCE) {
+      cancelLongPress();
+    }
+  };
+
+  return (
+    <>
+      <div
+        className="contents [-webkit-touch-callout:none]"
+        onContextMenu={handleContextMenu}
+        onKeyDown={handleKeyDown}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={cancelLongPress}
+        onPointerCancel={cancelLongPress}
+      >
+        {area}
+      </div>
+      {/* Punto invisible donde se abrió: el menú se posiciona contra él */}
+      <span
+        ref={anchorRef}
+        aria-hidden="true"
+        className="pointer-events-none fixed size-0"
+        // Coordenadas físicas del puntero (clientX/Y): aquí left es correcto también en RTL
+        style={{ left: point.x, top: point.y }}
+      />
+      <AriaPopoverContext
+        // React Aria lo vuelve role="dialog": también necesita nombre
+        value={{ isOpen, onOpenChange: setOpen, triggerRef: anchorRef, trigger: 'ContextMenu', 'aria-label': label }}
+      >
+        <AriaMenuContext value={{ 'aria-label': label, autoFocus: 'first', onClose: () => setOpen(false) }}>
+          {rest}
+        </AriaMenuContext>
+      </AriaPopoverContext>
+    </>
+  );
 }
