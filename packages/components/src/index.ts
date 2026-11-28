@@ -93,6 +93,13 @@ export { Switch, type SwitchProps } from './lib/acciones/switch';
 export { Tag, type TagProps } from './lib/fundamentos/tag';
 export { Text, type TextProps, type TextTone, type TextVariant } from './lib/acciones/text';
 export { Textarea, type TextareaProps } from './lib/fundamentos/textarea';
+export {
+  ToastRegion,
+  toast,
+  type ToastOptions,
+  type ToastRegionProps,
+  type ToastTone,
+} from './lib/overlays/toast';
 export { Tooltip, type TooltipPlacement, type TooltipProps } from './lib/overlays/tooltip';
 export { VisuallyHidden, type VisuallyHiddenProps } from './lib/fundamentos/visually-hidden';
 export type { FlexAlign, FlexElement, FlexGap, FlexJustify } from './lib/layout/flex';

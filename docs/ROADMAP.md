@@ -97,7 +97,7 @@ Los bloques se adaptan al ancho de **su contenedor** (container queries), no al 
 | Dialog / Modal | Dialog (Modal) | Captura de foco, bloqueo de scroll | 🚧 |
 | AlertDialog | Alert Dialog | Dialog, Button | 🚧 |
 | Drawer / Sheet | Dialog | Dialog | 🚧 |
-| Toast / notificaciones | Live region | Anunciador, Button | ⏳ |
+| Toast / notificaciones | Live region | Anunciador, Button | 🚧 |
 
 ### Fase 4 · Colecciones
 
