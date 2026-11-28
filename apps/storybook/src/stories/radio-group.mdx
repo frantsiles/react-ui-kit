@@ -1,0 +1,55 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Radio, RadioGroup } from '@my-ui/components';
+import { DoDont } from '../docs/components/do-dont';
+import * as RadioGroupStories from './radio-group.stories';
+
+<Meta of={RadioGroupStories} />
+
+# RadioGroup
+
+Opciones excluyentes: se elige **una sola**. Es un `<fieldset role="radiogroup">` con `<input type="radio">` nativos.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** entre 2 y 6 opciones excluyentes que conviene ver todas a la vez (plan, frecuencia, método de envío).
+- **No:**
+  - **Varias opciones a la vez:** usa [`CheckboxGroup`](?path=/docs/selección-checkboxgroup--docs).
+  - **Sí / no de un ajuste que se aplica al instante:** usa `Switch`.
+  - **Muchas opciones** o poco espacio: usa `NativeSelect` (Fase 1) o `Select` (Fase 4).
+
+## Uso
+
+```tsx
+<RadioGroup label="Plan" name="plan" defaultValue="mensual" onChange={setPlan}>
+  <Radio value="mensual">Mensual</Radio>
+  <Radio value="anual" description="Dos meses gratis.">Anual</Radio>
+</RadioGroup>
+```
+
+- `Radio` siempre va dentro de un `RadioGroup`: el grupo da el `name` común (si no lo pasas, se genera), que es lo que hace funcionar las flechas y la exclusión.
+- `value` (controlado, `null` para ninguno) o `defaultValue` (no controlado). `onChange` recibe el valor elegido.
+- `required` usa la validación nativa: el formulario no se envía sin una opción.
+- `error` marca el grupo y sus opciones como inválidos; `disabled` deshabilita todas (lo hace el `<fieldset>`).
+
+<DoDont
+  doContent={<RadioGroup label="Envío" defaultValue="normal"><Radio value="normal">Normal (gratis)</Radio><Radio value="rapido">Rápido (con costo)</Radio></RadioGroup>}
+  doCaption="Una opción elegida por defecto, la más común y segura."
+  dontContent={<RadioGroup label="Envío"><Radio value="normal">Normal</Radio></RadioGroup>}
+  dontCaption="Un radio solo no se puede desmarcar: usa un Checkbox."
+/>
+
+## Accesibilidad
+
+- Patrón [ARIA APG: Radio Group](https://www.w3.org/WAI/ARIA/apg/patterns/radio/). Al ser radios nativos con el mismo `name`:
+  - `Tab` entra al grupo en la opción elegida (o en la primera) y sale con el siguiente `Tab`: el grupo es una sola parada;
+  - las flechas mueven el foco **y eligen**;
+  - `Espacio` elige la opción enfocada.
+- La pregunta va en el `<legend>` y es el nombre del grupo. `required` se anuncia con `aria-required` en el grupo; el asterisco es solo visual.
+- **Colores forzados:** el punto es un SVG con `currentColor`, no un fondo, así sigue visible con los colores del sistema.
+- **Área táctil:** cada etiqueta mide al menos 24 px de alto y es clicable entera.
+- `ref` de cada `Radio` apunta a su `<input>`.
+
+<Stories />
