@@ -95,7 +95,7 @@ Los bloques se adaptan al ancho de **su contenedor** (container queries), no al 
 | Popover (primitiva) | — | Posicionamiento, cierre con Escape o clic afuera | 🚧 |
 | Tooltip | Tooltip | Popover | 🚧 |
 | Dialog / Modal | Dialog (Modal) | Captura de foco, bloqueo de scroll | 🚧 |
-| AlertDialog | Alert Dialog | Dialog, Button | ⏳ |
+| AlertDialog | Alert Dialog | Dialog, Button | 🚧 |
 | Drawer / Sheet | Dialog | Dialog | ⏳ |
 | Toast / notificaciones | Live region | Anunciador, Button | ⏳ |
 

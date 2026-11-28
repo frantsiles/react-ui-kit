@@ -1,4 +1,9 @@
 export { Alert, type AlertProps } from './lib/acciones/alert';
+export {
+  AlertDialog,
+  type AlertDialogProps,
+  type AlertDialogTone,
+} from './lib/overlays/alert-dialog';
 export { Avatar, type AvatarProps } from './lib/acciones/avatar';
 export { Badge, type BadgeProps } from './lib/fundamentos/badge';
 export { Button, type ButtonProps, type ButtonVariant } from './lib/acciones/button';
