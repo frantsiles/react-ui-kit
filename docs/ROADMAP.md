@@ -85,8 +85,8 @@ Los bloques se adaptan al ancho de **su contenedor** (container queries), no al 
 | Stack, Inline | Espaciado vertical y horizontal consistente, sin márgenes sueltos | 🚧 |
 | Grid de layout | Columnas que se reacomodan | 🚧 |
 | Container | Ancho máximo y márgenes de página | 🚧 |
-| Card / Panel (encabezado, cuerpo, pie) | Bloques de contenido | ⏳ |
-| ScrollArea | Zonas con scroll accesibles | ⏳ |
+| Card / Panel (encabezado, cuerpo, pie) | Bloques de contenido | 🚧 |
+| ScrollArea | Zonas con scroll accesibles | 🚧 |
 
 ### Fase 3 · Overlays
 

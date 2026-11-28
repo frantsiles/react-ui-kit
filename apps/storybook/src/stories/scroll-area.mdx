@@ -1,0 +1,34 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as ScrollAreaStories from './scroll-area.stories';
+
+<Meta of={ScrollAreaStories} />
+
+# ScrollArea
+
+Zona con scroll propio que también se puede recorrer con teclado.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** listas largas dentro de una tarjeta o panel, tablas anchas en pantallas angostas, registros de actividad.
+- **No:**
+  - **Para el contenido principal de una página:** deja que la página haga scroll. Dos scrolls anidados confunden, sobre todo en pantallas táctiles.
+  - **Dentro de diálogos:** el `Dialog` (Fase 3) maneja su propio scroll.
+
+## Reglas de uso
+
+- **Nombre obligatorio:** `aria-label` o `aria-labelledby`. El tipo no compila sin uno.
+- **Alto:** `maxHeight` (`'12rem'`) o una clase de alto. Sin límite de alto, no hay scroll vertical.
+- `orientation`: `vertical` (por defecto, reserva el lugar de la barra para que el contenido no salte), `horizontal` o `both`.
+- La barra de scroll es la del navegador: no se oculta ni se reemplaza.
+
+## Accesibilidad
+
+- **Teclado:** si el contenido desborda, la zona entra en el orden de `Tab` y se desplaza con las flechas, `Re Pág`, `Av Pág`, `Inicio` y `Fin` (WCAG 2.1.1). Si no desborda, no agrega una parada de `Tab` inútil.
+- Es una región (`role="region"`) con nombre: al recibir el foco, el lector de pantalla anuncia qué contiene.
+- El foco se ve con el anillo del kit.
+- `overscroll-behavior: contain`: al llegar al final, el scroll no se pasa a la página.
+
+<Stories />

@@ -3,6 +3,19 @@ export { Avatar, type AvatarProps } from './lib/acciones/avatar';
 export { Badge, type BadgeProps } from './lib/fundamentos/badge';
 export { Button, type ButtonProps, type ButtonVariant } from './lib/acciones/button';
 export { ButtonGroup, type ButtonGroupProps } from './lib/acciones/button-group';
+export {
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  type CardBodyProps,
+  type CardElement,
+  type CardFooterAlign,
+  type CardFooterProps,
+  type CardHeaderProps,
+  type CardProps,
+  type CardVariant,
+} from './lib/layout/card';
 export { Checkbox, type CheckboxProps } from './lib/acciones/checkbox';
 export { CheckboxGroup, type CheckboxGroupProps } from './lib/acciones/checkbox-group';
 export { Container, type ContainerProps, type ContainerWidth } from './lib/layout/container';
@@ -41,6 +54,11 @@ export { RadioGroup, type RadioGroupProps } from './lib/acciones/radio-group';
 export { SearchInput, type SearchInputProps } from './lib/fundamentos/search-input';
 export { Skeleton, type SkeletonProps, type SkeletonShape } from './lib/acciones/skeleton';
 export { Spinner, type SpinnerProps } from './lib/acciones/spinner';
+export {
+  ScrollArea,
+  type ScrollAreaProps,
+  type ScrollOrientation,
+} from './lib/layout/scroll-area';
 export { Stack, type StackProps } from './lib/layout/stack';
 export { Switch, type SwitchProps } from './lib/acciones/switch';
 export { Tag, type TagProps } from './lib/fundamentos/tag';

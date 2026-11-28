@@ -1,0 +1,53 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as CardStories from './card.stories';
+
+<Meta of={CardStories} />
+
+# Card
+
+Bloque de contenido con borde o fondo propio, con encabezado, cuerpo y pie opcionales.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** agrupar información relacionada que se lee como una unidad: un plan, un proyecto, un resumen de facturación.
+- **No:**
+  - **Para separar secciones de una página:** alcanza con un `Heading` y espacio (`Stack`). Una página llena de tarjetas pierde jerarquía.
+  - **Para avisos:** usa [`Alert`](?path=/docs/avisos-alert--docs).
+
+## Partes
+
+```tsx
+<Card>
+  <CardHeader title="Plan Equipo" description="Hasta 10 personas" actions={<Badge>Actual</Badge>} />
+  <CardBody>…</CardBody>
+  <CardFooter>
+    <Button>Cambiar plan</Button>
+  </CardFooter>
+</Card>
+```
+
+| `variant` | Aspecto | Para |
+| --- | --- | --- |
+| `outline` | Borde | Por defecto |
+| `raised` | Borde y sombra | Destacar una tarjeta entre otras |
+| `subtle` | Fondo atenuado | Paneles: zonas secundarias, barras laterales |
+
+**Panel:** no es un componente aparte; es `Card variant="subtle"`.
+
+## Reglas de uso
+
+- **Se adapta a su ancho:** la tarjeta es un `@container`. En una columna angosta, las acciones del encabezado bajan debajo del título; adentro puedes usar `@ui-sm:` y similares.
+- **Nivel del título:** `headingLevel` (por defecto `h3`) sigue la estructura de la página, no el tamaño. El tamaño visual es siempre el mismo.
+- **Varias tarjetas:** ponlas en un [`Grid`](?path=/docs/layout-grid--docs); si son una colección, `Grid as="ul"` y `Card as="li"`.
+- **Tarjeta clickeable:** por ahora pon un `Link` o `Button` dentro (en el título o en el pie). No envuelvas la tarjeta entera en un enlace: el lector de pantalla leería todo su contenido como nombre del enlace.
+
+## Accesibilidad
+
+- `as="section"`, `article` o `aside` la convierten en una región nombrada con su título (`aria-labelledby` automático). Un `aria-label` propio gana.
+- Con `div` (por defecto) no agrega roles: la estructura la dan los encabezados.
+- `subtle` tiene un borde transparente que reaparece con colores forzados (Windows), para no perder el contorno.
+
+<Stories />

@@ -50,22 +50,19 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 });
 
-// Mock ResizeObserver and IntersectionObserver in a way that works in both
-// Node (jsdom) and browser environments
+// ResizeObserver e IntersectionObserver: jsdom no los tiene. En modo navegador
+// se usan los reales. Clase (no vi.fn con flecha) para poder llamarlos con `new`.
 const globalAny = globalThis as typeof globalThis & {
   ResizeObserver?: unknown;
   IntersectionObserver?: unknown;
 };
 
-globalAny.ResizeObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
+class ObserverMock {
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+  takeRecords = vi.fn(() => []);
+}
 
-// Mock IntersectionObserver
-globalAny.IntersectionObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
+globalAny.ResizeObserver ??= ObserverMock;
+globalAny.IntersectionObserver ??= ObserverMock;
