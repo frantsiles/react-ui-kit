@@ -1,0 +1,39 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as ContainerStories from './container.stories';
+
+<Meta of={ContainerStories} />
+
+# Container
+
+Centra el contenido de una página con un ancho máximo y márgenes laterales.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** el contenido principal de una página, o una banda (encabezado, pie) cuyo contenido debe alinearse con el resto.
+- **No:** dentro de tarjetas o paneles: ahí el ancho lo da el contenedor; usa `Stack` o `Grid`.
+
+| `width` | Máximo | Para |
+| --- | --- | --- |
+| `sm` | 36rem | Formularios de una columna, páginas de inicio de sesión |
+| `md` | 48rem | Configuración, detalles |
+| `lg` | 64rem | Por defecto |
+| `xl` | 80rem | Tablas y paneles anchos |
+| `prose` | ~65 caracteres | Artículos y textos largos |
+| `full` | Sin límite | Tableros que usan toda la pantalla |
+
+## Reglas de uso
+
+- **Márgenes laterales** (`gutter`, activo por defecto): 16 px en móvil, 24 px desde `ui-md` y 32 px desde `ui-lg`.
+- Para una banda con fondo de lado a lado, pon el fondo en un elemento de afuera y el `Container` adentro.
+- **Es un `@container`:** los bloques de adentro pueden usar container queries (`@ui-md:`) o `Grid` con `columns` por tamaño.
+
+## Accesibilidad
+
+- `as="main"` lo convierte en la región principal (`main`), la que se salta con "Saltar al contenido". Una sola por página.
+- Limitar el ancho de línea (`prose`) mejora la lectura (WCAG 1.4.8, recomendación AAA).
+- El ancho se adapta a la ventana: a 320 px o con zoom al 400 % no hay scroll horizontal (WCAG 1.4.10).
+
+<Stories />

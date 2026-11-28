@@ -1,0 +1,50 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as GridStories from './grid.stories';
+
+<Meta of={GridStories} />
+
+# Grid
+
+Columnas que se reacomodan según el espacio **de su contenedor**, no de la pantalla.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** tarjetas, planes, métricas, galerías: elementos iguales en columnas.
+- **No:**
+  - **Una sola columna:** usa [`Stack`](?path=/docs/layout-stack--docs).
+  - **Datos con filas y columnas que se comparan:** usa `Table` (Fase 7). Un Grid no tiene semántica de tabla.
+
+## Dos formas de definir columnas
+
+**`minItemWidth`** (lo más simple): cada columna mide al menos ese ancho y entran tantas como quepan. No hace falta pensar en breakpoints.
+
+```tsx
+<Grid minItemWidth="xs">…</Grid>          {/* columnas de al menos 20rem */}
+<Grid minItemWidth="14rem">…</Grid>
+```
+
+**`columns`**: columnas fijas o según el ancho del contenedor, con los [tamaños de contenedor](?path=/docs/fundamentos-breakpoints-y-densidad--docs) del kit (`xs` 20rem … `xl` 64rem).
+
+```tsx
+<Grid columns={3}>…</Grid>
+<Grid columns={{ base: 1, sm: 2, lg: 4 }}>…</Grid>
+```
+
+Con un objeto, el Grid se envuelve en un `@container` propio y mira el ancho de ese envoltorio, que es el espacio que le dieron.
+
+## Reglas de uso
+
+- `gap` usa la escala de espaciado del kit (por defecto `md`).
+- Para que un elemento ocupe dos columnas, pásale `className="col-span-2"`.
+- **No reordenes con CSS** (`order`, `grid-auto-flow: dense`): el orden de lectura y de `Tab` es el del código.
+
+## Accesibilidad
+
+- No agrega roles ni cambia el orden: se lee de izquierda a derecha y de arriba abajo (al revés en RTL).
+- Como `ul`/`ol` agrega `role="list"`, para que Safari lo siga anunciando como lista.
+- `minItemWidth` nunca supera el ancho del contenedor (`min(…, 100%)`): a 320 px no aparece scroll horizontal (WCAG 1.4.10).
+
+<Stories />
