@@ -1,5 +1,5 @@
 /// <reference types='vitest' />
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
@@ -7,6 +7,22 @@ import * as path from 'path';
 
 /** Temas en los que corren las historias como tests (ver preview.tsx). */
 const themes = ['light', 'dark', 'high-contrast'];
+
+/**
+ * Una caché de dependencias de Vite por tema. El plugin de Storybook les da a
+ * los tres proyectos la misma carpeta y, con la caché vacía, la escriben a la
+ * vez y se pisan ("Failed to fetch dynamically imported module"). Va después
+ * del plugin de Storybook (`enforce: 'post'`) para ganarle a su `cacheDir`.
+ */
+function separateDepsCache(theme: string): Plugin {
+  return {
+    name: 'my-ui:cache-por-tema',
+    enforce: 'post',
+    config: () => ({
+      cacheDir: path.resolve(__dirname, `node_modules/.cache/storybook-vitest-${theme}`),
+    }),
+  };
+}
 
 export default defineConfig(() => ({
   root: __dirname,
@@ -39,11 +55,14 @@ export default defineConfig(() => ({
    * Va dentro de `projects` para que el plugin no afecte el build de Storybook.
    */
   test: {
-    projects: themes.map((theme) => ({
+    projects: themes.map((theme, index) => ({
       extends: true,
-      plugins: [storybookTest({ configDir: path.join(__dirname, '.storybook') })],
+      plugins: [storybookTest({ configDir: path.join(__dirname, '.storybook') }), separateDepsCache(theme)],
       test: {
         name: `storybook:${theme}`,
+        // El primer tema corre solo y los otros dos después, en paralelo: así
+        // no arrancan tres preparaciones de dependencias a la vez con la caché vacía
+        sequence: { groupOrder: index === 0 ? 0 : 1 },
         // El tema llega en tiempo de ejecución (inject en .storybook/vitest.setup.ts)
         // VISUAL=1 fuerza las capturas fuera del CI (p. ej. para generarlas)
         provide: { theme, visual: Boolean(process.env['CI'] || process.env['VISUAL']) },
