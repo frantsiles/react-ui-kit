@@ -1,0 +1,52 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as AccordionStories from './accordion.stories';
+
+<Meta of={AccordionStories} />
+
+# Accordion
+
+Varias secciones apiladas que se abren y cierran con su encabezado.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** contenido largo dividido en secciones que la persona lee de a una: preguntas frecuentes, ajustes por grupos, detalles de un pedido.
+- **No:**
+  - **Una sola sección:** [`Disclosure`](?path=/docs/navegación-disclosure--docs).
+  - **Contenido que casi todos necesitan:** muéstralo abierto. Esconder obliga a hacer clic para leer lo importante.
+  - **Secciones al mismo nivel que se miran por separado:** [`Tabs`](?path=/docs/navegación-tabs--docs).
+  - **Navegar entre páginas:** `SideNav` (Fase 5).
+
+## Uso
+
+```tsx
+<Accordion defaultValue={['plazo']}>
+  <AccordionItem value="plazo" title="¿Cuándo vence una factura?">…</AccordionItem>
+  <AccordionItem value="moneda" title="¿En qué moneda facturo?">…</AccordionItem>
+</Accordion>
+```
+
+- **Una o varias:** por defecto, abrir una sección cierra la otra; `multiple` permite varias abiertas.
+- **Valor:** `value` (los `value` de las secciones abiertas) con `onChange`, o `defaultValue`.
+- **Encabezado:** cada `title` va en un `h3`; cámbialo con `headingLevel` para que encaje en la jerarquía de la página.
+- **Buscar en la página:** el contenido cerrado sigue en el HTML (`hidden="until-found"` donde el navegador lo admite), así `Ctrl+F` lo encuentra y abre la sección.
+
+### Hacer y evitar
+
+- **Hacer:** títulos que digan qué hay dentro, como preguntas o temas concretos.
+- **Evitar:** acordeones dentro de acordeones.
+- **Evitar:** poner acciones importantes (como "Guardar") dentro de una sección que puede estar cerrada.
+
+## Accesibilidad
+
+Patrón: [Accordion de WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/). Lo implementa React Aria.
+
+- **Estructura:** cada título es un encabezado (`h3` por defecto) con un botón dentro, así el lector de pantalla puede saltar de sección en sección por encabezados.
+- **El botón** anuncia si la sección está abierta (`aria-expanded`) y qué panel controla (`aria-controls`).
+- **Teclado:** `Tab` recorre los botones; `Enter` o `Espacio` abren y cierran. Las flechas no se usan: APG las deja como opcionales y `Tab` alcanza.
+- **El estado** no depende solo de la flecha: lo anuncia `aria-expanded` y el contenido aparece debajo.
+- **Táctil:** cada encabezado mide 44 px de alto.
+
+<Stories />
