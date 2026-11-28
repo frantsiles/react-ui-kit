@@ -28,10 +28,18 @@ export default [
         {
           enforceBuildableLibDependency: true,
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
+          // Capas entre paquetes, de abajo hacia arriba (docs/adr/0007-capas.md).
+          // Un proyecto sin etiqueta layer:* no puede depender de nada.
           depConstraints: [
+            { sourceTag: 'layer:core', onlyDependOnLibsWithTags: ['layer:core'] },
+            { sourceTag: 'layer:icons', onlyDependOnLibsWithTags: ['layer:core'] },
             {
-              sourceTag: '*',
-              onlyDependOnLibsWithTags: ['*'],
+              sourceTag: 'layer:components',
+              onlyDependOnLibsWithTags: ['layer:core', 'layer:icons'],
+            },
+            {
+              sourceTag: 'layer:app',
+              onlyDependOnLibsWithTags: ['layer:core', 'layer:icons', 'layer:components'],
             },
           ],
         },

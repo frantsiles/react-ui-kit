@@ -29,5 +29,10 @@
   },
   "sideEffects": [
     "**/*.css"
-  ]
+  ],
+  "nx": {
+    "tags": [
+      "layer:core"
+    ]
+  }
 }

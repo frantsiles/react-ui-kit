@@ -54,7 +54,7 @@ chore: actualiza dependencias menores
 packages/
   core/        tokens (styles/), temas, cn, clases de foco, tipos comunes
   icons/       createIcon + íconos generados (scripts/generate-icons.mjs)
-  components/  componentes (src/lib/<nombre>.tsx + <nombre>.spec.tsx)
+  components/  componentes (src/lib/<capa>/<nombre>.tsx + <nombre>.spec.tsx)
 apps/
   storybook/   historias y documentación (src/stories, src/docs)
 docs/
@@ -66,13 +66,23 @@ Por cada componente `Ejemplo`:
 
 | Archivo | Contenido |
 | --- | --- |
-| `packages/components/src/lib/ejemplo.tsx` | Implementación |
-| `packages/components/src/lib/ejemplo.spec.tsx` | Tests |
-| `packages/components/src/index.ts` | `export { Ejemplo, type EjemploProps } from './lib/ejemplo';` (orden alfabético) |
+| `packages/components/src/lib/<capa>/ejemplo.tsx` | Implementación |
+| `packages/components/src/lib/<capa>/ejemplo.spec.tsx` | Tests |
+| `packages/components/src/index.ts` | `export { Ejemplo, type EjemploProps } from './lib/<capa>/ejemplo';` (orden alfabético) |
 | `apps/storybook/src/stories/ejemplo.stories.tsx` | Historias |
 | `apps/storybook/src/stories/ejemplo.mdx` | Página de documentación |
 
 Lo que no es público vive en `src/lib/internal/` y no se exporta desde `index.ts`.
+
+### Capas
+
+Las dependencias van en una sola dirección, y el lint lo verifica ([ADR 0007](docs/adr/0007-capas.md)):
+
+- **Entre paquetes:** `core` ← `icons` ← `components` ← apps, con etiquetas `layer:*` de Nx en cada `package.json`. Un proyecto nuevo necesita su etiqueta.
+- **Dentro de `components`:** una carpeta por fase de la hoja de ruta (`fundamentos`, `acciones`, `layout`, `overlays`, `colecciones`, `navegacion`, `shell`, `datos`). Un componente va en la carpeta de su fase y solo importa de su capa, de capas inferiores y de `internal/`. `internal/` no importa de ninguna capa.
+- Dentro del paquete, los imports son relativos; nunca `@my-ui/components`.
+
+Si un componente necesita algo de una capa superior, no lo resuelvas con un import: suele significar que la pieza compartida tiene que bajar de capa. Conversémoslo en el PR.
 
 ## Convenciones de API
 

@@ -5,6 +5,9 @@
   "nx": {
     "implicitDependencies": [
       "@my-ui-library/react-ui-kit"
+    ],
+    "tags": [
+      "layer:app"
     ]
   }
 }

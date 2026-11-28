@@ -1,8 +1,8 @@
 import type { ComponentProps, ReactNode } from 'react';
 import { cn } from '@my-ui/core';
 import { IconX } from '@my-ui/icons';
-import { InlineIconButton } from './internal/icon-button';
-import { devWarning } from './internal/dev-warning';
+import { InlineIconButton } from '../internal/icon-button';
+import { devWarning } from '../internal/dev-warning';
 import { useMessages } from './locale-provider';
 import { toneClasses } from './tone';
 import type { Tone } from './types';

@@ -2,7 +2,7 @@ import { useRef, type ComponentProps, type MouseEvent, type ReactNode } from 're
 import { cn } from '@my-ui/core';
 import { useFieldControl } from './field';
 import { controlSizeClasses, fieldBoxClasses } from './field-styles';
-import { mergeRefs } from './internal/merge-refs';
+import { mergeRefs } from '../internal/merge-refs';
 import type { ControlSize } from './types';
 
 export interface InputProps extends Omit<ComponentProps<'input'>, 'size'> {

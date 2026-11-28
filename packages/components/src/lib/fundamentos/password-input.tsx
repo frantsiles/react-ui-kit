@@ -2,7 +2,7 @@ import { useId, useState } from 'react';
 import { IconEye, IconEyeOff } from '@my-ui/icons';
 import { useFieldControl } from './field';
 import { Input, type InputProps } from './input';
-import { InlineIconButton } from './internal/icon-button';
+import { InlineIconButton } from '../internal/icon-button';
 import { useMessages } from './locale-provider';
 
 export interface PasswordInputProps extends Omit<InputProps, 'type' | 'endAdornment'> {

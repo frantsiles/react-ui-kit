@@ -1,5 +1,10 @@
 {
   "name": "@my-ui-library/react-ui-kit",
   "version": "0.0.1",
-  "private": true
+  "private": true,
+  "nx": {
+    "tags": [
+      "layer:app"
+    ]
+  }
 }

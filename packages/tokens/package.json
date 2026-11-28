@@ -18,5 +18,10 @@
     "dist",
     "!**/*.tsbuildinfo"
   ],
-  "dependencies": {}
+  "dependencies": {},
+  "nx": {
+    "tags": [
+      "layer:core"
+    ]
+  }
 }
