@@ -5,9 +5,17 @@ export { Button, type ButtonProps, type ButtonVariant } from './lib/acciones/but
 export { ButtonGroup, type ButtonGroupProps } from './lib/acciones/button-group';
 export { Checkbox, type CheckboxProps } from './lib/acciones/checkbox';
 export { CheckboxGroup, type CheckboxGroupProps } from './lib/acciones/checkbox-group';
+export { Container, type ContainerProps, type ContainerWidth } from './lib/layout/container';
 export { Divider, type DividerProps } from './lib/acciones/divider';
 export { ErrorMessage, type ErrorMessageProps } from './lib/fundamentos/error-message';
 export { Field, useFieldControl, type FieldProps } from './lib/fundamentos/field';
+export {
+  Grid,
+  type ContainerSize,
+  type GridColumns,
+  type GridProps,
+  type ResponsiveColumns,
+} from './lib/layout/grid';
 export {
   Heading,
   type HeadingLevel,

@@ -103,7 +103,7 @@ const preview: Preview = {
           'Selección',
           ['Checkbox', 'CheckboxGroup', 'RadioGroup', 'Switch'],
           'Layout',
-          ['Stack', 'Inline'],
+          ['Stack', 'Inline', 'Grid', 'Container'],
           'Avisos',
           'Carga',
           ['Spinner', 'Skeleton'],
