@@ -18,14 +18,14 @@ const clientes = (
 const meta = {
   title: 'Colecciones/Select',
   component: Select,
+  // Sin `disabled` ni `size` fijos: dentro de un Field los toma de él
   args: {
-    size: 'md',
-    disabled: false,
     onChange: fn(),
     children: clientes,
   },
   argTypes: {
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg'] },
+    disabled: { control: 'boolean' },
     children: { control: false },
   },
   render: (args) => (
