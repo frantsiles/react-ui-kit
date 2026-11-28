@@ -58,19 +58,20 @@ export {
 } from './lib/overlays/popover';
 export { Radio, type RadioProps } from './lib/acciones/radio';
 export { RadioGroup, type RadioGroupProps } from './lib/acciones/radio-group';
-export { SearchInput, type SearchInputProps } from './lib/fundamentos/search-input';
-export { Skeleton, type SkeletonProps, type SkeletonShape } from './lib/acciones/skeleton';
-export { Spinner, type SpinnerProps } from './lib/acciones/spinner';
 export {
   ScrollArea,
   type ScrollAreaProps,
   type ScrollOrientation,
 } from './lib/layout/scroll-area';
+export { SearchInput, type SearchInputProps } from './lib/fundamentos/search-input';
+export { Skeleton, type SkeletonProps, type SkeletonShape } from './lib/acciones/skeleton';
+export { Spinner, type SpinnerProps } from './lib/acciones/spinner';
 export { Stack, type StackProps } from './lib/layout/stack';
 export { Switch, type SwitchProps } from './lib/acciones/switch';
 export { Tag, type TagProps } from './lib/fundamentos/tag';
 export { Text, type TextProps, type TextTone, type TextVariant } from './lib/acciones/text';
 export { Textarea, type TextareaProps } from './lib/fundamentos/textarea';
+export { Tooltip, type TooltipPlacement, type TooltipProps } from './lib/overlays/tooltip';
 export { VisuallyHidden, type VisuallyHiddenProps } from './lib/fundamentos/visually-hidden';
 export type { FlexAlign, FlexElement, FlexGap, FlexJustify } from './lib/layout/flex';
 export type { ControlSize, Tone } from './lib/fundamentos/types';
