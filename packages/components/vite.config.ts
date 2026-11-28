@@ -46,7 +46,9 @@ export default defineConfig(() => ({
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      // React Aria es dependencia: la instala el consumidor una sola vez (un
+      // solo contexto de idioma, sin duplicados en su bundle).
+      external: ['react', 'react-dom', 'react/jsx-runtime', /^react-aria-components(\/.*)?$/],
     },
   },
   test: {

@@ -1,0 +1,61 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as PopoverStories from './popover.stories';
+
+<Meta of={PopoverStories} />
+
+# Popover
+
+Panel flotante junto a un botón, con contenido interactivo breve: filtros, opciones, un formulario corto.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** opciones secundarias que no merecen una página ni un diálogo: filtros, ajustes de vista, una explicación con un enlace.
+- **No:**
+  - **Texto breve al pasar el mouse, sin nada interactivo:** usa `Tooltip` (Fase 3).
+  - **Una lista de acciones ("Editar", "Duplicar", "Eliminar"):** usa `Menu` (Fase 4).
+  - **Una tarea que exige atención o una decisión:** usa `Dialog` (Fase 3).
+  - **Elegir un valor de una lista:** usa `Select` (Fase 4).
+
+## Uso
+
+```tsx
+<PopoverTrigger>
+  <Button>Filtros</Button>
+  <Popover title="Filtrar facturas">
+    {({ close }) => (
+      <>
+        <Checkbox label="Solo vencidas" />
+        <Button onClick={close}>Aplicar</Button>
+      </>
+    )}
+  </Popover>
+</PopoverTrigger>
+```
+
+- **Primero el disparador**, un `Button` o `IconButton` del kit, y **después** el `Popover`.
+- **Nombre obligatorio:** `title`, visible, o `aria-label`. El tipo no compila sin uno.
+- **Cerrar desde adentro:** pasa una función como contenido; recibe `close`.
+- **Controlado:** `open` y `onOpenChange` en `PopoverTrigger`; `defaultOpen` para abrirlo al montar.
+- **Posición:** `placement` (por defecto `bottom start`) y `offset` en px. Si no entra en la pantalla, se da vuelta solo.
+
+## Accesibilidad
+
+Patrón: un botón que abre un diálogo no modal en apariencia. Por dentro se comporta como el [Dialog de WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
+
+- **Teclado:**
+  - El disparador se activa con `Enter` o `Espacio`.
+  - Al abrir, el foco entra al popover.
+  - `Tab` recorre solo su contenido.
+  - `Escape` lo cierra.
+  - Al cerrar, el foco vuelve al disparador.
+- **Lector de pantalla:**
+  - El disparador anuncia si está abierto o cerrado (`aria-expanded`).
+  - El popover es un `dialog` con nombre, el título o el `aria-label`.
+- **Clic afuera** también lo cierra. Lo de abajo no responde mientras está abierto, para no activar algo por error al cerrarlo.
+- **Movimiento:** aparece con un fundido corto; con "reducir movimiento" el cambio es instantáneo.
+- **Idioma y RTL:** `start` y `end` se espejan según la dirección de [`LocaleProvider`](?path=/docs/guías-idioma-y-rtl--docs), que también define el idioma de los textos internos de React Aria.
+
+<Stories />

@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { useLocale as useAriaLocale } from 'react-aria-components';
 import { Field } from './field';
 import { LocaleProvider, useLocale } from './locale-provider';
 import { directionFor, messagesFor } from './messages';
@@ -114,5 +115,21 @@ describe('messagesFor y directionFor', () => {
     ['ur-PK', 'rtl'],
   ] as const)('%s → %s', (locale, direction) => {
     expect(directionFor(locale)).toBe(direction);
+  });
+});
+
+describe('LocaleProvider y React Aria', () => {
+  function AriaLocale() {
+    const { locale, direction } = useAriaLocale();
+    return <p>{`${locale} ${direction}`}</p>;
+  }
+
+  it('le pasa el idioma y la dirección', () => {
+    render(
+      <LocaleProvider locale="ar">
+        <AriaLocale />
+      </LocaleProvider>,
+    );
+    expect(screen.getByText('ar rtl')).toBeInTheDocument();
   });
 });

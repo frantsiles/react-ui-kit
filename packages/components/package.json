@@ -21,10 +21,12 @@
   "sideEffects": false,
   "dependencies": {
     "@my-ui/core": "workspace:*",
-    "@my-ui/icons": "workspace:*"
+    "@my-ui/icons": "workspace:*",
+    "react-aria-components": "1.22.1"
   },
   "peerDependencies": {
-    "react": "^19.2.1"
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
   },
   "nx": {
     "tags": [
