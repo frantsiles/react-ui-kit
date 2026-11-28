@@ -97,7 +97,7 @@ const preview: Preview = {
           ['Text', 'Heading'],
           'Etiquetas',
           'Inputs',
-          ['Field', 'Input', 'PasswordInput', 'SearchInput', 'Textarea'],
+          ['Field', 'Input', 'NativeSelect', 'PasswordInput', 'SearchInput', 'Textarea'],
           'Acciones',
           ['Button', 'IconButton', 'ButtonGroup', 'Link'],
           'Selección',
