@@ -43,7 +43,7 @@ export {
   type DrawerSize,
 } from './lib/overlays/drawer';
 export { ErrorMessage, type ErrorMessageProps } from './lib/fundamentos/error-message';
-export { Field, useFieldControl, type FieldProps } from './lib/fundamentos/field';
+export { Field, useFieldControl, useFieldLabelId, type FieldProps } from './lib/fundamentos/field';
 export {
   Grid,
   type ContainerSize,
@@ -94,6 +94,7 @@ export {
   type ScrollOrientation,
 } from './lib/layout/scroll-area';
 export { SearchInput, type SearchInputProps } from './lib/fundamentos/search-input';
+export { Select, type SelectProps } from './lib/colecciones/select';
 export { Skeleton, type SkeletonProps, type SkeletonShape } from './lib/acciones/skeleton';
 export { Spinner, type SpinnerProps } from './lib/acciones/spinner';
 export { Stack, type StackProps } from './lib/layout/stack';

@@ -7,6 +7,7 @@ import type { ControlSize } from './types';
 
 interface FieldContextValue {
   id: string;
+  labelId: string;
   descriptionId: string | undefined;
   errorId: string | undefined;
   invalid: boolean;
@@ -71,6 +72,7 @@ export function Field({
     <FieldContext
       value={{
         id: controlId,
+        labelId: `${controlId}-label`,
         descriptionId,
         errorId,
         invalid: hasError,
@@ -81,6 +83,7 @@ export function Field({
     >
       <div className={cn('flex flex-col gap-1.5', className)} {...props}>
         <Label
+          id={`${controlId}-label`}
           htmlFor={controlId}
           required={required}
           optional={optional}
@@ -141,4 +144,13 @@ export function useFieldControl<P extends FieldControlInput>(props: P) {
     size: ControlSize;
     invalid: boolean;
   };
+}
+
+/**
+ * Id de la etiqueta del Field que contiene al control, si hay uno. Para
+ * controles que no son un `<input>` (como `Select`), a los que `<label for>`
+ * no alcanza a nombrar: lo usan en `aria-labelledby`.
+ */
+export function useFieldLabelId(): string | undefined {
+  return use(FieldContext)?.labelId;
 }

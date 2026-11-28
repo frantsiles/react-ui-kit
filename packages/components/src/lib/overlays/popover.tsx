@@ -5,6 +5,17 @@ import { Heading, type HeadingLevel } from '../acciones/heading';
 import { OverlayTrigger, type OverlayTriggerProps } from '../internal/overlay-trigger';
 
 /**
+ * Superficie común de los paneles flotantes (`Popover`, la lista de `Select`):
+ * capa, borde, sombra y fundido de entrada y salida. Interna: no va al índice.
+ */
+export const popoverSurfaceClasses = cn(
+  'z-(--ui-z-popover) rounded-lg border border-ui-border-subtle bg-ui-surface-raised text-ui-fg shadow-ui-overlay',
+  // Entra y sale con un fundido corto (sin movimiento con reduced motion: la duración es casi 0)
+  'origin-(--trigger-anchor-point) transition-[opacity,scale] duration-(--ui-duration-normal) ease-ui-enter',
+  'data-entering:scale-95 data-entering:opacity-0 data-exiting:scale-95 data-exiting:opacity-0 data-exiting:ease-ui-exit',
+);
+
+/**
  * Lado del disparador donde se abre y alineación. `start` y `end` son lógicos:
  * se espejan en RTL. Si no entra, se da vuelta solo.
  */
@@ -80,10 +91,8 @@ export function Popover({
       placement={placement}
       offset={offset}
       className={cn(
-        'z-(--ui-z-popover) w-max max-w-(--container-ui-xs) rounded-lg border border-ui-border-subtle bg-ui-surface-raised text-ui-fg shadow-ui-overlay',
-        // Entra y sale con un fundido corto (sin movimiento con reduced motion: la duración es casi 0)
-        'origin-(--trigger-anchor-point) transition-[opacity,scale] duration-(--ui-duration-normal) ease-ui-enter',
-        'data-entering:scale-95 data-entering:opacity-0 data-exiting:scale-95 data-exiting:opacity-0 data-exiting:ease-ui-exit',
+        popoverSurfaceClasses,
+        'w-max max-w-(--container-ui-xs)',
         className,
       )}
     >
