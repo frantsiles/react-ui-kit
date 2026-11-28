@@ -77,6 +77,17 @@ export {
   useLocale,
   type LocaleProviderProps,
 } from './lib/fundamentos/locale-provider';
+export {
+  Menu,
+  MenuItem,
+  MenuSection,
+  MenuSeparator,
+  MenuTrigger,
+  type MenuItemProps,
+  type MenuProps,
+  type MenuSectionProps,
+  type MenuTriggerProps,
+} from './lib/colecciones/menu';
 export type { Messages } from './lib/fundamentos/messages';
 export { Multiselect, type MultiselectProps } from './lib/colecciones/multiselect';
 export { NativeSelect, type NativeSelectProps } from './lib/acciones/native-select';
