@@ -9,6 +9,14 @@ const withTheme: Decorator = (Story, context) => {
   if (theme === 'light') root.removeAttribute('data-theme');
   else root.setAttribute('data-theme', theme);
   root.dir = context.globals['direction'] as string;
+  // En los tests, un contenedor para la captura de regresión visual
+  if (globalThis.__UI_TEST_THEME__) {
+    return (
+      <div data-story-root className="p-4">
+        <Story />
+      </div>
+    );
+  }
   return <Story />;
 };
 

@@ -45,7 +45,8 @@ export default defineConfig(() => ({
       test: {
         name: `storybook:${theme}`,
         // El tema llega en tiempo de ejecución (inject en .storybook/vitest.setup.ts)
-        provide: { theme },
+        // VISUAL=1 fuerza las capturas fuera del CI (p. ej. para generarlas)
+        provide: { theme, visual: Boolean(process.env['CI'] || process.env['VISUAL']) },
         setupFiles: [path.join(__dirname, '.storybook/vitest.setup.ts')],
         browser: {
           enabled: true,

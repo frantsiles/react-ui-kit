@@ -6,7 +6,10 @@ declare global {
 
 declare module 'vitest' {
   export interface ProvidedContext {
+    /** Tema del proyecto de Vitest (vite.config.ts). */
     theme: string;
+    /** Si se comparan capturas (regresión visual). Solo en el CI o con VISUAL=1. */
+    visual: boolean;
   }
 }
 
