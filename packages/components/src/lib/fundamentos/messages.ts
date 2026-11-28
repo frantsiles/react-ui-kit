@@ -16,6 +16,8 @@ export interface Messages {
   'dialog.close': string;
   /** Etiqueta del campo opcional en `Label` / `Field`. */
   'label.optional': string;
+  /** Texto de `ListBox` cuando no tiene opciones. */
+  'listBox.empty': string;
   /** Aviso de `Link` con `external`, después del texto del enlace. */
   'link.newTab': string;
   /** Botón para mostrar la contraseña en `PasswordInput`. */
@@ -41,6 +43,7 @@ const es: Messages = {
   'alertDialog.cancel': 'Cancelar',
   'dialog.close': 'Cerrar',
   'label.optional': '(opcional)',
+  'listBox.empty': 'Sin opciones',
   'link.newTab': '(se abre en una pestaña nueva)',
   'passwordInput.show': 'Mostrar contraseña',
   'searchInput.clear': 'Limpiar búsqueda',
@@ -58,6 +61,7 @@ const en: Messages = {
   'alertDialog.cancel': 'Cancel',
   'dialog.close': 'Close',
   'label.optional': '(optional)',
+  'listBox.empty': 'No options',
   'link.newTab': '(opens in a new tab)',
   'passwordInput.show': 'Show password',
   'searchInput.clear': 'Clear search',

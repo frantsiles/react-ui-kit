@@ -1,0 +1,67 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as ListBoxStories from './list-box.stories';
+
+<Meta of={ListBoxStories} />
+
+# ListBox
+
+Lista de opciones siempre visible para elegir una o varias. Es la base de `Select` y `Combobox`.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** elegir de una lista que tiene que estar a la vista todo el tiempo, por ejemplo un panel de filtros o un selector de destinatarios junto a una vista previa.
+- **No:**
+  - **Elegir uno en un formulario:** usa `Select` (Fase 4), que ocupa una sola línea, o [`RadioGroup`](?path=/docs/selección-radiogroup--docs) si son pocas opciones.
+  - **Elegir varios en un formulario:** usa [`CheckboxGroup`](?path=/docs/selección-checkboxgroup--docs). Se entiende mejor y se envía con el formulario.
+  - **Acciones** ("Editar", "Eliminar"): usa `Menu` (Fase 4). Un listbox es para elegir valores, no para ejecutar comandos.
+  - **Navegación:** usa enlaces.
+
+## Uso
+
+```tsx
+<Text id="cliente-label" variant="label">Cliente</Text>
+<ListBox aria-labelledby="cliente-label" value={cliente} onChange={setCliente}>
+  <ListBoxItem value="clavo">Ferretería El Clavo</ListBoxItem>
+  <ListBoxItem value="aurora" description="Cliente desde 2021">Panadería La Aurora</ListBoxItem>
+  <ListBoxItem value="cerrada" disabled>Librería Cerrada</ListBoxItem>
+</ListBox>
+```
+
+- **Nombre obligatorio:** `aria-labelledby` con el id de un texto visible (mejor) o `aria-label`. Un `<label>` no sirve: solo nombra inputs.
+- **Elección:**
+  - Simple (por defecto): `value` es un `string` o `null`. Volver a elegir la opción marcada no la desmarca.
+  - `selectionMode="multiple"`: `value` es un `string[]`.
+  - Controlado con `value` y `onChange`, o no controlado con `defaultValue`.
+- **`ListBoxItem`:**
+  - `value` es lo que recibe `onChange`; tiene que ser único.
+  - `description` suma un texto secundario y `icon` un ícono decorativo. La descripción forma parte del nombre de la opción, como en un `<option>` nativo, así el nombre contiene todo el texto visible (WCAG 2.5.3).
+  - Si el contenido no es texto, pasa `textValue` para la búsqueda por letras y el lector de pantalla.
+- **`ListBoxSection`:** agrupa opciones bajo un `title`.
+- **`size`:** `sm`, `md` o `lg`, el mismo alto que los controles de formulario.
+- **Vacía:** muestra "Sin opciones" (de `useMessages()`); se cambia con `emptyState`.
+
+### Hacer y evitar
+
+- **Hacer:** opciones cortas y fáciles de distinguir por las primeras letras.
+- **Hacer:** un alto máximo con `className` si la lista es larga; se desplaza por dentro.
+- **Evitar:** botones, enlaces o campos dentro de las opciones. El lector de pantalla las lee como una sola cosa.
+
+## Accesibilidad
+
+Patrón: [Listbox de WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/).
+
+- **Roles:** `listbox` con `option`; las secciones son `group` nombrados por su título.
+- **Teclado:**
+  - `Tab` entra a la lista una sola vez, en la opción elegida, y sale con otro `Tab`.
+  - Flechas arriba y abajo se mueven; `Inicio` y `Fin` van a los extremos. Las opciones deshabilitadas se saltan.
+  - `Enter` o `Espacio` eligen.
+  - Escribir las primeras letras salta a la opción que coincide.
+  - En selección múltiple, `Shift` + flechas extiende la selección y `Ctrl+A` elige todas.
+- **Estado:** `aria-selected` en cada opción y `aria-multiselectable` en la lista múltiple.
+- **El color no es la única señal:** la opción elegida lleva una marca ✓ además del fondo (WCAG 1.4.1). En colores forzados queda la marca.
+- **Táctil:** las opciones miden al menos 28 px de alto (`sm`).
+
+<Stories />

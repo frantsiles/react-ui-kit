@@ -64,6 +64,14 @@ export { Input, type InputProps } from './lib/fundamentos/input';
 export { Label, type LabelProps } from './lib/fundamentos/label';
 export { Link, type LinkProps } from './lib/acciones/link';
 export {
+  ListBox,
+  ListBoxItem,
+  ListBoxSection,
+  type ListBoxItemProps,
+  type ListBoxProps,
+  type ListBoxSectionProps,
+} from './lib/colecciones/list-box';
+export {
   LocaleProvider,
   useLocale,
   type LocaleProviderProps,
