@@ -25,6 +25,8 @@ export {
 } from './lib/fundamentos/locale-provider';
 export type { Messages } from './lib/fundamentos/messages';
 export { PasswordInput, type PasswordInputProps } from './lib/fundamentos/password-input';
+export { Radio, type RadioProps } from './lib/acciones/radio';
+export { RadioGroup, type RadioGroupProps } from './lib/acciones/radio-group';
 export { SearchInput, type SearchInputProps } from './lib/fundamentos/search-input';
 export { Skeleton, type SkeletonProps, type SkeletonShape } from './lib/acciones/skeleton';
 export { Spinner, type SpinnerProps } from './lib/acciones/spinner';
