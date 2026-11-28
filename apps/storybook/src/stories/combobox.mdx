@@ -1,0 +1,61 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as ComboboxStories from './combobox.stories';
+
+<Meta of={ComboboxStories} />
+
+# Combobox
+
+Campo de texto que sugiere opciones mientras se escribe y las filtra.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** elegir una opción entre muchas (clientes, productos, países), donde escribir unas letras es más rápido que recorrer la lista.
+- **No:**
+  - **Pocas opciones (hasta 15):** [`Select`](?path=/docs/colecciones-select--docs) o [`NativeSelect`](?path=/docs/inputs-nativeselect--docs); no hace falta buscar.
+  - **Elegir varias:** `Multiselect` (Fase 4).
+  - **Texto libre con sugerencias opcionales** (un buscador): igual sirve, con `allowCustomValue`.
+
+## Uso
+
+```tsx
+<Field label="Cliente" description="Escribe para buscar." error={error}>
+  <Combobox name="cliente" value={cliente} onChange={setCliente}>
+    <ListBoxItem value="clavo">Ferretería El Clavo</ListBoxItem>
+    <ListBoxItem value="aurora">Panadería La Aurora</ListBoxItem>
+  </Combobox>
+</Field>
+```
+
+- **Dentro de un `Field`:** la etiqueta nombra el campo y la lista, y `description`, `error`, `required`, `disabled` y `size` pasan solos. Fuera de un `Field`, nómbralo con `aria-label` o `aria-labelledby`.
+- **Opciones:** las mismas `ListBoxItem` y `ListBoxSection` de [`ListBox`](?path=/docs/colecciones-listbox--docs). Se filtran solas: quedan las que contienen lo escrito, sin distinguir mayúsculas ni tildes. Si una opción no es texto, dale `textValue`.
+- **Valor:** `value` (`string` o `null`) con `onChange`, o `defaultValue`. Borrar el texto deja el valor en `null`.
+- **Texto escrito:** `inputValue` / `onInputChange`, por ejemplo para buscar en el servidor.
+- **Texto libre:** sin `allowCustomValue`, al salir del campo vuelve al texto de la opción elegida; con él, se queda lo escrito.
+- **Cuándo se abre:** al escribir (por defecto) o también al enfocar, con `openOn="focus"`. El botón de la flecha la abre con todas las opciones.
+- **Sin coincidencias:** muestra "Sin resultados" (de `useMessages()`); se cambia con `emptyState`.
+
+### Hacer y evitar
+
+- **Hacer:** una etiqueta que diga qué se elige ("Cliente") y, si ayuda, una descripción que diga que se puede buscar.
+- **Hacer:** ordenar las opciones de forma predecible (alfabética o por uso).
+- **Evitar:** usar `placeholder` en lugar de la etiqueta; desaparece al escribir.
+
+## Accesibilidad
+
+Patrón: [Combobox con autocompletado de lista de WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-autocomplete-list/). Lo implementa React Aria.
+
+- **El campo:** `role="combobox"` con el nombre de la etiqueta; anuncia que abre una lista (`aria-autocomplete="list"`) y si está abierta (`aria-expanded`). La ayuda y el error se leen como descripción.
+- **La lista** se nombra con la misma etiqueta del campo.
+- **Teclado:**
+  - Escribir abre y filtra; flecha abajo o arriba abre con todas las opciones.
+  - Flechas recorren (saltan las deshabilitadas), `Enter` elige y cierra, `Escape` cierra sin elegir.
+  - El foco nunca sale del campo: la opción activa se indica con `aria-activedescendant`, así se puede seguir escribiendo.
+- **El botón de la flecha** está fuera del orden de `Tab`: con teclado no hace falta, y así no es una parada más.
+- **La opción elegida** lleva una marca ✓, no solo color (WCAG 1.4.1).
+- **Validación:** la muestra el `Field`; el navegador no muestra su propio globo.
+- **Táctil y zoom:** el campo mide lo mismo que un `Input` y la lista se acomoda si no entra debajo.
+
+<Stories />
