@@ -115,6 +115,10 @@ No uses `isDisabled`, `color`, `kind`, `type` (para variantes) ni sinónimos de 
 - Todo control funciona **controlado** (`value`) y **no controlado** (`defaultValue`).
 - Los controles de formulario aceptan `name` y se envían con `FormData`, también con las Actions de React 19.
 
+### Tipos de las props
+
+- Las props opcionales declaran `| undefined` (`size?: ControlSize | undefined`). Así una app con `exactOptionalPropertyTypes` (como este repo) puede pasar un valor que quizás no exista: `<Field size={props.size}>`.
+
 ### `ref` y props restantes
 
 - `ref` es una prop normal (React 19, sin `forwardRef`) y apunta al **elemento interactivo principal**: el `<input>`, no su contenedor. Documéntalo si no es obvio.

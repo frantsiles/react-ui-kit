@@ -8,13 +8,13 @@ export interface LabelProps extends ComponentProps<'label'> {
    * Muestra un asterisco. Es solo visual: lo que anuncia "requerido" al lector
    * de pantalla es el atributo `required` del control asociado.
    */
-  required?: boolean;
+  required?: boolean | undefined;
   /** Muestra el texto de "opcional" (más claro que marcar los requeridos cuando son mayoría). */
-  optional?: boolean;
+  optional?: boolean | undefined;
   /** Texto para `optional`. Por defecto el del `LocaleProvider` ("(opcional)"). */
-  optionalText?: string;
-  disabled?: boolean;
-  size?: ControlSize;
+  optionalText?: string | undefined;
+  disabled?: boolean | undefined;
+  size?: ControlSize | undefined;
 }
 
 const sizeClasses: Record<ControlSize, string> = {

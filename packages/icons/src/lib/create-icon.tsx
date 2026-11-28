@@ -22,21 +22,21 @@ export interface IconProps
    * Tamaño del ícono. Por defecto `1em`: escala con el tamaño de letra del
    * texto que lo rodea (y con el zoom del navegador).
    */
-  size?: IconSize | number;
+  size?: IconSize | number | undefined;
   /**
    * Nombre accesible. Úsalo SOLO si el ícono transmite información que no está
    * en el texto de al lado (p. ej. un ícono de estado sin texto).
    * Sin `label`, el ícono es decorativo y queda oculto a lectores de pantalla.
    */
-  label?: string;
+  label?: string | undefined;
   /** Grosor del trazo. */
-  strokeWidth?: number;
-  ref?: Ref<SVGSVGElement>;
+  strokeWidth?: number | undefined;
+  ref?: Ref<SVGSVGElement> | undefined;
 }
 
 export interface CreateIconOptions {
   /** Espejar horizontalmente cuando el texto va de derecha a izquierda. */
-  mirrorInRtl?: boolean;
+  mirrorInRtl?: boolean | undefined;
 }
 
 export type IconComponent = ((props: IconProps) => React.JSX.Element) & {

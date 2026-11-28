@@ -7,9 +7,9 @@ import { useMessages } from './locale-provider';
 
 export interface SearchInputProps extends Omit<InputProps, 'type' | 'startIcon' | 'endAdornment'> {
   /** Se llama después de limpiar (botón o tecla Escape). */
-  onClear?: () => void;
+  onClear?: (() => void) | undefined;
   /** Nombre accesible del botón de limpiar. Por defecto el del `LocaleProvider` ("Limpiar búsqueda"). */
-  clearLabel?: string;
+  clearLabel?: string | undefined;
 }
 
 /** Asigna el valor como lo haría el usuario, para que React dispare onChange. */

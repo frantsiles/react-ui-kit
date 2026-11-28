@@ -1,0 +1,58 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Button } from '@my-ui/components';
+import { DoDont } from '../docs/components/do-dont';
+import * as ButtonStories from './button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+Dispara una acción: guardar, enviar, abrir, eliminar. Es un `<button>` nativo.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** acciones sobre la página actual o envío de formularios.
+- **No:**
+  - **Para ir a otra página**, usa un enlace (`Link`, Fase 1). Un botón que navega no se puede abrir en otra pestaña y el lector de pantalla lo anuncia mal.
+  - **Para alternar un estado** (encendido/apagado), usa `Switch` o `Checkbox`.
+  - **Solo con ícono:** usa [`IconButton`](?path=/docs/acciones-iconbutton--docs).
+
+## Variantes y tonos
+
+| `variant` | Para |
+| --- | --- |
+| `solid` | La acción principal de la vista. **Una sola** por pantalla o sección |
+| `outline` | Acciones secundarias |
+| `ghost` | Acciones terciarias o de baja importancia (Cancelar) |
+
+`tone` da el significado: `primary` por defecto, `danger` para acciones destructivas, `neutral` cuando el color no debe llamar la atención. `variant` no tiene significado propio: no uses `ghost` para decir "peligro".
+
+El hover de `solid` mezcla el color del tono con el del texto. En claro oscurece y en oscuro aclara, así el contraste del texto **sube** al pasar el mouse en los tres temas.
+
+<DoDont
+  doContent={<span className="flex gap-2"><Button variant="ghost">Cancelar</Button><Button tone="danger">Eliminar proyecto</Button></span>}
+  doCaption="El texto dice exactamente qué pasa. Una sola acción principal."
+  dontContent={<span className="flex gap-2"><Button>No</Button><Button>Sí</Button></span>}
+  dontCaption="'Sí' y 'No' obligan a releer la pregunta, y dos solid compiten por la atención."
+/>
+
+## Reglas de uso
+
+- **El texto es un verbo** y dice qué pasa: "Guardar cambios", "Descargar PDF"; no "OK" ni "Click aquí".
+- **`type="button"` por defecto**, para que un botón dentro de un `<form>` no lo envíe por accidente. El que envía lleva `type="submit"`.
+- **Deshabilitado con cuidado:** un botón deshabilitado sale del orden de Tab y no explica por qué. Muchas veces es mejor dejarlo activo y mostrar el error al usarlo; si lo deshabilitas, explica cerca qué falta.
+- **Ancho:** el botón mide lo que su contenido. Para ocupar todo el ancho (formularios en móvil), pasa `className="w-full"`.
+- **Estado de carga:** llegará con `Spinner`, en esta misma fase.
+
+## Accesibilidad
+
+- Patrón [ARIA APG: Button](https://www.w3.org/WAI/ARIA/apg/patterns/button/). Al ser `<button>` nativo, `Enter` y `Espacio` lo activan y `disabled` funciona sin JavaScript.
+- Los íconos (`startIcon`, `endIcon`) son decorativos (`aria-hidden`): el nombre es el texto.
+- Alto mínimo de 32/40/48 px según `size` (28/36/44 en densidad compacta): siempre más que el área táctil de 24 px.
+- **Colores forzados:** el borde es transparente, no inexistente, así el navegador lo dibuja y el botón conserva su forma.
+- `ref` apunta al `<button>`, y las demás props (`aria-*`, `data-*`, eventos) van a él.
+
+<Stories />

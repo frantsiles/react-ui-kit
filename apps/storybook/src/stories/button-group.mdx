@@ -1,0 +1,27 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as ButtonGroupStories from './button-group.stories';
+
+<Meta of={ButtonGroupStories} />
+
+# ButtonGroup
+
+Agrupa botones relacionados: separados con espacio o pegados, como un control segmentado. Pasa `size`, `variant`, `tone` y `disabled` a sus botones; la prop de cada botón gana.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** acciones relacionadas que van juntas (Descartar / Guardar / Publicar), o controles pegados como zoom o acciones de una fila.
+- **No:**
+  - **Para elegir una opción entre varias** (Día / Semana / Mes), usa un grupo de radios (Fase 1). Un botón no comunica cuál está seleccionado.
+  - **Para una barra de herramientas** con navegación por flechas, usa Toolbar (patrón APG Toolbar), cuando exista.
+
+## Accesibilidad
+
+- Es un `role="group"`. Dale nombre con `aria-label` cuando el grupo tiene sentido propio ("Zoom", "Acciones de la fila"): el lector de pantalla lo anuncia al entrar.
+- Cada botón es una parada de `Tab`: no hay navegación por flechas.
+- Pegados, el botón enfocado o con hover queda por encima de sus vecinos, así su borde y su anillo de foco se ven completos.
+- `orientation="vertical"` apila los botones; en móvil, un grupo horizontal largo pasa a la línea siguiente (`flex-wrap`).
+
+<Stories />

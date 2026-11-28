@@ -6,13 +6,13 @@ import type { Tone } from './types';
 
 export interface BadgeProps extends Omit<ComponentProps<'span'>, 'children'> {
   children: ReactNode;
-  tone?: Tone;
+  tone?: Tone | undefined;
   /**
    * Texto adicional solo para lectores de pantalla. Úsalo cuando lo visible no
    * se entiende solo: `<Badge srText="notificaciones sin leer">3</Badge>`.
    * (No uses aria-label: en un <span> no se anuncia de forma fiable.)
    */
-  srText?: string;
+  srText?: string | undefined;
 }
 
 /**

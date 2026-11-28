@@ -66,7 +66,7 @@ Sin componentes visibles: prepara todo lo que las fases siguientes necesitan.
 
 | Componente | Depende de | Estado |
 | --- | --- | --- |
-| Button, IconButton, ButtonGroup | Fundamentos, Icon | ⏳ |
+| Button, IconButton, ButtonGroup | Fundamentos, Icon | 🚧 |
 | Link | Fundamentos | ⏳ |
 | Text, Heading | Tokens de tipografía | ⏳ |
 | Spinner, Skeleton, Divider, Avatar | Fundamentos | ⏳ |

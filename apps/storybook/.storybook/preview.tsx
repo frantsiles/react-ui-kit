@@ -96,6 +96,8 @@ const preview: Preview = {
           'Etiquetas',
           'Inputs',
           ['Field', 'Input', 'PasswordInput', 'SearchInput', 'Textarea'],
+          'Acciones',
+          ['Button', 'IconButton', 'ButtonGroup'],
           'Decisiones de arquitectura',
         ],
       },

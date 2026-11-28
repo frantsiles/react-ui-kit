@@ -44,6 +44,7 @@ jobs:
       # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
       # - run: pnpm exec nx-cloud record -- echo Hello World
       # When you enable task distribution, run the e2e-ci task instead of e2e
+      - run: pnpm typecheck
       - run: pnpm exec nx run-many -t lint test build e2e
       # Si falla la regresión visual: capturas actuales y diferencias
       - uses: actions/upload-artifact@v4

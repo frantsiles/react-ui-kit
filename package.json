@@ -9,7 +9,7 @@
     "build-storybook": "nx run @my-ui-library/storybook:build-storybook",
     "lint": "nx run-many -t lint",
     "test": "nx run-many -t test",
-    "typecheck": "nx run-many -t typecheck --projects=@my-ui/core,@my-ui/icons,@my-ui/components"
+    "typecheck": "nx run-many -t typecheck --projects=@my-ui/core,@my-ui/icons,@my-ui/components,@my-ui-library/storybook"
   },
   "private": true,
   "dependencies": {

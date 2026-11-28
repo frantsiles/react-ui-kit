@@ -5,8 +5,8 @@ import { fieldBoxClasses } from './field-styles';
 import type { ControlSize } from './types';
 
 export interface TextareaProps extends ComponentProps<'textarea'> {
-  size?: ControlSize;
-  invalid?: boolean;
+  size?: ControlSize | undefined;
+  invalid?: boolean | undefined;
 }
 
 const paddingClasses: Record<ControlSize, string> = {
