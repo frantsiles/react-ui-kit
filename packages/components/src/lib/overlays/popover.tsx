@@ -1,20 +1,8 @@
-import {
-  Children,
-  isValidElement,
-  useId,
-  type DOMAttributes,
-  type ReactElement,
-  type ReactNode,
-  type Ref,
-} from 'react';
-import {
-  Dialog as AriaDialog,
-  DialogTrigger as AriaDialogTrigger,
-  Popover as AriaPopover,
-  Pressable,
-} from 'react-aria-components';
+import { useId, type ReactNode, type Ref } from 'react';
+import { Dialog as AriaDialog, Popover as AriaPopover } from 'react-aria-components';
 import { cn, focusRing } from '@my-ui/core';
 import { Heading, type HeadingLevel } from '../acciones/heading';
+import { OverlayTrigger, type OverlayTriggerProps } from '../internal/overlay-trigger';
 
 /**
  * Lado del disparador donde se abre y alineación. `start` y `end` son lógicos:
@@ -34,33 +22,15 @@ export type PopoverPlacement =
   | 'end top'
   | 'end bottom';
 
-export interface PopoverTriggerProps {
-  /**
-   * Primero el disparador (un `Button` o `IconButton`), después el `Popover`.
-   * El disparador recibe `aria-expanded` y abre y cierra el popover.
-   */
-  children: ReactNode;
-  /** Abierto (controlado). */
-  open?: boolean | undefined;
-  /** Abierto al montar (no controlado). */
-  defaultOpen?: boolean | undefined;
-  onOpenChange?: ((open: boolean) => void) | undefined;
-}
+/**
+ * Primero el disparador (un `Button` o `IconButton`), después el `Popover`.
+ * El disparador recibe `aria-expanded` y abre y cierra el popover.
+ */
+export type PopoverTriggerProps = OverlayTriggerProps;
 
 /** Conecta un disparador con su `Popover`. */
-export function PopoverTrigger({ children, open, defaultOpen, onOpenChange }: PopoverTriggerProps) {
-  const [trigger, ...rest] = Children.toArray(children);
-  return (
-    <AriaDialogTrigger
-      {...(open !== undefined && { isOpen: open })}
-      {...(defaultOpen !== undefined && { defaultOpen })}
-      {...(onOpenChange && { onOpenChange })}
-    >
-      {/* Pressable le pasa al botón del kit los eventos y atributos del disparador */}
-      {isValidElement(trigger) ? <Pressable>{trigger as ReactElement<DOMAttributes<Element>, string>}</Pressable> : trigger}
-      {rest}
-    </AriaDialogTrigger>
-  );
+export function PopoverTrigger(props: PopoverTriggerProps) {
+  return <OverlayTrigger {...props} />;
 }
 
 interface PopoverBaseProps {

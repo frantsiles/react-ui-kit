@@ -19,6 +19,17 @@ export {
 export { Checkbox, type CheckboxProps } from './lib/acciones/checkbox';
 export { CheckboxGroup, type CheckboxGroupProps } from './lib/acciones/checkbox-group';
 export { Container, type ContainerProps, type ContainerWidth } from './lib/layout/container';
+export {
+  Dialog,
+  DialogBody,
+  DialogFooter,
+  DialogTrigger,
+  type DialogBodyProps,
+  type DialogFooterProps,
+  type DialogProps,
+  type DialogSize,
+  type DialogTriggerProps,
+} from './lib/overlays/dialog';
 export { Divider, type DividerProps } from './lib/acciones/divider';
 export { ErrorMessage, type ErrorMessageProps } from './lib/fundamentos/error-message';
 export { Field, useFieldControl, type FieldProps } from './lib/fundamentos/field';

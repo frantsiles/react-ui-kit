@@ -178,6 +178,8 @@
      superficie y la elevación la da la sombra; en oscuro las sombras casi no se
      ven, así que la superficie se aclara un poco. */
   --ui-color-surface-raised: rgb(255 255 255);
+  /* Fondo que oscurece la página detrás de un Dialog o Drawer modal. */
+  --ui-color-overlay: rgb(0 0 0 / 0.5);
 
   /* Hover de fondos sólidos (Button solid). Se mezcla con el color del texto:
      en claro oscurece y en oscuro aclara, así el contraste con el texto del
@@ -334,6 +336,8 @@
   --ui-color-warning: rgb(var(--color-warning-400));
   --ui-color-warning-soft: rgb(120 53 15 / 0.35);
   --ui-color-surface-raised: rgb(31 31 31);
+  /* Más opaco: sobre una página oscura, el 50 % casi no se nota */
+  --ui-color-overlay: rgb(0 0 0 / 0.7);
 
   --ui-shadow-raised: 0 1px 2px 0 rgb(0 0 0 / 0.4), 0 1px 3px 0 rgb(0 0 0 / 0.5);
   --ui-shadow-overlay: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
@@ -361,6 +365,7 @@
   --ui-color-warning: rgb(110 60 0);
   --ui-color-warning-soft: rgb(255 255 255);
   --ui-color-surface-raised: rgb(255 255 255);
+  --ui-color-overlay: rgb(0 0 0 / 0.7);
   --ui-focus-ring-width: 3px;
 
   /* En alto contraste la elevación la dan los bordes, no las sombras (igual
