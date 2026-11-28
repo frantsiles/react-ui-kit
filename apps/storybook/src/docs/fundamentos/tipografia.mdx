@@ -18,7 +18,7 @@ Los componentes usan **estilos de texto por rol**, no tamaños sueltos. Cada est
 ```
 
 - `text-ui-<estilo>` aplica tamaño, interlineado y peso. Para cambiar solo el peso, agrega `font-ui-medium`, `font-ui-semibold`… y gana la clase de peso.
-- El **nivel del encabezado** (`h1`…`h6`) lo decide la estructura de la página, no el estilo: un `h2` puede verse como `heading-md`. El componente `Heading` (Fase 1) separará ambas cosas.
+- El **nivel del encabezado** (`h1`…`h6`) lo decide la estructura de la página, no el estilo: un `h2` puede verse como `heading-md`. El componente [`Heading`](?path=/docs/texto-heading--docs) separa ambas cosas; para el resto del texto está [`Text`](?path=/docs/texto-text--docs).
 - En campos de texto, usa `text-ui-body ui-sm:text-ui-body-sm`: 16 px en móvil evita que iOS haga zoom al enfocar.
 - Para párrafos largos, limita el ancho de línea con `max-w-(--ui-measure)` (65 caracteres).
 

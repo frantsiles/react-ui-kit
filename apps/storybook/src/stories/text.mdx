@@ -1,0 +1,44 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Text } from '@my-ui/components';
+import { DoDont } from '../docs/components/do-dont';
+import * as TextStories from './text.stories';
+
+<Meta of={TextStories} />
+
+# Text
+
+Texto con los estilos por rol del kit: párrafos, notas, texto secundario.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** párrafos y textos sueltos que necesitan un estilo del kit (`body-sm`, `caption`…) o un tono (`muted`).
+- **No:**
+  - **Para títulos**, usa [`Heading`](?path=/docs/texto-heading--docs): un texto grande no es un encabezado para el lector de pantalla.
+  - **Para énfasis con significado**, usa `<strong>` o `<em>` dentro del texto; `weight` es solo visual.
+  - **Para etiquetas de campos**, usa `Label` o `Field`.
+
+| Prop | Valores |
+| --- | --- |
+| `as` | `p` (por defecto), `span` dentro de otro texto, `div` si contiene bloques |
+| `variant` | `body-lg`, `body` (por defecto), `body-sm`, `label`, `caption` |
+| `tone` | `neutral` (por defecto), `muted`, `primary`, `success`, `warning`, `danger` |
+| `weight` | `regular`, `medium`, `semibold`, `bold` |
+
+<DoDont
+  doContent={<Text tone="danger">No se pudo enviar la factura</Text>}
+  doCaption="El texto dice qué pasó; el color lo refuerza."
+  dontContent={<Text tone="danger">Factura 0042</Text>}
+  dontCaption="Solo el color dice que hay un problema: quien no distingue el rojo no se entera."
+/>
+
+## Accesibilidad
+
+- Sin patrón de la ARIA APG: es texto. Cada `tone` cumple 4.5:1 sobre `surface` en los tres temas (lo comprueba axe en las historias).
+- **El color no basta** (WCAG 1.4.1): un tono semántico acompaña a un texto que ya lo dice.
+- **Largo de línea:** para párrafos, `className="max-w-(--ui-measure)"` (unos 65 caracteres).
+- Los tamaños están en `rem` y el interlineado sin unidad: el texto crece con el zoom y con los espaciados que la persona aplique (WCAG 1.4.4 y 1.4.12).
+
+<Stories />

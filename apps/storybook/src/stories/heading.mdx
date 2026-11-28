@@ -1,0 +1,46 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Heading } from '@my-ui/components';
+import { DoDont } from '../docs/components/do-dont';
+import * as HeadingStories from './heading.stories';
+
+<Meta of={HeadingStories} />
+
+# Heading
+
+Encabezado (`h1`…`h6`) con el **nivel separado del tamaño**.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** títulos de página, secciones y bloques (tarjetas, diálogos, paneles).
+- **No:** para agrandar un texto que no titula nada. Usa [`Text`](?path=/docs/texto-text--docs) con `variant="body-lg"`.
+
+## Nivel y tamaño
+
+`level` es **obligatorio** y sale de la estructura de la página. `size` es opcional y sale del diseño:
+
+| `level` | `size` por defecto |
+| --- | --- |
+| 1 | `xl` |
+| 2 | `lg` |
+| 3 | `md` |
+| 4–6 | `sm` |
+
+`display` es para portadas y pantallas de bienvenida, una vez por página.
+
+<DoDont
+  doContent={<div><Heading level={2}>Planes</Heading><Heading level={3} size="sm">Básico</Heading></div>}
+  doCaption="El h3 se ve chico, pero la estructura sigue h2 → h3."
+  dontContent={<div><Heading level={2}>Planes</Heading><Heading level={5}>Básico</Heading></div>}
+  dontCaption="Saltar del h2 al h5 para que se vea chico rompe la estructura."
+/>
+
+## Accesibilidad
+
+- Muchas personas con lector de pantalla recorren la página **saltando de encabezado en encabezado**. La lista de encabezados es el índice de la página (WCAG 1.3.1 y 2.4.6).
+- Un solo `h1` por página, con el tema de la página. No saltes niveles hacia abajo (de `h2` a `h4`).
+- El texto se equilibra entre líneas (`text-balance`) y crece con el zoom: no fijes altos.
+
+<Stories />

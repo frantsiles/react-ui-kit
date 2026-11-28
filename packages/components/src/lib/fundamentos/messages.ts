@@ -8,6 +8,8 @@
 export interface Messages {
   /** Etiqueta del campo opcional en `Label` / `Field`. */
   'label.optional': string;
+  /** Aviso de `Link` con `external`, después del texto del enlace. */
+  'link.newTab': string;
   /** Botón para mostrar la contraseña en `PasswordInput`. */
   'passwordInput.show': string;
   /** Botón para limpiar en `SearchInput`. */
@@ -22,6 +24,7 @@ export interface Messages {
 
 const es: Messages = {
   'label.optional': '(opcional)',
+  'link.newTab': '(se abre en una pestaña nueva)',
   'passwordInput.show': 'Mostrar contraseña',
   'searchInput.clear': 'Limpiar búsqueda',
   'spinner.label': 'Cargando',
@@ -31,6 +34,7 @@ const es: Messages = {
 
 const en: Messages = {
   'label.optional': '(optional)',
+  'link.newTab': '(opens in a new tab)',
   'passwordInput.show': 'Show password',
   'searchInput.clear': 'Clear search',
   'spinner.label': 'Loading',

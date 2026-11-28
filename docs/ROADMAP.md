@@ -67,8 +67,8 @@ Sin componentes visibles: prepara todo lo que las fases siguientes necesitan.
 | Componente | Depende de | Estado |
 | --- | --- | --- |
 | Button, IconButton, ButtonGroup | Fundamentos, Icon | 🚧 |
-| Link | Fundamentos | ⏳ |
-| Text, Heading | Tokens de tipografía | ⏳ |
+| Link | Fundamentos | 🚧 |
+| Text, Heading | Tokens de tipografía | 🚧 |
 | Spinner, Skeleton, Divider, Avatar (y `loading` en Button) | Fundamentos | 🚧 |
 | Checkbox, CheckboxGroup (Checkbox) | Field, Label | ⏳ |
 | Radio, RadioGroup (Radio Group) | Field, Label | ⏳ |
