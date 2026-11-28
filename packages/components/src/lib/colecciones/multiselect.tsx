@@ -102,14 +102,18 @@ export function Multiselect({
       validationBehavior="aria"
       className="flex w-full flex-col"
     >
-      <ComboboxBox
-        size={size}
-        invalid={invalid}
-        disabled={Boolean(disabled)}
-        className={cn('flex-wrap gap-y-1 py-1', className)}
-      >
-        <SelectedTags size={size} disabled={Boolean(disabled)} inputRef={inputRef} />
-        <ComboboxInput ref={mergeRefs(inputRef, ref)} id={id} placeholder={placeholder} className="min-w-24" />
+      <ComboboxBox size={size} invalid={invalid} disabled={Boolean(disabled)} className={cn('py-1', className)}>
+        {/* Tags e input pasan juntos a la línea siguiente; la flecha queda al final */}
+        <div className="flex min-w-0 flex-1 flex-wrap items-center gap-1 self-stretch">
+          <SelectedTags size={size} disabled={Boolean(disabled)} inputRef={inputRef} />
+          {/* w-0 + flex-1: ocupa lo que sobra de la línea y baja solo si quedan menos de 4rem */}
+          <ComboboxInput
+            ref={mergeRefs(inputRef, ref)}
+            id={id}
+            placeholder={placeholder}
+            className="w-0 min-w-16 self-stretch"
+          />
+        </div>
       </ComboboxBox>
       {/*
         Texto oculto con las elegidas ("Ferretería El Clavo y Farmacia del Sol"):
@@ -157,7 +161,6 @@ function SelectedTags({
             // El botón desaparece: el foco vuelve al input para seguir eligiendo
             inputRef.current?.focus();
           }}
-          className="me-1"
         >
           {item.textValue}
         </Tag>
