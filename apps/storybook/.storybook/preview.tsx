@@ -109,7 +109,7 @@ const preview: Preview = {
           'Colecciones',
           ['ListBox', 'Select', 'Combobox', 'Multiselect', 'Menu', 'Menú contextual'],
           'Navegación',
-          ['Tabs'],
+          ['Tabs', 'Accordion', 'Disclosure'],
           'Avisos',
           'Carga',
           ['Spinner', 'Skeleton'],

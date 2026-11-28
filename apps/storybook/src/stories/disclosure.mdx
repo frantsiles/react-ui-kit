@@ -1,0 +1,41 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as DisclosureStories from './disclosure.stories';
+
+<Meta of={DisclosureStories} />
+
+# Disclosure
+
+Una sección que se abre y se cierra con su botón.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** detalles opcionales que solo algunos necesitan ("Condiciones de pago", "Opciones avanzadas", "Ver más").
+- **No:**
+  - **Varias secciones juntas:** [`Accordion`](?path=/docs/navegación-accordion--docs).
+  - **Contenido flotante que se cierra al hacer clic afuera:** [`Popover`](?path=/docs/overlays-popover--docs).
+  - **Mostrar u ocultar una contraseña, o alternar un ajuste:** un botón con `aria-pressed` o un [`Switch`](?path=/docs/selección-switch--docs).
+
+## Uso
+
+```tsx
+<Disclosure title="Condiciones de pago">
+  Treinta días desde la fecha de la factura.
+</Disclosure>
+```
+
+- **Estado:** `open` / `onOpenChange` para controlarlo, o `defaultOpen`.
+- **Encabezado:** el título va en un `h3`; cámbialo con `headingLevel`.
+- **`disabled`** impide abrirlo y cerrarlo.
+
+## Accesibilidad
+
+Patrón: [Disclosure de WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/). Lo implementa React Aria.
+
+- **Botón** dentro de un encabezado, con `aria-expanded` y `aria-controls`.
+- **Teclado:** `Enter` o `Espacio` abren y cierran.
+- **Buscar en la página:** el contenido cerrado lo encuentra `Ctrl+F` donde el navegador admite `hidden="until-found"`.
+
+<Stories />

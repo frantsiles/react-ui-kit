@@ -1,3 +1,9 @@
+export {
+  Accordion,
+  AccordionItem,
+  type AccordionItemProps,
+  type AccordionProps,
+} from './lib/navegacion/disclosure';
 export { Alert, type AlertProps } from './lib/acciones/alert';
 export {
   AlertDialog,
@@ -37,6 +43,7 @@ export {
   type DialogSize,
   type DialogTriggerProps,
 } from './lib/overlays/dialog';
+export { Disclosure, type DisclosureProps } from './lib/navegacion/disclosure';
 export { Divider, type DividerProps } from './lib/acciones/divider';
 export {
   Drawer,
