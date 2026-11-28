@@ -68,6 +68,8 @@ interface ChoiceLayoutProps {
   descriptionId?: string | undefined;
   error?: ReactNode;
   errorId?: string | undefined;
+  /** Sangría de ayuda y error cuando el control no es una caja (p. ej. Switch). */
+  indentClassName?: string | undefined;
 }
 
 export function ChoiceLayout({
@@ -80,7 +82,9 @@ export function ChoiceLayout({
   descriptionId,
   error,
   errorId,
+  indentClassName,
 }: ChoiceLayoutProps) {
+  const indent = indentClassName ?? sizeClasses[size].indent;
   return (
     <div className={cn('flex flex-col gap-1', sizeClasses[size].text, className)}>
       <label
@@ -96,12 +100,12 @@ export function ChoiceLayout({
         <span>{children}</span>
       </label>
       {descriptionId && (
-        <HelpText id={descriptionId} className={sizeClasses[size].indent}>
+        <HelpText id={descriptionId} className={indent}>
           {description}
         </HelpText>
       )}
       {errorId && (
-        <ErrorMessage id={errorId} className={sizeClasses[size].indent}>
+        <ErrorMessage id={errorId} className={indent}>
           {error}
         </ErrorMessage>
       )}

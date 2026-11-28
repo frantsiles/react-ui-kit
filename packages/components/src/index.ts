@@ -30,6 +30,7 @@ export { RadioGroup, type RadioGroupProps } from './lib/acciones/radio-group';
 export { SearchInput, type SearchInputProps } from './lib/fundamentos/search-input';
 export { Skeleton, type SkeletonProps, type SkeletonShape } from './lib/acciones/skeleton';
 export { Spinner, type SpinnerProps } from './lib/acciones/spinner';
+export { Switch, type SwitchProps } from './lib/acciones/switch';
 export { Tag, type TagProps } from './lib/fundamentos/tag';
 export { Text, type TextProps, type TextTone, type TextVariant } from './lib/acciones/text';
 export { Textarea, type TextareaProps } from './lib/fundamentos/textarea';
