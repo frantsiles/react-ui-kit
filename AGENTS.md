@@ -50,7 +50,7 @@ Un componente nuevo incluye, en el mismo PR:
 - Export en `packages/components/src/index.ts` (orden alfabético).
 - `apps/storybook/src/stories/<nombre>.stories.tsx` y `<nombre>.mdx` (cuándo usarlo, hacer / evitar, accesibilidad).
 - Estado actualizado en `docs/ROADMAP.md`.
-- `pnpm lint`, `pnpm test`, `pnpm typecheck` y `pnpm build-storybook` en verde.
+- `pnpm lint`, `pnpm test` (incluye cada historia como test, con axe en los tres temas), `pnpm typecheck` y `pnpm build-storybook` en verde.
 
 ## Git
 
