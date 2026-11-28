@@ -1,0 +1,54 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as TooltipStories from './tooltip.stories';
+
+<Meta of={TooltipStories} />
+
+# Tooltip
+
+Texto breve junto a un control, que aparece al pasar el mouse o al enfocarlo con teclado.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:**
+  - Mostrar a la vista el nombre de un botón de solo ícono.
+  - Agregar una aclaración corta a un control.
+- **No:**
+  - **Información que hace falta para completar la tarea:** en pantallas táctiles no hay hover. Ponla en el texto o en un `HelpText`.
+  - **Contenido interactivo** (enlaces, botones): usa [`Popover`](?path=/docs/overlays-popover--docs). Un tooltip desaparece al salir y no se puede recorrer con `Tab`.
+  - **Explicar por qué un botón está deshabilitado:** un `button` deshabilitado no recibe el foco ni el mouse, y el tooltip no aparece. Explícalo con texto visible.
+
+## Uso
+
+```tsx
+<Tooltip content="Copia el enlace al portapapeles">
+  <IconButton label="Copiar enlace">
+    <IconCopy />
+  </IconButton>
+</Tooltip>
+```
+
+- **El hijo es el disparador:** un elemento enfocable del kit (`Button`, `IconButton`, `Link`).
+- **Textos breves:** una línea, sin formato.
+- **Tiempos:**
+  - `delay` (por defecto 700 ms) evita que aparezca al cruzar el mouse por encima.
+  - `closeDelay` (300 ms) da tiempo a llevar el mouse hasta el tooltip.
+  - Al pasar de un tooltip a otro cercano, el segundo aparece sin esperar.
+
+## Accesibilidad
+
+Patrón: [Tooltip de WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/).
+
+- **`role="tooltip"`**, conectado al disparador con `aria-describedby`. Es la **descripción**, no el nombre: el nombre sigue siendo el `label` del botón.
+  - Si el tooltip repite el `label` (barra de íconos), el lector de pantalla puede leerlo dos veces. Es aceptable; si puedes, agrega información en lugar de repetirla ("Descargar PDF", "Descarga la factura en PDF").
+- **Teclado:** aparece al instante al enfocar el disparador. `Escape` lo oculta sin mover el foco.
+- **WCAG 1.4.13 (contenido al pasar el mouse):**
+  - Se puede cerrar con `Escape`.
+  - Se puede pasar el mouse por encima sin que desaparezca.
+  - Se queda mientras el mouse o el foco sigan en el disparador.
+- **Colores:** usa los de texto y fondo invertidos, con el contraste de cada tema. El borde transparente reaparece con colores forzados.
+- **Movimiento:** aparece con un fundido corto; con "reducir movimiento" el cambio es instantáneo.
+
+<Stories />
