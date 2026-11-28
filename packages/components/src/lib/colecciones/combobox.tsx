@@ -91,7 +91,6 @@ export function Combobox({
   'aria-labelledby': ariaLabelledBy,
   ...props
 }: ComboboxProps) {
-  const messages = useMessages();
   const fieldLabelId = useFieldLabelId();
   const { size, invalid, disabled, required, id, 'aria-describedby': describedBy } = useFieldControl(props);
   const labelledBy = ariaLabelledBy ?? fieldLabelId;
@@ -118,55 +117,117 @@ export function Combobox({
       validationBehavior="aria"
       className="flex w-full"
     >
-      <AriaGroup
-        // Solo agrupa visualmente: el lector de pantalla no necesita un "grupo" más
-        role="presentation"
+      <ComboboxBox size={size} invalid={invalid} disabled={Boolean(disabled)} className={className}>
+        <ComboboxInput ref={ref} id={id} placeholder={placeholder} />
+      </ComboboxBox>
+      <ComboboxPopover size={size} labelledBy={labelledBy} ariaLabel={ariaLabel} emptyState={emptyState}>
+        {children}
+      </ComboboxPopover>
+    </AriaComboBox>
+  );
+}
+
+/* Piezas compartidas con `Multiselect`. Internas: no se exportan en el index. */
+
+/** Caja visible con el aspecto de `Input`: lo que va dentro y el botón de la flecha. */
+export function ComboboxBox({
+  size,
+  invalid,
+  disabled,
+  className,
+  children,
+}: {
+  size: ControlSize;
+  invalid: boolean;
+  disabled: boolean;
+  className?: string | undefined;
+  children: ReactNode;
+}) {
+  const messages = useMessages();
+  return (
+    <AriaGroup
+      // Solo agrupa visualmente: el lector de pantalla no necesita un "grupo" más
+      role="presentation"
+      className={cn(
+        'flex items-center',
+        fieldBoxClasses({ invalid, disabled, readOnly: false }),
+        controlSizeClasses[size],
+        'pe-1',
+        className,
+      )}
+    >
+      {children}
+      {/* Fuera del orden de Tab (lo hace React Aria): con teclado se abre con flecha abajo */}
+      <AriaButton
+        aria-label={messages['combobox.showOptions']}
         className={cn(
-          'flex items-center',
-          fieldBoxClasses({ invalid, disabled: Boolean(disabled), readOnly: false }),
-          controlSizeClasses[size],
-          'pe-1',
-          className,
+          'inline-flex shrink-0 cursor-pointer items-center justify-center rounded-sm p-ui-xs text-ui-fg-muted',
+          'hover:text-ui-fg disabled:cursor-not-allowed disabled:text-ui-fg-disabled',
+          focusRing,
         )}
       >
-        <AriaInput
-          ref={ref}
-          {...(id && { id })}
-          {...(placeholder && { placeholder })}
-          className="min-w-0 flex-1 self-stretch bg-transparent outline-hidden placeholder:text-ui-fg-muted disabled:cursor-not-allowed"
-        />
-        {/* Fuera del orden de Tab (lo hace React Aria): con teclado se abre con flecha abajo */}
-        <AriaButton
-          aria-label={messages['combobox.showOptions']}
-          className={cn(
-            'inline-flex shrink-0 cursor-pointer items-center justify-center rounded-sm p-ui-xs text-ui-fg-muted',
-            'hover:text-ui-fg disabled:cursor-not-allowed disabled:text-ui-fg-disabled',
-            focusRing,
+        <IconChevronDown className={iconClasses[size]} />
+      </AriaButton>
+    </AriaGroup>
+  );
+}
+
+export function ComboboxInput({
+  ref,
+  id,
+  placeholder,
+  className,
+}: {
+  ref?: Ref<HTMLInputElement> | undefined;
+  id?: string | undefined;
+  placeholder?: string | undefined;
+  className?: string | undefined;
+}) {
+  return (
+    <AriaInput
+      ref={ref}
+      {...(id && { id })}
+      {...(placeholder && { placeholder })}
+      className={cn(
+        'min-w-0 flex-1 self-stretch bg-transparent outline-hidden placeholder:text-ui-fg-muted disabled:cursor-not-allowed',
+        className,
+      )}
+    />
+  );
+}
+
+/** Lista flotante con las opciones filtradas. */
+export function ComboboxPopover({
+  size,
+  labelledBy,
+  ariaLabel,
+  emptyState,
+  children,
+}: {
+  size: ControlSize;
+  labelledBy?: string | undefined;
+  ariaLabel?: string | undefined;
+  emptyState?: ReactNode | undefined;
+  children: ReactNode;
+}) {
+  const messages = useMessages();
+  return (
+    <AriaPopover offset={4} className={cn(popoverSurfaceClasses, 'flex min-w-(--trigger-width) flex-col')}>
+      <ListBoxSizeContext value={size}>
+        <AriaListBox
+          // Solo la etiqueta del campo: React Aria le suma "Suggestions" en inglés.
+          // El aria-label vacío anula ese texto
+          {...(labelledBy ? { 'aria-labelledby': labelledBy, 'aria-label': '' } : ariaLabel && { 'aria-label': ariaLabel })}
+          className={listBoxListClasses}
+          renderEmptyState={() => (
+            <div className="px-ui-sm py-ui-sm text-ui-body-sm text-ui-fg-muted">
+              {emptyState ?? messages['combobox.empty']}
+            </div>
           )}
         >
-          <IconChevronDown className={iconClasses[size]} />
-        </AriaButton>
-      </AriaGroup>
-      <AriaPopover
-        offset={4}
-        className={cn(popoverSurfaceClasses, 'flex min-w-(--trigger-width) flex-col')}
-      >
-        <ListBoxSizeContext value={size}>
-          <AriaListBox
-            // Solo la etiqueta del campo: React Aria le suma "Suggestions" en inglés.
-            // El aria-label vacío anula ese texto
-            {...(labelledBy ? { 'aria-labelledby': labelledBy, 'aria-label': '' } : ariaLabel && { 'aria-label': ariaLabel })}
-            className={listBoxListClasses}
-            renderEmptyState={() => (
-              <div className="px-ui-sm py-ui-sm text-ui-body-sm text-ui-fg-muted">
-                {emptyState ?? messages['combobox.empty']}
-              </div>
-            )}
-          >
-            {children}
-          </AriaListBox>
-        </ListBoxSizeContext>
-      </AriaPopover>
-    </AriaComboBox>
+          {children}
+        </AriaListBox>
+      </ListBoxSizeContext>
+    </AriaPopover>
   );
 }

@@ -1,0 +1,58 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as MultiselectStories from './multiselect.stories';
+
+<Meta of={MultiselectStories} />
+
+# Multiselect
+
+Campo para elegir varias opciones de una lista, buscándolas al escribir. Las elegidas se muestran como tags.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** elegir varias opciones entre muchas (etiquetas, destinatarios, categorías), donde buscar es más rápido que recorrer.
+- **No:**
+  - **Pocas opciones (hasta 7 u 8):** [`CheckboxGroup`](?path=/docs/selección-checkboxgroup--docs), que las muestra todas sin abrir nada.
+  - **Una sola opción:** [`Combobox`](?path=/docs/colecciones-combobox--docs) o [`Select`](?path=/docs/colecciones-select--docs).
+  - **Opciones que tienen que estar siempre a la vista:** [`ListBox`](?path=/docs/colecciones-listbox--docs) con `selectionMode="multiple"`.
+
+## Uso
+
+```tsx
+<Field label="Etiquetas" description="Escribe para buscar." error={error}>
+  <Multiselect name="etiquetas" value={etiquetas} onChange={setEtiquetas}>
+    <ListBoxItem value="urgente">Urgente</ListBoxItem>
+    <ListBoxItem value="factura">Factura</ListBoxItem>
+  </Multiselect>
+</Field>
+```
+
+- **Dentro de un `Field`:** la etiqueta nombra el campo y la lista, y `description`, `error`, `required`, `disabled` y `size` pasan solos. Fuera de un `Field`, nómbralo con `aria-label` o `aria-labelledby`.
+- **Opciones:** las mismas `ListBoxItem` y `ListBoxSection` de [`ListBox`](?path=/docs/colecciones-listbox--docs). Se filtran igual que en `Combobox`: sin distinguir mayúsculas ni tildes.
+- **Valor:** `value` (lista de `string`) con `onChange`, que recibe todas las elegidas tras cada cambio, o `defaultValue`.
+- **Al elegir:** el texto escrito se borra y la lista sigue abierta, para buscar la siguiente. `Escape` o salir del campo la cierra.
+- **Formularios:** con `name`, se envía un valor por cada opción elegida.
+- **Texto escrito:** `inputValue` / `onInputChange`, por ejemplo para buscar en el servidor. No admite valores fuera de la lista.
+
+### Hacer y evitar
+
+- **Hacer:** una etiqueta en plural que diga qué se elige ("Etiquetas", "Destinatarios").
+- **Hacer:** si hay un máximo, dilo en la descripción del `Field` y valida al enviar.
+- **Evitar:** opciones con textos largos: los tags se cortan y cuesta leerlos.
+
+## Accesibilidad
+
+Patrón: [Combobox de WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/) con un `listbox` de selección múltiple (`aria-multiselectable`). Lo implementa React Aria.
+
+- **El campo:** `role="combobox"` con el nombre de la etiqueta. Las elegidas forman parte de su descripción ("Urgente y Factura"), así se oyen al enfocarlo, junto con la ayuda y el error del `Field`.
+- **La lista:** cada opción anuncia si está elegida (`aria-selected`) y lleva la marca ✓, no solo color (WCAG 1.4.1).
+- **Teclado:**
+  - Escribir abre y filtra; flecha abajo o arriba abre con todas las opciones.
+  - Flechas recorren, `Enter` elige o desmarca, `Escape` cierra.
+  - El foco nunca sale del campo mientras se elige (`aria-activedescendant`).
+- **Tags:** cada uno tiene un botón "Quitar …" en el orden de `Tab`. Al quitarlo, el foco vuelve al campo, no se pierde.
+- **Táctil:** los botones de quitar miden 24 × 24 px (WCAG 2.5.8).
+
+<Stories />

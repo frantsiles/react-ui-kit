@@ -107,7 +107,7 @@ const preview: Preview = {
           'Overlays',
           ['Popover', 'Tooltip', 'Dialog', 'AlertDialog', 'Drawer', 'Toast'],
           'Colecciones',
-          ['ListBox', 'Select', 'Combobox'],
+          ['ListBox', 'Select', 'Combobox', 'Multiselect'],
           'Avisos',
           'Carga',
           ['Spinner', 'Skeleton'],
