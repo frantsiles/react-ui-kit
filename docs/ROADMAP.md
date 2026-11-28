@@ -12,7 +12,7 @@ Estas reglas existen porque en kits anteriores el crecimiento sin orden terminó
 
 | Problema que evitamos | Regla | Cómo se hace cumplir |
 | --- | --- | --- |
-| Componentes que se importan entre sí en cualquier dirección | **Capas con dirección única**: un componente solo usa capas inferiores | Lint de Nx (`@nx/enforce-module-boundaries`) con etiquetas por capa (Fase 0) |
+| Componentes que se importan entre sí en cualquier dirección | **Capas con dirección única**: un componente solo usa capas inferiores | Lint: etiquetas de Nx entre paquetes y una carpeta por fase dentro de components ([ADR 0007](https://github.com/frantsiles/react-ui-kit/blob/main/docs/adr/0007-capas.md)) |
 | Componentes "dios" con decenas de props | **Composición sobre configuración**: piezas pequeñas que se combinan (`<Menu><MenuItem /></Menu>`) | Guía de convenciones de API y revisión de PRs |
 | Cada overlay con su propio posicionamiento y foco | **Primitivas compartidas primero** (Popover, ListBox, capa que se cierra) | El orden de las fases: no hay Menu sin Popover |
 | Props con nombres distintos para lo mismo | **API consistente**: `size`, `tone`, `variant`… iguales en todo el kit | Guía de convenciones y tipos compartidos en `@my-ui/core` |
@@ -60,7 +60,7 @@ Sin componentes visibles: prepara todo lo que las fases siguientes necesitan.
 | Historias de Storybook como tests en el CI (incluido el chequeo de accesibilidad) | Cada historia corre en Chromium en los tres temas, con su `play` y axe (contraste incluido) | ✅ |
 | Regresión visual por historia y tema ([ADR 0006](https://github.com/frantsiles/react-ui-kit/blob/main/docs/adr/0006-regresion-visual.md)) | Detectar cambios visuales no buscados | ✅ |
 | Proveedor de idioma (textos internos y RTL): `LocaleProvider` | Traducir "Mostrar contraseña", "Quitar…", etc. sin prop por prop | ✅ |
-| Reglas de capas con etiquetas de Nx | Hacer cumplir la dirección única de dependencias | ⏳ |
+| Reglas de capas con etiquetas de Nx ([ADR 0007](https://github.com/frantsiles/react-ui-kit/blob/main/docs/adr/0007-capas.md)) | Hacer cumplir la dirección única de dependencias | ✅ |
 
 ### Fase 1 · Acciones y selección simple
 

@@ -10,7 +10,7 @@ UI kit de React 19 accesible (WCAG 2.2 AA). Monorepo Nx + pnpm. Paquetes: `@my-u
 
 1. Lee [docs/ROADMAP.md](docs/ROADMAP.md). Construye solo lo que corresponde a la fase actual y usa solo componentes de fases anteriores.
 2. Revisa los ADR en [docs/adr](docs/adr/README.md). No contradigas una decisión aceptada sin proponer un ADR nuevo.
-3. Mira un componente existente parecido y copia su estructura (`packages/components/src/lib/input.tsx` y `field.tsx` son la referencia).
+3. Mira un componente existente parecido y copia su estructura (`packages/components/src/lib/fundamentos/input.tsx` y `field.tsx` son la referencia).
 
 ## Comandos
 
@@ -35,6 +35,7 @@ Un proyecto concreto: `pnpm exec nx run <proyecto>:<target>` (p. ej. `@my-ui/com
 - **Foco:** `focusRing` / `fieldFocusRing` de `@my-ui/core`. Nunca `outline-none` sin reemplazo ni foco con `box-shadow`.
 - **API:** `size` (`sm|md|lg`), `tone`, `variant`, y booleanos con nombre HTML (`disabled`, `required`, `readOnly`, `invalid`). Nunca `isDisabled` en la API pública.
 - **`ref`** como prop (React 19), apuntando al elemento interactivo principal. Las props restantes van a ese elemento.
+- **Capas:** un componente solo importa de su capa, de capas inferiores y de `internal/`; imports relativos, nunca `@my-ui/components` dentro del paquete. Lo verifica el lint (ADR 0007).
 - **Partes compuestas** como exports con prefijo (`SelectItem`), no `Select.Item`.
 - **React Aria:** se envuelve, nunca se reexporta. La API pública es la del kit.
 - **Accesibilidad:** elementos nativos primero; patrón ARIA APG citado en la documentación; íconos decorativos por defecto; áreas táctiles ≥ 24 px; color + ícono o texto, nunca color solo; `role="menu"` solo para menús de acciones.
@@ -46,7 +47,7 @@ Un proyecto concreto: `pnpm exec nx run <proyecto>:<target>` (p. ej. `@my-ui/com
 
 Un componente nuevo incluye, en el mismo PR:
 
-- `packages/components/src/lib/<nombre>.tsx` y `<nombre>.spec.tsx` (rol y nombre, teclado, estados, `Field` si aplica, `toHaveNoAxeViolations`).
+- `packages/components/src/lib/<capa>/<nombre>.tsx` y `<nombre>.spec.tsx`, en la carpeta de su fase (`fundamentos`, `acciones`, `layout`, `overlays`, `colecciones`, `navegacion`, `shell`, `datos`) (rol y nombre, teclado, estados, `Field` si aplica, `toHaveNoAxeViolations`).
 - Export en `packages/components/src/index.ts` (orden alfabético).
 - `apps/storybook/src/stories/<nombre>.stories.tsx` y `<nombre>.mdx` (cuándo usarlo, hacer / evitar, accesibilidad).
 - Estado actualizado en `docs/ROADMAP.md`.

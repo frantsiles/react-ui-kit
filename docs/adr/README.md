@@ -10,5 +10,6 @@ Cada archivo registra una decisión importante: el contexto, qué se decidió, q
 | [0004](0004-documentacion-en-storybook.md) | Documentación en Storybook; decisiones en el repositorio | Aceptado |
 | [0005](0005-react-aria-como-libreria-headless.md) | React Aria Components como librería headless | Aceptado |
 | [0006](0006-regresion-visual.md) | Regresión visual con Vitest, capturas en el repositorio | Aceptado |
+| [0007](0007-capas.md) | Capas con dirección única, verificadas por el lint | Aceptado |
 
 Plantilla: copia cualquiera de los existentes y numera con el siguiente número libre.

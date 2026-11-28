@@ -1,8 +1,8 @@
 import { useRef, useState, type ChangeEvent, type KeyboardEvent } from 'react';
 import { IconSearch, IconX } from '@my-ui/icons';
 import { Input, type InputProps } from './input';
-import { InlineIconButton } from './internal/icon-button';
-import { mergeRefs } from './internal/merge-refs';
+import { InlineIconButton } from '../internal/icon-button';
+import { mergeRefs } from '../internal/merge-refs';
 import { useMessages } from './locale-provider';
 
 export interface SearchInputProps extends Omit<InputProps, 'type' | 'startIcon' | 'endAdornment'> {
