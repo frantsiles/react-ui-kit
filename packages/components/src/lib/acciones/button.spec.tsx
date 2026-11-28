@@ -7,6 +7,45 @@ import { ButtonGroup } from './button-group';
 import { IconButton } from './icon-button';
 
 describe('Button', () => {
+  it('loading conserva el foco, ignora clics y no envía el formulario', async () => {
+    const onClick = vi.fn();
+    const onSubmit = vi.fn((event: FormEvent) => event.preventDefault());
+    const { rerender } = render(
+      <form onSubmit={onSubmit}>
+        <Button type="submit" onClick={onClick}>
+          Guardar
+        </Button>
+      </form>,
+    );
+    const button = screen.getByRole('button', { name: 'Guardar' });
+    button.focus();
+    rerender(
+      <form onSubmit={onSubmit}>
+        <Button type="submit" onClick={onClick} loading>
+          Guardar
+        </Button>
+      </form>,
+    );
+    expect(button).toHaveFocus();
+    expect(button).not.toBeDisabled();
+    expect(button).toHaveAttribute('aria-disabled', 'true');
+    expect(button).toHaveAttribute('data-loading');
+    expect(button).toHaveAccessibleName('Guardar Cargando');
+    await userEvent.click(button);
+    await userEvent.keyboard('{Enter}');
+    expect(onClick).not.toHaveBeenCalled();
+    expect(onSubmit).not.toHaveBeenCalled();
+  });
+
+  it('loadingLabel cambia el texto de carga', () => {
+    render(
+      <Button loading loadingLabel="Guardando">
+        Guardar
+      </Button>,
+    );
+    expect(screen.getByRole('button')).toHaveAccessibleName(/Guardando$/);
+  });
+
   it('es un botón nativo con su texto como nombre accesible', () => {
     render(<Button startIcon={<IconCheck />}>Guardar</Button>);
     const button = screen.getByRole('button', { name: 'Guardar' });

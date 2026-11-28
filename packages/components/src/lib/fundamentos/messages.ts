@@ -12,6 +12,8 @@ export interface Messages {
   'passwordInput.show': string;
   /** Botón para limpiar en `SearchInput`. */
   'searchInput.clear': string;
+  /** Nombre de `Spinner` y texto de `Button` mientras carga. */
+  'spinner.label': string;
   /** Botón para quitar un `Tag`, con su texto. */
   'tag.remove': (text: string) => string;
   /** Botón para quitar un `Tag` cuyo contenido no es texto (sin `removeLabel`). */
@@ -22,6 +24,7 @@ const es: Messages = {
   'label.optional': '(opcional)',
   'passwordInput.show': 'Mostrar contraseña',
   'searchInput.clear': 'Limpiar búsqueda',
+  'spinner.label': 'Cargando',
   'tag.remove': (text) => `Quitar ${text}`,
   'tag.removeUnnamed': 'Quitar',
 };
@@ -30,6 +33,7 @@ const en: Messages = {
   'label.optional': '(optional)',
   'passwordInput.show': 'Show password',
   'searchInput.clear': 'Clear search',
+  'spinner.label': 'Loading',
   'tag.remove': (text) => `Remove ${text}`,
   'tag.removeUnnamed': 'Remove',
 };

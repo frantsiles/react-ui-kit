@@ -1,0 +1,38 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Skeleton, Spinner } from '@my-ui/components';
+import { DoDont } from '../docs/components/do-dont';
+import * as SpinnerStories from './spinner.stories';
+
+<Meta of={SpinnerStories} />
+
+# Spinner
+
+Indica que algo está cargando y no se sabe cuánto falta.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** esperas cortas de duración desconocida: guardar, enviar, cargar una lista chica.
+- **No:**
+  - **Si se conoce el avance** (subir un archivo), usa una barra de progreso con valor.
+  - **Si se carga contenido con forma conocida** (tarjetas, una tabla), usa [`Skeleton`](?path=/docs/carga-skeleton--docs): el layout no salta cuando llega el contenido.
+  - **En un botón**, no lo pongas a mano: usa `Button` con `loading`.
+
+<DoDont
+  doContent={<span className="flex items-center gap-2 text-ui-body-sm text-ui-fg-muted"><Spinner size="sm" decorative />Cargando facturas…</span>}
+  doCaption="Un texto dice qué se está cargando."
+  dontContent={<span className="flex gap-4"><Spinner /><Spinner /><Spinner /></span>}
+  dontCaption="Un spinner por cada pieza de la página distrae y no dice qué falta."
+/>
+
+## Accesibilidad
+
+- Es una barra de progreso indeterminada (`role="progressbar"` sin `aria-valuenow`) con el nombre "Cargando", traducido por `LocaleProvider` y sobrescribible con `label`. No hay patrón de la ARIA APG específico; sigue la definición de [`progressbar`](https://www.w3.org/TR/wai-aria-1.2/#progressbar).
+- **No se anuncia solo** al aparecer. Si la espera importa, anúnciala con una región `role="status"` que ya exista en la página (ver la historia *Con texto*) y marca la zona que carga con `aria-busy="true"`.
+- Con texto visible al lado, usa `decorative`: el texto ya lo dice.
+- **Movimiento reducido:** gira más lento (3 s por vuelta) en vez de detenerse; quieto parecería que la página se colgó.
+- **Colores forzados:** usa `currentColor`, así toma el color del texto del sistema.
+
+<Stories />

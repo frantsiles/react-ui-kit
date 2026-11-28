@@ -45,11 +45,12 @@ El hover de `solid` mezcla el color del tono con el del texto. En claro oscurece
 - **`type="button"` por defecto**, para que un botón dentro de un `<form>` no lo envíe por accidente. El que envía lleva `type="submit"`.
 - **Deshabilitado con cuidado:** un botón deshabilitado sale del orden de Tab y no explica por qué. Muchas veces es mejor dejarlo activo y mostrar el error al usarlo; si lo deshabilitas, explica cerca qué falta.
 - **Ancho:** el botón mide lo que su contenido. Para ocupar todo el ancho (formularios en móvil), pasa `className="w-full"`.
-- **Estado de carga:** llegará con `Spinner`, en esta misma fase.
+- **Estado de carga:** `loading` mientras la acción está en curso. A diferencia de `disabled`, el botón **conserva el foco** y su ancho, ignora los clics (tampoco envía el formulario) y suma "Cargando" a su nombre (`loadingLabel` lo cambia). Cuando termine, anuncia el resultado (un mensaje en pantalla o, desde la Fase 3, un `Toast`).
 
 ## Accesibilidad
 
 - Patrón [ARIA APG: Button](https://www.w3.org/WAI/ARIA/apg/patterns/button/). Al ser `<button>` nativo, `Enter` y `Espacio` lo activan y `disabled` funciona sin JavaScript.
+- `loading` usa `aria-disabled="true"` y no `disabled`: un botón deshabilitado pierde el foco y quien usa teclado o lector de pantalla queda perdido en la página.
 - Los íconos (`startIcon`, `endIcon`) son decorativos (`aria-hidden`): el nombre es el texto.
 - Alto mínimo de 32/40/48 px según `size` (28/36/44 en densidad compacta): siempre más que el área táctil de 24 px.
 - **Colores forzados:** el borde es transparente, no inexistente, así el navegador lo dibuja y el botón conserva su forma.

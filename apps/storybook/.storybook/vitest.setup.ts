@@ -11,6 +11,15 @@ const theme = inject('theme');
 // [data-story-root] para poder capturarla.
 globalThis.__UI_TEST_THEME__ = theme;
 
+/*
+ * Animaciones (Spinner, Skeleton) en pausa en su primer cuadro: así la captura
+ * es estable y siempre igual.
+ */
+const pauseAnimations = document.createElement('style');
+pauseAnimations.textContent =
+  '*, *::before, *::after { animation-play-state: paused !important; animation-delay: 0s !important; }';
+document.head.append(pauseAnimations);
+
 interface StoryContext {
   story?: { parameters?: { visual?: { disable?: boolean } } };
 }

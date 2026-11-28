@@ -1,6 +1,8 @@
+export { Avatar, type AvatarProps } from './lib/acciones/avatar';
 export { Badge, type BadgeProps } from './lib/fundamentos/badge';
 export { Button, type ButtonProps, type ButtonVariant } from './lib/acciones/button';
 export { ButtonGroup, type ButtonGroupProps } from './lib/acciones/button-group';
+export { Divider, type DividerProps } from './lib/acciones/divider';
 export { ErrorMessage, type ErrorMessageProps } from './lib/fundamentos/error-message';
 export { Field, useFieldControl, type FieldProps } from './lib/fundamentos/field';
 export { HelpText, type HelpTextProps } from './lib/fundamentos/help-text';
@@ -15,6 +17,8 @@ export {
 export type { Messages } from './lib/fundamentos/messages';
 export { PasswordInput, type PasswordInputProps } from './lib/fundamentos/password-input';
 export { SearchInput, type SearchInputProps } from './lib/fundamentos/search-input';
+export { Skeleton, type SkeletonProps, type SkeletonShape } from './lib/acciones/skeleton';
+export { Spinner, type SpinnerProps } from './lib/acciones/spinner';
 export { Tag, type TagProps } from './lib/fundamentos/tag';
 export { Textarea, type TextareaProps } from './lib/fundamentos/textarea';
 export { VisuallyHidden, type VisuallyHiddenProps } from './lib/fundamentos/visually-hidden';

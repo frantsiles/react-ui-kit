@@ -1,0 +1,45 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Skeleton } from '@my-ui/components';
+import { DoDont } from '../docs/components/do-dont';
+import * as SkeletonStories from './skeleton.stories';
+
+<Meta of={SkeletonStories} />
+
+# Skeleton
+
+Reserva el lugar de un contenido que todavía carga, con su forma aproximada.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** contenido con forma conocida que tarda más de medio segundo: tarjetas, listas, perfiles.
+- **No:** acciones (guardar, enviar): ahí va `Button` con `loading` o un [`Spinner`](?path=/docs/carga-spinner--docs).
+
+`shape`:
+
+| Forma | Para |
+| --- | --- |
+| `text` | Líneas de texto. `lines` fija cuántas; la última es más corta |
+| `rect` | Imágenes, gráficos, tarjetas |
+| `circle` | Avatares |
+
+El tamaño se cambia con `className` (`h-32`, `w-1/2`, `size-12`).
+
+<DoDont
+  doContent={<div className="flex w-full items-center gap-3"><Skeleton shape="circle" /><Skeleton lines={2} /></div>}
+  doCaption="Parecido a lo que va a aparecer: el layout no salta."
+  dontContent={<Skeleton shape="rect" className="h-12" />}
+  dontCaption="Un bloque genérico no ayuda a anticipar el contenido."
+/>
+
+## Accesibilidad
+
+- Es **decorativo** (`aria-hidden`): el lector de pantalla no lo ve. Quien lo usa debe anunciar la carga:
+  - `aria-busy="true"` en la región que carga, mientras carga;
+  - una región `role="status"` que ya exista en la página, con "Cargando…" y luego "Listo".
+- **Movimiento reducido:** el pulso se detiene.
+- **Colores forzados:** tiene un borde transparente que el navegador pinta, así la forma se sigue viendo.
+
+<Stories />

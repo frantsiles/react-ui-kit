@@ -1,0 +1,36 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Avatar } from '@my-ui/components';
+import { DoDont } from '../docs/components/do-dont';
+import * as AvatarStories from './avatar.stories';
+
+<Meta of={AvatarStories} />
+
+# Avatar
+
+Imagen o iniciales que representan a una persona o a una entidad.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** junto a contenido de una persona (comentarios, autor, cuenta en el encabezado).
+- **No:** como botón. Si al hacer clic abre algo, envuélvelo en un `Button` o en el menú de la cuenta (Fase 4), con su propio nombre accesible.
+
+Las iniciales salen de la primera y la última palabra de `name` ("Ana María Pérez" → "AP"). Quedan **debajo** de la imagen: se ven mientras carga y si falla.
+
+<DoDont
+  doContent={<span className="flex items-center gap-2"><Avatar name="Luis Mora" decorative />Luis Mora</span>}
+  doCaption={<>Con el nombre al lado, <code>decorative</code>: se lee una sola vez.</>}
+  dontContent={<span className="flex items-center gap-2"><Avatar name="Luis Mora" />Luis Mora</span>}
+  dontCaption={'El lector anuncia "Luis Mora, imagen, Luis Mora".'}
+/>
+
+## Accesibilidad
+
+- `role="img"` con `name` como nombre accesible. La imagen interna tiene `alt=""`: el nombre ya está en el contenedor.
+- Con el nombre escrito al lado, usa `decorative` (`aria-hidden`).
+- Las iniciales usan el idioma de `LocaleProvider` para las mayúsculas (en turco, "i" → "İ").
+- El color de fondo es el mismo para todas las personas: no codifica nada.
+
+<Stories />
