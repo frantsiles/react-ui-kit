@@ -74,10 +74,25 @@ const sizeClasses: Record<DialogSize, string> = {
 };
 
 /**
+ * Opciones internas para otros diálogos del kit (`AlertDialog`). No se
+ * exportan desde el índice: la API pública es la de `Dialog`.
+ */
+export type DialogFrameProps = DialogProps & {
+  role?: 'dialog' | 'alertdialog' | undefined;
+  /** Id del texto que describe el diálogo, si no es `description`. */
+  describedBy?: string | undefined;
+};
+
+/**
  * Ventana modal: bloquea la página de atrás hasta que se cierra. El foco queda
  * atrapado adentro, `Escape` la cierra y el foco vuelve a donde estaba.
  */
-export function Dialog({
+export function Dialog(props: DialogProps) {
+  return <DialogFrame {...props} />;
+}
+
+/** Estructura común de `Dialog` y `AlertDialog`. */
+export function DialogFrame({
   children,
   title,
   headingLevel = 2,
@@ -91,12 +106,15 @@ export function Dialog({
   onOpenChange,
   className,
   ref,
+  role = 'dialog',
+  describedBy,
   'aria-label': ariaLabel,
-}: DialogProps) {
+}: DialogFrameProps) {
   const messages = useMessages();
   const titleId = useId();
   const descriptionId = useId();
   const label: DialogLabel = ariaLabel ? { 'aria-label': ariaLabel } : { 'aria-labelledby': titleId };
+  const descriptionRef = describedBy ?? (description != null ? descriptionId : undefined);
 
   return (
     <ModalOverlay
@@ -120,8 +138,9 @@ export function Dialog({
       >
         <AriaDialog
           ref={ref}
+          role={role}
           {...label}
-          {...(description != null && { 'aria-describedby': descriptionId })}
+          {...(descriptionRef && { 'aria-describedby': descriptionRef })}
           className={cn('flex min-h-0 w-full flex-col rounded-lg', focusRing)}
         >
           {({ close }) => (

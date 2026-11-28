@@ -1,0 +1,63 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as AlertDialogStories from './alert-dialog.stories';
+
+<Meta of={AlertDialogStories} />
+
+# AlertDialog
+
+Pide confirmar una acción importante o destructiva antes de hacerla.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** acciones que no se pueden deshacer o que tienen consecuencias serias: eliminar, enviar, publicar, descartar cambios.
+- **No:**
+  - **Acciones que se pueden deshacer:** hazlas directamente y ofrece "Deshacer" en un `Toast`. Confirmar todo acostumbra a confirmar sin leer.
+  - **Formularios o más de una decisión:** usa [`Dialog`](?path=/docs/overlays-dialog--docs).
+  - **Avisos que no piden decidir nada:** usa [`Alert`](?path=/docs/avisos-alert--docs).
+
+## Uso
+
+```tsx
+<DialogTrigger>
+  <Button tone="danger" variant="outline">Eliminar factura</Button>
+  <AlertDialog
+    title="¿Eliminar la factura 2041?"
+    confirmLabel="Eliminar"
+    onConfirm={() => eliminarFactura(2041)}
+  >
+    Se elimina para todo el equipo. Esta acción no se puede deshacer.
+  </AlertDialog>
+</DialogTrigger>
+```
+
+- **`title`:** la decisión, como pregunta ("¿Eliminar la factura 2041?").
+- **`children`:** las consecuencias.
+- **`confirmLabel`:** el verbo de la acción ("Eliminar", "Enviar"). Nunca "Aceptar" o "Sí": el botón tiene que entenderse solo.
+- **`tone`:** `danger` (por defecto) para lo destructivo, `primary` para lo demás.
+- **`onConfirm` asíncrono:**
+  - Mientras corre, el botón muestra que carga.
+  - Si se resuelve, el diálogo se cierra.
+  - Si se rechaza, queda abierto: muestra el error en `children`, por ejemplo con un `Alert`.
+- **Sin disparador:** `open` y `onOpenChange`, igual que `Dialog`.
+- **"Cancelar":** su texto sale de `useMessages()`; se cambia con `cancelLabel`.
+
+## Accesibilidad
+
+Patrón: [Alert Dialog de WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/).
+
+- **`role="alertdialog"`:**
+  - el nombre es el título;
+  - la descripción es el mensaje (`aria-describedby`);
+  - el lector de pantalla lee las dos al abrir.
+- **El foco empieza en "Cancelar"**, la opción menos destructiva: un `Enter` apurado no borra nada.
+- **Salidas:** "Cancelar", `Escape` o confirmar. Un clic afuera **no** lo cierra y no hay botón de cerrar, para que la decisión sea explícita.
+- **Lo demás es igual que `Dialog`:**
+  - el foco queda atrapado;
+  - la página de atrás queda inerte;
+  - al cerrar, el foco vuelve al botón que lo abrió.
+- **El color no es la única señal:** el título y el texto del botón dicen qué pasa (WCAG 1.4.1).
+
+<Stories />
