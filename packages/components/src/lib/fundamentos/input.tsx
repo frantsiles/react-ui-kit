@@ -6,17 +6,17 @@ import { mergeRefs } from '../internal/merge-refs';
 import type { ControlSize } from './types';
 
 export interface InputProps extends Omit<ComponentProps<'input'>, 'size'> {
-  size?: ControlSize;
+  size?: ControlSize | undefined;
   /** Marca el campo como inválido. Dentro de un Field con `error` es automático. */
-  invalid?: boolean;
+  invalid?: boolean | undefined;
   /** Ícono decorativo al inicio. */
-  startIcon?: ReactNode;
+  startIcon?: ReactNode | undefined;
   /** Ícono decorativo al final. */
-  endIcon?: ReactNode;
+  endIcon?: ReactNode | undefined;
   /** Contenido interactivo al final (p. ej. un botón). */
-  endAdornment?: ReactNode;
+  endAdornment?: ReactNode | undefined;
   /** Clases para el `<input>` interno. `className` se aplica al contenedor visible. */
-  inputClassName?: string;
+  inputClassName?: string | undefined;
 }
 
 /**

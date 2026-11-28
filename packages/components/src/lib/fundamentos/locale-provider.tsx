@@ -12,7 +12,7 @@ export interface LocaleProviderProps {
    * traducir a un idioma que el kit no trae o para cambiar un texto puntual.
    */
   messages?: Partial<Messages> | undefined;
-  children?: ReactNode;
+  children?: ReactNode | undefined;
 }
 
 interface LocaleContextValue {

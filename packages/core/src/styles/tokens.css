@@ -183,6 +183,16 @@
      ven, así que la superficie se aclara un poco. */
   --ui-color-surface-raised: rgb(255 255 255);
 
+  /* Hover de fondos sólidos (Button solid). Se mezcla con el color del texto:
+     en claro oscurece y en oscuro aclara, así el contraste con el texto del
+     botón (--ui-color-surface) sube en vez de bajar, en los tres temas. Se
+     recalcula solo en cada tema porque toma los valores del propio tema. */
+  --ui-color-fg-hover: color-mix(in srgb, var(--ui-color-fg), var(--ui-color-surface) 20%);
+  --ui-color-primary-hover: color-mix(in srgb, var(--ui-color-primary), var(--ui-color-fg) 20%);
+  --ui-color-success-hover: color-mix(in srgb, var(--ui-color-success), var(--ui-color-fg) 20%);
+  --ui-color-warning-hover: color-mix(in srgb, var(--ui-color-warning), var(--ui-color-fg) 20%);
+  --ui-color-danger-hover: color-mix(in srgb, var(--ui-color-danger), var(--ui-color-fg) 20%);
+
   --ui-focus-ring-width: 2px;
   --ui-focus-ring-offset: 2px;
 

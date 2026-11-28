@@ -1,0 +1,36 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { IconButton } from '@my-ui/components';
+import { IconTrash, IconX } from '@my-ui/icons';
+import { DoDont } from '../docs/components/do-dont';
+import * as IconButtonStories from './icon-button.stories';
+
+<Meta of={IconButtonStories} />
+
+# IconButton
+
+Botón de solo ícono, para acciones muy conocidas en espacios reducidos: cerrar, editar, más acciones. Cuadrado, del alto del control. Por defecto es `ghost` y `neutral`.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** acciones repetidas en filas de una tabla, barras de herramientas, cerrar un panel.
+- **No:**
+  - **Si el ícono no es universal**, usa un [`Button`](?path=/docs/acciones-button--docs) con texto, o con ícono y texto. Un ícono solo es ambiguo para muchas personas, y hasta que exista Tooltip (Fase 3) no hay cómo explicarlo al pasar el mouse.
+  - **Para la acción principal de una pantalla**, usa un Button con texto.
+
+<DoDont
+  doContent={<IconButton label="Eliminar factura 1024" tone="danger"><IconTrash /></IconButton>}
+  doCaption='label="Eliminar factura 1024": dice la acción y sobre qué. En una tabla, el lector de pantalla distingue cada fila.'
+  dontContent={<IconButton label="Basurero"><IconTrash /></IconButton>}
+  dontCaption='label="Basurero" describe el dibujo, no la acción. "Eliminar" a secas tampoco alcanza si hay muchos en la página.'
+/>
+
+## Accesibilidad
+
+- **`label` es obligatorio** (el tipo no compila sin él) y se convierte en el `aria-label` del botón. El ícono es decorativo.
+- Tamaños de 32/40/48 px (28/36/44 en compacta): siempre más que el área táctil de 24 × 24 px (WCAG 2.5.8).
+- Mismo teclado, foco y estados que `Button`.
+
+<Stories />

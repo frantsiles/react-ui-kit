@@ -1,7 +1,10 @@
 export { Badge, type BadgeProps } from './lib/fundamentos/badge';
+export { Button, type ButtonProps, type ButtonVariant } from './lib/acciones/button';
+export { ButtonGroup, type ButtonGroupProps } from './lib/acciones/button-group';
 export { ErrorMessage, type ErrorMessageProps } from './lib/fundamentos/error-message';
 export { Field, useFieldControl, type FieldProps } from './lib/fundamentos/field';
 export { HelpText, type HelpTextProps } from './lib/fundamentos/help-text';
+export { IconButton, type IconButtonProps } from './lib/acciones/icon-button';
 export { Input, type InputProps } from './lib/fundamentos/input';
 export { Label, type LabelProps } from './lib/fundamentos/label';
 export {

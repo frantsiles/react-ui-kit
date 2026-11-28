@@ -21,18 +21,18 @@ export interface FieldProps extends Omit<ComponentProps<'div'>, 'children'> {
   /** Etiqueta visible del campo. */
   label: ReactNode;
   /** Oculta la etiqueta visualmente pero la mantiene para lectores de pantalla. Úsalo con moderación (p. ej. un buscador con ícono obvio). */
-  hideLabel?: boolean;
+  hideLabel?: boolean | undefined;
   /** Texto de ayuda bajo el control. */
-  description?: ReactNode;
+  description?: ReactNode | undefined;
   /** Mensaje de error. Si tiene contenido, el control queda marcado como inválido. */
-  error?: ReactNode;
-  required?: boolean;
+  error?: ReactNode | undefined;
+  required?: boolean | undefined;
   /** Muestra "(opcional)" junto a la etiqueta. */
-  optional?: boolean;
-  disabled?: boolean;
-  size?: ControlSize;
+  optional?: boolean | undefined;
+  disabled?: boolean | undefined;
+  size?: ControlSize | undefined;
   /** id del control. Por defecto se genera con useId (estable con SSR). */
-  id?: string;
+  id?: string | undefined;
   /** El control: Input, Textarea, PasswordInput, SearchInput… */
   children: ReactNode;
 }

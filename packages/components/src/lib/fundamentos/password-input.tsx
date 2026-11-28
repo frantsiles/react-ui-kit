@@ -7,7 +7,7 @@ import { useMessages } from './locale-provider';
 
 export interface PasswordInputProps extends Omit<InputProps, 'type' | 'endAdornment'> {
   /** Nombre accesible del botón para mostrar/ocultar. Por defecto el del `LocaleProvider` ("Mostrar contraseña"). */
-  toggleLabel?: string;
+  toggleLabel?: string | undefined;
 }
 
 /**

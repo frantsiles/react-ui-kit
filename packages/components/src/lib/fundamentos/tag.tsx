@@ -10,20 +10,20 @@ import type { Tone } from './types';
 export interface TagProps extends Omit<ComponentProps<'span'>, 'children'> {
   children: ReactNode;
   /** Tono semántico. Acompáñalo con texto o ícono: el color solo no basta. */
-  tone?: Tone;
-  size?: 'sm' | 'md';
+  tone?: Tone | undefined;
+  size?: 'sm' | 'md' | undefined;
   /** Ícono decorativo antes del texto, p. ej. `<IconCheck />`. */
-  icon?: ReactNode;
+  icon?: ReactNode | undefined;
   /** Si se pasa, el tag muestra un botón para quitarlo. */
-  onRemove?: () => void;
+  onRemove?: (() => void) | undefined;
   /**
    * Nombre accesible del botón de quitar. Por defecto "Quitar {texto}" (en el
    * idioma del `LocaleProvider`) cuando
    * el contenido es texto; si no lo es, este prop es obligatorio.
    */
-  removeLabel?: string;
+  removeLabel?: string | undefined;
   /** Deshabilita el botón de quitar. */
-  disabled?: boolean;
+  disabled?: boolean | undefined;
 }
 
 const sizeClasses = {
