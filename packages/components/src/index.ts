@@ -78,6 +78,7 @@ export {
   type LocaleProviderProps,
 } from './lib/fundamentos/locale-provider';
 export type { Messages } from './lib/fundamentos/messages';
+export { Multiselect, type MultiselectProps } from './lib/colecciones/multiselect';
 export { NativeSelect, type NativeSelectProps } from './lib/acciones/native-select';
 export { PasswordInput, type PasswordInputProps } from './lib/fundamentos/password-input';
 export {
