@@ -1,0 +1,48 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Checkbox } from '@my-ui/components';
+import { DoDont } from '../docs/components/do-dont';
+import * as CheckboxStories from './checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+Casilla para marcar o desmarcar una opción. Es un `<input type="checkbox">` nativo.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:**
+  - una opción que se acepta o no ("Acepto los términos", "Recordarme");
+  - varias opciones independientes de una lista: usa [`CheckboxGroup`](?path=/docs/selección-checkboxgroup--docs).
+- **No:**
+  - **Opciones excluyentes** (solo una a la vez): usa `RadioGroup`.
+  - **Un ajuste que se aplica al instante** (activar notificaciones): usa `Switch`. Una casilla se confirma con un botón de enviar.
+  - **Para una acción** (borrar, abrir), usa `Button`.
+
+<DoDont
+  doContent={<Checkbox defaultChecked>Enviarme el resumen semanal</Checkbox>}
+  doCaption="Una afirmación positiva: marcada significa sí."
+  dontContent={<Checkbox>No enviarme el resumen semanal</Checkbox>}
+  dontCaption="Una negación obliga a pensar dos veces qué significa marcarla."
+/>
+
+## Reglas de uso
+
+- **Toda la etiqueta es clicable**, no solo la caja. El texto es su nombre accesible.
+- **Ayuda y error** con `description` y `error`: quedan alineados con el texto y conectados con `aria-describedby`. Valida al enviar, no al marcar.
+- **`indeterminate`** para la casilla "todas" de una lista con algunas marcadas. Es solo visual y para lectores de pantalla; al hacer clic, decide tú qué pasa (lo habitual: marcar todas).
+- Controlada con `checked` + `onChange`, o no controlada con `defaultChecked`. Envía `value` (por defecto `"on"`) en el formulario cuando está marcada.
+
+## Accesibilidad
+
+- Patrón [ARIA APG: Checkbox](https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/). Al ser nativa, `Espacio` la marca, `Tab` pasa a la siguiente y `required` funciona sin JavaScript.
+- El estado mixto se expone como `aria-checked="mixed"` (la propiedad `indeterminate` del DOM) y como `data-indeterminate` para tests.
+- **Área táctil:** la etiqueta mide al menos 24 px de alto (WCAG 2.5.8).
+- **Contraste:** el borde de la caja usa `border-ui-border` (3:1 sobre el fondo, WCAG 1.4.11). Marcada, la caja es del color primario con la marca en `surface`.
+- **Colores forzados:** la caja conserva su borde y la marca usa `currentColor`, así se ve con los colores del sistema.
+- `ref` apunta al `<input>`, y las demás props (`name`, `value`, `aria-*`, eventos) van a él. `className` va al contenedor.
+
+<Stories />
