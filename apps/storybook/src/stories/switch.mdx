@@ -1,0 +1,45 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Switch } from '@my-ui/components';
+import { DoDont } from '../docs/components/do-dont';
+import * as SwitchStories from './switch.stories';
+
+<Meta of={SwitchStories} />
+
+# Switch
+
+Interruptor de encendido y apagado. Es un `<input type="checkbox" role="switch">` nativo.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** ajustes que **se aplican al instante**, sin botón de guardar (notificaciones, vista compacta, modo oscuro).
+- **No:**
+  - **En un formulario que se envía** ("Acepto los términos", "Suscribirme al boletín"): usa [`Checkbox`](?path=/docs/selección-checkbox--docs). Un interruptor promete un efecto inmediato.
+  - **Para elegir entre dos opciones con nombre** (Mensual / Anual): usa [`RadioGroup`](?path=/docs/selección-radiogroup--docs).
+
+<DoDont
+  doContent={<Switch defaultChecked>Notificaciones por correo</Switch>}
+  doCaption="La etiqueta nombra lo que se enciende; encendido significa sí."
+  dontContent={<Switch>Desactivar notificaciones</Switch>}
+  dontCaption="Una negación: ¿encendido desactiva? Obliga a pensar dos veces."
+/>
+
+## Reglas de uso
+
+- **La etiqueta es un sustantivo** (lo que se enciende), no un verbo ni una pregunta. No agregues "Sí/No" ni "Activado/Desactivado" al lado: lo dice la posición.
+- **Efecto inmediato y visible.** Si el cambio no se ve en pantalla, anúncialo con una región `role="status"` (ver *Ajustes*). Si tarda, muestra que está en curso y vuelve atrás si falla.
+- Controlado con `checked` + `onChange`, o no controlado con `defaultChecked`.
+
+## Accesibilidad
+
+- Patrón [ARIA APG: Switch](https://www.w3.org/WAI/ARIA/apg/patterns/switch/), en su variante sobre un checkbox nativo: `Espacio` lo cambia y el lector anuncia "interruptor, activado / desactivado".
+- **No depende del color:** la posición de la perilla indica el estado; el color lo refuerza.
+- **Contraste:** el riel apagado tiene borde `border-ui-border` (3:1); la perilla, `fg-muted` sobre el riel.
+- **Colores forzados:** la perilla es un SVG con `currentColor`, así sigue visible con los colores del sistema.
+- **RTL:** la perilla usa posiciones lógicas (`start`), así se mueve hacia el lado correcto.
+- **Movimiento reducido:** la perilla salta sin animación (duraciones del kit).
+- **Área táctil:** la etiqueta entera es clicable y mide al menos 24 px de alto.
+
+<Stories />

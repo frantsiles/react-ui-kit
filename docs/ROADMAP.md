@@ -72,7 +72,7 @@ Sin componentes visibles: prepara todo lo que las fases siguientes necesitan.
 | Spinner, Skeleton, Divider, Avatar (y `loading` en Button) | Fundamentos | 🚧 |
 | Checkbox, CheckboxGroup (Checkbox) | Field, Label | 🚧 |
 | Radio, RadioGroup (Radio Group) | Field, Label | 🚧 |
-| Switch (Switch) | Field, Label | ⏳ |
+| Switch (Switch) | Field, Label | 🚧 |
 | NativeSelect | Field | ⏳ |
 | Alert / Banner en línea | Icon, Button | ⏳ |
 
