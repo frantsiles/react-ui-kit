@@ -1,0 +1,53 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Field, NativeSelect } from '@my-ui/components';
+import { DoDont } from '../docs/components/do-dont';
+import * as NativeSelectStories from './native-select.stories';
+
+<Meta of={NativeSelectStories} />
+
+# NativeSelect
+
+Lista desplegable sobre un `<select>` nativo. Va dentro de un [`Field`](?path=/docs/inputs-field--docs), como `Input`.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** elegir **una** opción de una lista conocida de más de 6 elementos (país, provincia, zona horaria), sobre todo en formularios que se usan en el teléfono: el sistema muestra su propia lista, cómoda y familiar.
+- **No:**
+  - **Pocas opciones** (2 a 6) que conviene ver todas a la vez: usa [`RadioGroup`](?path=/docs/selección-radiogroup--docs).
+  - **Búsqueda** entre muchas opciones, opciones con íconos o descripciones: usa `Combobox` o `Select` (Fase 4).
+  - **Varias opciones a la vez:** usa `CheckboxGroup` o `Multiselect` (Fase 4). `multiple` no está permitido: el `<select multiple>` nativo es difícil de usar.
+
+## Uso
+
+```tsx
+<Field label="País" required>
+  <NativeSelect name="pais" placeholder="Elige un país" autoComplete="country">
+    <option value="cr">Costa Rica</option>
+    <option value="mx">México</option>
+  </NativeSelect>
+</Field>
+```
+
+- Las opciones son `<option>` y `<optgroup>` nativos.
+- `placeholder` agrega una primera opción vacía (`value=""`), elegida al inicio y en gris. Con `required`, el formulario no se envía mientras siga elegida.
+- Controlado (`value` + `onChange`) o no controlado (`defaultValue`).
+- `autoComplete` (`country`, `address-level1`…) permite que el navegador lo llene solo.
+
+<DoDont
+  doContent={<Field label="Provincia" className="w-full"><NativeSelect placeholder="Elige una provincia"><option>San José</option></NativeSelect></Field>}
+  doCaption="Una opción vacía que pide elegir: nadie queda con un valor que no eligió."
+  dontContent={<Field label="Provincia" className="w-full"><NativeSelect><option>San José</option></NativeSelect></Field>}
+  dontCaption="La primera opción queda elegida sola y se envía aunque la persona no la haya visto."
+/>
+
+## Accesibilidad
+
+- Es el `<select>` del navegador: el teclado (flechas, letras para saltar, `Alt + ↓` para abrir), el lector de pantalla y la lista en el teléfono son los del sistema. Se anuncia como "cuadro combinado" con su etiqueta, ayuda y error del `Field`.
+- La flecha es decorativa. El foco usa `focusRing` en el propio `<select>`.
+- **Tema oscuro:** los temas declaran `color-scheme`, así la lista del sistema también se muestra oscura.
+- **Colores forzados:** el borde y la flecha (`currentColor`) siguen visibles.
+
+<Stories />

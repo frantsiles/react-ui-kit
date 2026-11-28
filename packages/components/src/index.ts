@@ -24,6 +24,7 @@ export {
   type LocaleProviderProps,
 } from './lib/fundamentos/locale-provider';
 export type { Messages } from './lib/fundamentos/messages';
+export { NativeSelect, type NativeSelectProps } from './lib/acciones/native-select';
 export { PasswordInput, type PasswordInputProps } from './lib/fundamentos/password-input';
 export { Radio, type RadioProps } from './lib/acciones/radio';
 export { RadioGroup, type RadioGroupProps } from './lib/acciones/radio-group';
