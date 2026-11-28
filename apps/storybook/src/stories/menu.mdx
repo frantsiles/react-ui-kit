@@ -1,0 +1,62 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as MenuStories from './menu.stories';
+
+<Meta of={MenuStories} />
+
+# Menu
+
+Lista de acciones que abre un botón: "Editar", "Duplicar", "Eliminar".
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** agrupar acciones sobre un elemento (una fila, una tarjeta, un documento) que no entran o no conviene mostrar como botones.
+- **No:**
+  - **Elegir un valor en un formulario:** [`Select`](?path=/docs/colecciones-select--docs) o [`Combobox`](?path=/docs/colecciones-combobox--docs). Un menú ejecuta acciones, no guarda valores.
+  - **Navegación del sitio** (enlaces a páginas): `NavBar` o `SideNav` (Fase 5). Un `role="menu"` hace que el lector de pantalla trate los enlaces como comandos.
+  - **Una o dos acciones:** muéstralas como botones; esconderlas en un menú cuesta un clic más.
+  - **Contenido interactivo** (un formulario corto, filtros): [`Popover`](?path=/docs/overlays-popover--docs).
+
+## Uso
+
+```tsx
+<MenuTrigger>
+  <Button variant="outline">Acciones</Button>
+  <Menu onAction={(accion) => ejecutar(accion)}>
+    <MenuItem value="editar" icon={<IconPencil />} shortcut="Ctrl+E">Editar</MenuItem>
+    <MenuItem value="duplicar">Duplicar</MenuItem>
+    <MenuSeparator />
+    <MenuItem value="eliminar" tone="danger">Eliminar</MenuItem>
+  </Menu>
+</MenuTrigger>
+```
+
+- **`MenuTrigger`:** primero el botón (`Button` o `IconButton` del kit), después el `Menu`. `open` / `onOpenChange` para controlarlo, o `defaultOpen`.
+- **Acciones:** `onAction` del `Menu` recibe el `value` del ítem elegido; cada `MenuItem` también acepta su propio `onAction`. El menú se cierra solo al elegir.
+- **Ítems:** `icon` (decorativo), `description` (texto secundario), `shortcut` (solo lo muestra: el atajo lo implementa la app), `tone="danger"` para lo destructivo y `disabled`.
+- **Grupos:** `MenuSection` con título, o `MenuSeparator` entre grupos sin título.
+- **Nombre:** por defecto el menú se llama como el botón que lo abre. Con un `IconButton` genérico ("Más opciones"), usa `aria-label` para decir de qué son las acciones.
+
+### Hacer y evitar
+
+- **Hacer:** textos en verbo y cortos ("Duplicar", no "Duplicación de la factura").
+- **Hacer:** las acciones destructivas al final, separadas, con `tone="danger"` y una confirmación ([`AlertDialog`](?path=/docs/overlays-alertdialog--docs)) o la opción de deshacer ([`Toast`](?path=/docs/overlays-toast--docs)).
+- **Evitar:** deshabilitar sin explicar por qué. Si una acción nunca aplica, mejor no mostrarla.
+- **Evitar:** menús de más de 10 ítems; agrupa o reconsidera.
+
+## Accesibilidad
+
+Patrón: [Menu Button de WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/). Lo implementa React Aria.
+
+- **El botón:** anuncia que abre un menú (`aria-haspopup`) y si está abierto (`aria-expanded`).
+- **El menú:** `role="menu"` con ítems `role="menuitem"`. El nombre del ítem es todo su texto visible, con la descripción y el atajo (WCAG 2.5.3).
+- **Teclado:**
+  - Con el foco en el botón: `Enter`, `Espacio` o flecha abajo abren el menú con el foco en el primer ítem; flecha arriba, en el último.
+  - En el menú: flechas, `Inicio` y `Fin` recorren (saltan los deshabilitados); escribir letras salta al ítem que empieza así.
+  - `Enter` o `Espacio` ejecutan y cierran; `Escape` o `Tab` cierran sin hacer nada. El foco vuelve al botón.
+- **Lo destructivo** no depende solo del color: el texto del ítem lo dice ("Eliminar").
+- **Táctil:** cada ítem mide al menos 32 px de alto (WCAG 2.5.8).
+
+<Stories />
