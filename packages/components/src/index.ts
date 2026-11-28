@@ -2,6 +2,8 @@ export { Avatar, type AvatarProps } from './lib/acciones/avatar';
 export { Badge, type BadgeProps } from './lib/fundamentos/badge';
 export { Button, type ButtonProps, type ButtonVariant } from './lib/acciones/button';
 export { ButtonGroup, type ButtonGroupProps } from './lib/acciones/button-group';
+export { Checkbox, type CheckboxProps } from './lib/acciones/checkbox';
+export { CheckboxGroup, type CheckboxGroupProps } from './lib/acciones/checkbox-group';
 export { Divider, type DividerProps } from './lib/acciones/divider';
 export { ErrorMessage, type ErrorMessageProps } from './lib/fundamentos/error-message';
 export { Field, useFieldControl, type FieldProps } from './lib/fundamentos/field';

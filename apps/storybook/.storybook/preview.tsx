@@ -100,6 +100,8 @@ const preview: Preview = {
           ['Field', 'Input', 'PasswordInput', 'SearchInput', 'Textarea'],
           'Acciones',
           ['Button', 'IconButton', 'ButtonGroup', 'Link'],
+          'Selección',
+          ['Checkbox', 'CheckboxGroup'],
           'Carga',
           ['Spinner', 'Skeleton'],
           'Contenido',
