@@ -12,12 +12,13 @@ const theme = inject('theme');
 globalThis.__UI_TEST_THEME__ = theme;
 
 /*
- * Animaciones (Spinner, Skeleton) en pausa en su primer cuadro: así la captura
- * es estable y siempre igual.
+ * Animaciones (Spinner, Skeleton) en pausa en su primer cuadro y transiciones
+ * instantáneas (la entrada de un Popover): así la captura es estable y siempre
+ * igual, sin cuadros a medio fundido.
  */
 const pauseAnimations = document.createElement('style');
 pauseAnimations.textContent =
-  '*, *::before, *::after { animation-play-state: paused !important; animation-delay: 0s !important; }';
+  '*, *::before, *::after { animation-play-state: paused !important; animation-delay: 0s !important; transition-duration: 0s !important; transition-delay: 0s !important; }';
 document.head.append(pauseAnimations);
 
 interface StoryContext {

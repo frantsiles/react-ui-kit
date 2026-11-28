@@ -1,4 +1,5 @@
 import { createContext, use, useMemo, type ReactNode } from 'react';
+import { I18nProvider } from 'react-aria-components';
 import { defaultLocale, directionFor, messagesFor, type Messages } from './messages';
 
 export interface LocaleProviderProps {
@@ -41,6 +42,9 @@ const LocaleContext = createContext<LocaleContextValue>({
  *
  * Una prop del componente (`toggleLabel`, `clearLabel`…) siempre gana sobre
  * el proveedor.
+ *
+ * También define el idioma de React Aria (anuncios, formatos, posición de los
+ * popovers en RTL), para que haya un solo lugar donde elegirlo (ADR 0005).
  */
 export function LocaleProvider({ locale, messages, children }: LocaleProviderProps) {
   const parent = use(LocaleContext);
@@ -58,7 +62,11 @@ export function LocaleProvider({ locale, messages, children }: LocaleProviderPro
     };
   }, [resolvedLocale, messages, parent.locale, parent.overrides]);
 
-  return <LocaleContext value={value}>{children}</LocaleContext>;
+  return (
+    <LocaleContext value={value}>
+      <I18nProvider locale={resolvedLocale}>{children}</I18nProvider>
+    </LocaleContext>
+  );
 }
 
 /** Idioma y dirección actuales (`{ locale: 'es', direction: 'ltr' }`). */

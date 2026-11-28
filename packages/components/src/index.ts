@@ -49,6 +49,13 @@ export {
 export type { Messages } from './lib/fundamentos/messages';
 export { NativeSelect, type NativeSelectProps } from './lib/acciones/native-select';
 export { PasswordInput, type PasswordInputProps } from './lib/fundamentos/password-input';
+export {
+  Popover,
+  PopoverTrigger,
+  type PopoverPlacement,
+  type PopoverProps,
+  type PopoverTriggerProps,
+} from './lib/overlays/popover';
 export { Radio, type RadioProps } from './lib/acciones/radio';
 export { RadioGroup, type RadioGroupProps } from './lib/acciones/radio-group';
 export { SearchInput, type SearchInputProps } from './lib/fundamentos/search-input';

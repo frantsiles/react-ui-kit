@@ -104,6 +104,8 @@ const preview: Preview = {
           ['Checkbox', 'CheckboxGroup', 'RadioGroup', 'Switch'],
           'Layout',
           ['Stack', 'Inline', 'Grid', 'Container', 'Card', 'ScrollArea'],
+          'Overlays',
+          ['Popover'],
           'Avisos',
           'Carga',
           ['Spinner', 'Skeleton'],
