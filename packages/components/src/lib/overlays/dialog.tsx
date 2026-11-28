@@ -73,14 +73,38 @@ const sizeClasses: Record<DialogSize, string> = {
   lg: 'max-w-(--container-ui-lg)',
 };
 
+/** Clases de disposición de cada capa: la de `Dialog` o la de `Drawer`. */
+export interface DialogLayout {
+  /** El fondo que cubre la página. */
+  overlay: string;
+  /** El panel (`Modal`): posición, tamaño, bordes y transición. */
+  panel: string;
+  /** El elemento con el rol, sobre todo para la forma del anillo de foco. */
+  dialog: string;
+}
+
+function centeredLayout(size: DialogSize): DialogLayout {
+  return {
+    overlay: 'items-center justify-center p-ui-md',
+    panel: cn(
+      'max-h-full w-full rounded-lg border',
+      'transition-[opacity,scale] data-entering:scale-95 data-exiting:scale-95',
+      sizeClasses[size],
+    ),
+    dialog: 'rounded-lg',
+  };
+}
+
 /**
- * Opciones internas para otros diálogos del kit (`AlertDialog`). No se
- * exportan desde el índice: la API pública es la de `Dialog`.
+ * Opciones internas para otros diálogos del kit (`AlertDialog`, `Drawer`). No
+ * se exportan desde el índice: la API pública es la de cada componente.
  */
 export type DialogFrameProps = DialogProps & {
   role?: 'dialog' | 'alertdialog' | undefined;
   /** Id del texto que describe el diálogo, si no es `description`. */
   describedBy?: string | undefined;
+  /** Disposición propia; si falta, centrado con el ancho de `size`. */
+  layout?: DialogLayout | undefined;
 };
 
 /**
@@ -91,7 +115,7 @@ export function Dialog(props: DialogProps) {
   return <DialogFrame {...props} />;
 }
 
-/** Estructura común de `Dialog` y `AlertDialog`. */
+/** Estructura común de `Dialog`, `AlertDialog` y `Drawer`. */
 export function DialogFrame({
   children,
   title,
@@ -108,6 +132,7 @@ export function DialogFrame({
   ref,
   role = 'dialog',
   describedBy,
+  layout = centeredLayout(size),
   'aria-label': ariaLabel,
 }: DialogFrameProps) {
   const messages = useMessages();
@@ -124,15 +149,16 @@ export function DialogFrame({
       {...(onOpenChange && { onOpenChange })}
       className={cn(
         // dvh: en móviles no queda tapado por la barra del navegador
-        'fixed inset-0 z-(--ui-z-modal) flex h-dvh items-center justify-center bg-ui-overlay p-ui-md',
+        'fixed inset-0 z-(--ui-z-modal) flex h-dvh bg-ui-overlay',
         'transition-opacity duration-(--ui-duration-slow) ease-ui-enter data-entering:opacity-0 data-exiting:opacity-0 data-exiting:ease-ui-exit',
+        layout.overlay,
       )}
     >
       <Modal
         className={cn(
-          'flex max-h-full w-full rounded-lg border border-ui-border-subtle bg-ui-surface-raised text-ui-fg shadow-ui-modal',
-          'transition-[opacity,scale] duration-(--ui-duration-slow) ease-ui-enter data-entering:scale-95 data-exiting:scale-95',
-          sizeClasses[size],
+          'flex border-ui-border-subtle bg-ui-surface-raised text-ui-fg shadow-ui-modal',
+          'duration-(--ui-duration-slow) ease-ui-enter data-exiting:ease-ui-exit',
+          layout.panel,
           className,
         )}
       >
@@ -141,7 +167,7 @@ export function DialogFrame({
           role={role}
           {...label}
           {...(descriptionRef && { 'aria-describedby': descriptionRef })}
-          className={cn('flex min-h-0 w-full flex-col rounded-lg', focusRing)}
+          className={cn('flex min-h-0 w-full flex-col', layout.dialog, focusRing)}
         >
           {({ close }) => (
             <DialogLabelContext value={label}>

@@ -105,7 +105,7 @@ const preview: Preview = {
           'Layout',
           ['Stack', 'Inline', 'Grid', 'Container', 'Card', 'ScrollArea'],
           'Overlays',
-          ['Popover', 'Tooltip', 'Dialog', 'AlertDialog'],
+          ['Popover', 'Tooltip', 'Dialog', 'AlertDialog', 'Drawer'],
           'Avisos',
           'Carga',
           ['Spinner', 'Skeleton'],
