@@ -34,6 +34,11 @@ export const semanticTokens: TokenSpec[] = [
     role: 'Fondo de bloques elevados (Card, Popover, Dialog)',
     kind: 'surface',
   },
+  {
+    name: '--ui-color-overlay',
+    role: 'Fondo que oscurece la página detrás de un modal (semitransparente)',
+    kind: 'surface',
+  },
   { name: '--ui-color-fg', role: 'Texto principal', kind: 'text' },
   {
     name: '--ui-color-fg-muted',

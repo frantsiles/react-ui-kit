@@ -10,6 +10,8 @@ export interface Messages {
   'alert.dismiss': string;
   /** Prefijo oculto de `Alert` según su tono, para no depender del color ni del ícono. */
   'alert.tone': (tone: 'neutral' | 'primary' | 'success' | 'warning' | 'danger') => string;
+  /** Botón para cerrar un `Dialog`. */
+  'dialog.close': string;
   /** Etiqueta del campo opcional en `Label` / `Field`. */
   'label.optional': string;
   /** Aviso de `Link` con `external`, después del texto del enlace. */
@@ -30,6 +32,7 @@ const es: Messages = {
   'alert.dismiss': 'Cerrar aviso',
   'alert.tone': (tone) =>
     ({ neutral: 'Nota', primary: 'Información', success: 'Listo', warning: 'Advertencia', danger: 'Error' })[tone],
+  'dialog.close': 'Cerrar',
   'label.optional': '(opcional)',
   'link.newTab': '(se abre en una pestaña nueva)',
   'passwordInput.show': 'Mostrar contraseña',
@@ -43,6 +46,7 @@ const en: Messages = {
   'alert.dismiss': 'Dismiss',
   'alert.tone': (tone) =>
     ({ neutral: 'Note', primary: 'Info', success: 'Success', warning: 'Warning', danger: 'Error' })[tone],
+  'dialog.close': 'Close',
   'label.optional': '(optional)',
   'link.newTab': '(opens in a new tab)',
   'passwordInput.show': 'Show password',

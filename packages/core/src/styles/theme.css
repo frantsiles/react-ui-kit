@@ -32,6 +32,7 @@
   --color-ui-warning-soft: var(--ui-color-warning-soft);
 
   --color-ui-surface-raised: var(--ui-color-surface-raised);
+  --color-ui-overlay: var(--ui-color-overlay);
   --color-ui-fg-hover: var(--ui-color-fg-hover);
   --color-ui-primary-hover: var(--ui-color-primary-hover);
   --color-ui-success-hover: var(--ui-color-success-hover);
