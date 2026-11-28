@@ -28,6 +28,10 @@ export interface Messages {
   'tag.remove': (text: string) => string;
   /** Botón para quitar un `Tag` cuyo contenido no es texto (sin `removeLabel`). */
   'tag.removeUnnamed': string;
+  /** Botón para cerrar un toast. */
+  'toast.close': string;
+  /** Nombre de la región donde aparecen los toasts (se llega con F6). */
+  'toast.region': string;
 }
 
 const es: Messages = {
@@ -43,6 +47,8 @@ const es: Messages = {
   'spinner.label': 'Cargando',
   'tag.remove': (text) => `Quitar ${text}`,
   'tag.removeUnnamed': 'Quitar',
+  'toast.close': 'Cerrar notificación',
+  'toast.region': 'Notificaciones',
 };
 
 const en: Messages = {
@@ -58,6 +64,8 @@ const en: Messages = {
   'spinner.label': 'Loading',
   'tag.remove': (text) => `Remove ${text}`,
   'tag.removeUnnamed': 'Remove',
+  'toast.close': 'Close notification',
+  'toast.region': 'Notifications',
 };
 
 /** Idiomas con textos incluidos en el kit. Para otros, pasa `messages`. */

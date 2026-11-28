@@ -1,0 +1,81 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as ToastStories from './toast.stories';
+
+<Meta of={ToastStories} />
+
+# Toast
+
+Notificación breve sobre el resultado de una acción. Aparece abajo, no interrumpe y se va sola.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:**
+  - confirmar que algo terminó ("Factura enviada");
+  - ofrecer "Deshacer" después de una acción que se puede revertir;
+  - avisar de algo que pasó en segundo plano ("Sincronización completa").
+- **No:**
+  - **Errores de un formulario:** muéstralos junto al campo con `Field` o en un [`Alert`](?path=/docs/avisos-alert--docs) arriba del formulario. Un toast se va y el error sigue ahí.
+  - **Información que hay que leer para seguir:** usa un `Alert` en la página. Un toast es fácil de pasar por alto.
+  - **Decisiones:** usa [`AlertDialog`](?path=/docs/overlays-alertdialog--docs). Un toast no debe preguntar nada.
+  - **El resultado ya se ve en la pantalla** (el elemento apareció en la lista): no hace falta avisar dos veces.
+
+## Uso
+
+Pon una `ToastRegion` una sola vez, cerca de la raíz de la app y dentro del `LocaleProvider`. Después llama a `toast()` desde cualquier parte:
+
+```tsx
+// Una vez, en la raíz
+<LocaleProvider locale="es">
+  <App />
+  <ToastRegion />
+</LocaleProvider>
+
+// Donde ocurre la acción
+toast({ title: 'Factura enviada', tone: 'success' });
+
+toast({
+  title: 'Factura 2041 eliminada',
+  action: { label: 'Deshacer', onAction: () => restaurar(2041) },
+});
+```
+
+- **`title`:** el resultado en pocas palabras. Nombra el toast.
+- **`description`:** detalle opcional.
+- **`tone`:** `neutral` (por defecto), `primary`, `success`, `warning` o `danger`. Suma un ícono y un prefijo oculto ("Error:"), así el tipo no depende del color.
+- **`action`:** una sola acción, corta ("Deshacer", "Ver"). Al usarla, el toast se cierra.
+- **`timeout`:**
+  - Por defecto se cierra a los 5 segundos. Nunca antes, aunque pases menos.
+  - Con `action` o `tone="danger"` **no se cierra solo**: da tiempo a actuar o a leer el error.
+  - `false` para que espere siempre a que lo cierren.
+- **Cerrar desde el código:** `toast()` devuelve un id; `toast.dismiss(id)` cierra ese y `toast.dismissAll()` todos. `onClose` avisa cuando se cerró.
+- **Varios a la vez:** se ven hasta 5; el más nuevo queda abajo.
+- **Textos internos:** "Cerrar notificación" y el nombre de la región ("Notificaciones") salen de `useMessages()`. El nombre se cambia con `aria-label` en la `ToastRegion`.
+
+### Hacer y evitar
+
+- **Hacer:** decir qué pasó, no "Operación exitosa".
+- **Hacer:** preferir "Deshacer" en un toast antes que pedir confirmación, cuando la acción se puede revertir.
+- **Evitar:** poner en un toast lo único que dice que algo falló sin dejar otro rastro en la página.
+- **Evitar:** enlaces o acciones que solo existen en el toast. Si se va, tienen que poder hacerse por otro camino.
+
+## Accesibilidad
+
+Patrón: live region ([WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/) y [WCAG 4.1.3](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html)).
+
+- **Se anuncia sin mover el foco:** el lector de pantalla lee el título y el detalle cuando aparece, y el foco queda donde estaba (WCAG 4.1.3).
+- **Región con nombre:** "Notificaciones". Con `F6` se salta a ella y de vuelta a la página; `Tab` recorre sus botones.
+- **Cada toast** tiene `role="alertdialog"`: el nombre es el título y la descripción es el detalle.
+- **Al cerrarse uno con el foco adentro**, el foco pasa al siguiente o vuelve a donde estaba.
+- **Tiempo suficiente (WCAG 2.2.1):**
+  - mínimo 5 segundos;
+  - la cuenta se pausa mientras el mouse o el foco están encima;
+  - los que tienen acción o son errores no se van solos.
+- **El color no es la única señal:** ícono y prefijo oculto según el tono (WCAG 1.4.1).
+- **Movimiento:** entra con un fundido corto; con "reducir movimiento" aparece sin animación.
+
+> La implementación usa el Toast de React Aria, que todavía está en beta. Queda aislado detrás de esta API ([ADR 0005](https://github.com/frantsiles/react-ui-kit/blob/main/docs/adr/0005-react-aria-como-libreria-headless.md)): si cambia, `toast()` y `ToastRegion` siguen igual.
+
+<Stories />
