@@ -1,0 +1,38 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ElevationPreview } from '../components/token-preview';
+
+<Meta title="Fundamentos/Elevación y capas" />
+
+# Elevación y capas
+
+## Elevación
+
+Tres niveles, cada uno ligado a un **tipo de bloque**, no a un tamaño de sombra:
+
+<ElevationPreview />
+
+```tsx
+<div className="rounded-lg border border-ui-border-subtle bg-ui-surface-raised shadow-ui-raised">…</div>
+```
+
+- Usa siempre `bg-ui-surface-raised` junto con la sombra. En oscuro las sombras casi no se ven, así que la superficie se aclara un poco para separar el bloque del fondo.
+- **Pon también un borde.** En alto contraste las sombras valen `none`, y en el modo de colores forzados de Windows el navegador las elimina: el borde es lo que sigue marcando el límite del bloque.
+
+## Capas (z-index)
+
+| Token | Valor | Para qué |
+| --- | --- | --- |
+| `--ui-z-sticky` | 100 | Encabezados fijos, columnas fijas de tablas |
+| `--ui-z-modal` | 300 | Dialog, Drawer y su fondo |
+| `--ui-z-popover` | 400 | Popover, Menu, lista de Select |
+| `--ui-z-toast` | 500 | Notificaciones |
+| `--ui-z-tooltip` | 600 | Tooltips |
+
+```tsx
+<header className="sticky top-0 z-(--ui-z-sticky)">…</header>
+```
+
+- Los saltos de 100 dejan espacio para que tu app intercale capas propias.
+- El popover va **sobre** el modal: un Select o un Menu abierto dentro de un Dialog tiene que verse encima.
+- No inventes números (`z-50`, `z-[9999]`): usa la capa que corresponde, o crea un token si falta una.
+- Lo que se muestra en el *top layer* del navegador (`<dialog>` con `showModal()`, la API `popover`) queda encima de todo sin z-index.

@@ -1,0 +1,62 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { DensityPreview } from '../components/token-preview';
+
+<Meta title="Fundamentos/Breakpoints y densidad" />
+
+# Breakpoints y densidad
+
+## Dos tipos de responsivo
+
+- **La página** se adapta al ancho de la pantalla: **breakpoints** (media queries).
+- **Los bloques** (Card, Panel, listas) se adaptan al ancho de **su contenedor**: **container queries**. Así el mismo Card funciona en una columna angosta y en una ancha, sin saber dónde lo pusieron.
+
+### Breakpoints de pantalla
+
+| Variante | Desde |
+| --- | --- |
+| `ui-sm:` | 40rem (640 px) |
+| `ui-md:` | 48rem (768 px) |
+| `ui-lg:` | 64rem (1024 px) |
+| `ui-xl:` | 80rem (1280 px) |
+
+### Tamaños de contenedor
+
+| Variante | Desde |
+| --- | --- |
+| `@ui-xs:` | 20rem (320 px) |
+| `@ui-sm:` | 24rem (384 px) |
+| `@ui-md:` | 36rem (576 px) |
+| `@ui-lg:` | 48rem (768 px) |
+| `@ui-xl:` | 64rem (1024 px) |
+
+```tsx
+<article className="@container">
+  <div className="flex flex-col gap-3 @ui-md:flex-row">…</div>
+</article>
+```
+
+- Los componentes usan las variantes con prefijo `ui-`, no `sm:` o `md:`: así no cambian si tu app redefine los breakpoints de Tailwind.
+- Diseña desde 320 px hacia arriba (WCAG 1.4.10: sin scroll horizontal a 320 px, que es 1280 px con zoom al 400 %).
+- Las media queries no aceptan variables CSS, por eso los valores están fijos en `theme.css` y repetidos en `breakpoints` de `@my-ui/core` para usarlos desde JavaScript:
+
+```ts
+import { mediaQuery } from '@my-ui/core';
+
+const isDesktop = window.matchMedia(mediaQuery('lg')).matches;
+```
+
+## Densidad
+
+`data-density="compact"` en `<html>` o en una sección reduce el alto de los controles. Úsalo en tablas, barras de filtros o paneles de administración, donde entra más información por pantalla.
+
+<DensityPreview />
+
+| Token | Cómoda (por defecto) | Compacta |
+| --- | --- | --- |
+| `--ui-control-height-sm` | 32 px | 28 px |
+| `--ui-control-height-md` | 40 px | 36 px |
+| `--ui-control-height-lg` | 48 px | 44 px |
+
+- Incluso en compacta, todos los controles superan el área táctil mínima de 24 × 24 px (WCAG 2.5.8).
+- La densidad se hereda: una sección con `data-theme` propio dentro de una sección compacta sigue siendo compacta.
+- No uses la densidad compacta en formularios principales ni en pantallas táctiles.

@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import type { BreakpointName } from './tokens.js';
 
 /**
  * Common size variants used across components
@@ -213,9 +214,9 @@ export interface InteractiveProps
 export type AnimationDuration = 'fast' | 'normal' | 'slow';
 
 /**
- * Responsive breakpoint values
+ * Breakpoints de pantalla del kit (ver `breakpoints` en tokens.ts)
  */
-export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type Breakpoint = BreakpointName;
 
 /**
  * Responsive value type that can accept different values for different breakpoints

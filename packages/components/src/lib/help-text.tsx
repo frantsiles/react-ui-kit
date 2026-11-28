@@ -8,5 +8,5 @@ export type HelpTextProps = ComponentProps<'p'>;
  * `Field` se conecta al control con aria-describedby automáticamente.
  */
 export function HelpText({ className, ...props }: HelpTextProps) {
-  return <p className={cn('text-sm text-ui-fg-muted', className)} {...props} />;
+  return <p className={cn('text-ui-body-sm text-ui-fg-muted', className)} {...props} />;
 }

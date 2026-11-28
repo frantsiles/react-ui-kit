@@ -15,7 +15,7 @@ export type ErrorMessageProps = ComponentProps<'p'>;
 export function ErrorMessage({ className, children, ...props }: ErrorMessageProps) {
   return (
     <p
-      className={cn('flex items-start gap-1.5 text-sm text-ui-danger', className)}
+      className={cn('flex items-start gap-1.5 text-ui-body-sm text-ui-danger', className)}
       {...props}
     >
       <IconCircleAlert size="sm" className="mt-0.5" />

@@ -25,8 +25,8 @@ export interface TagProps extends Omit<ComponentProps<'span'>, 'children'> {
 }
 
 const sizeClasses = {
-  sm: 'min-h-6 gap-1 px-2 text-xs',
-  md: 'min-h-7 gap-1.5 px-2.5 text-sm',
+  sm: 'min-h-6 gap-1 px-2 text-ui-caption',
+  md: 'min-h-7 gap-1.5 px-2.5 text-ui-body-sm',
 } as const;
 
 /**
@@ -60,7 +60,7 @@ export function Tag({
   return (
     <span
       className={cn(
-        'inline-flex max-w-full items-center rounded-full border font-medium',
+        'inline-flex max-w-full items-center rounded-full border font-ui-medium',
         sizeClasses[size],
         toneClasses[tone],
         onRemove && 'pe-0.5',

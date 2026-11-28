@@ -43,6 +43,8 @@ export default defineConfig(() => ({
     watch: false,
     globals: true,
     environment: 'node',
+    // Sin esto Vitest reemplaza los .css por cadenas vacías, también con ?raw
+    css: true,
     include: ['{src,tests}/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
     coverage: {

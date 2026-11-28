@@ -17,9 +17,9 @@ export interface LabelProps extends ComponentProps<'label'> {
 }
 
 const sizeClasses: Record<ControlSize, string> = {
-  sm: 'text-sm',
-  md: 'text-sm',
-  lg: 'text-base',
+  sm: 'text-ui-label',
+  md: 'text-ui-label',
+  lg: 'text-ui-body font-ui-medium',
 };
 
 /**
@@ -39,7 +39,7 @@ export function Label({
   return (
     <label
       className={cn(
-        'inline-flex flex-wrap items-baseline gap-x-1 font-medium text-ui-fg',
+        'inline-flex flex-wrap items-baseline gap-x-1 text-ui-fg',
         sizeClasses[size],
         disabled && 'text-ui-fg-disabled',
         className,
@@ -55,7 +55,7 @@ export function Label({
         </span>
       )}
       {optional && !required && (
-        <span className="font-normal text-ui-fg-muted">{optionalText}</span>
+        <span className="font-ui-regular text-ui-fg-muted">{optionalText}</span>
       )}
     </label>
   );

@@ -131,9 +131,11 @@ No uses `isDisabled`, `color`, `kind`, `type` (para variantes) ni sinónimos de 
 - **Tailwind v4 con tokens semánticos** (prefijo `ui-`): `bg-ui-surface`, `text-ui-fg`, `border-ui-danger`. Nunca colores de la paleta (`bg-blue-600`) ni hexadecimales.
 - **Combina clases con `cn()`** de `@my-ui/core`, siempre con el `className` del usuario al final para que pueda sobrescribir.
 - **Foco:** usa `focusRing` (o `fieldFocusRing` en contenedores de inputs) de `@my-ui/core`. Nunca `outline-none` sin reemplazo, ni foco hecho con `box-shadow`.
-- **Tamaños de control** con `min-h-ui-control-{sm,md,lg}`; texto de 16 px en móvil (`text-base sm:text-sm`) para que iOS no haga zoom.
-- **Responsivo:** los controles ocupan el ancho de su contenedor (`w-full`); el layout lo decide quien los usa. Para bloques de contenido, container queries.
-- **Movimiento:** duraciones con `--ui-duration-*`, que ya respetan `prefers-reduced-motion`.
+- **Tipografía** con estilos por rol (`text-ui-body`, `text-ui-label`, `text-ui-heading-md`…), no con `text-sm` o `font-medium` sueltos. Pesos con `font-ui-*`.
+- **Tamaños de control** con `min-h-ui-control-{sm,md,lg}` (responden a la densidad); texto de 16 px en móvil (`text-ui-body ui-sm:text-ui-body-sm`) para que iOS no haga zoom.
+- **Elevación** con `shadow-ui-{raised,overlay,modal}` + `bg-ui-surface-raised` + borde (en alto contraste no hay sombras). **Capas** con `z-(--ui-z-…)`, nunca números sueltos.
+- **Responsivo:** los controles ocupan el ancho de su contenedor (`w-full`); el layout lo decide quien los usa. Breakpoints con prefijo `ui-` (`ui-sm:`), nunca `sm:`; para bloques de contenido, container queries (`@ui-md:`).
+- **Movimiento:** `duration-(--ui-duration-{fast,normal,slow})` y `ease-ui-*`, que ya respetan `prefers-reduced-motion`. Nunca milisegundos fijos.
 - **El color nunca va solo:** estado = color + ícono o texto.
 
 ## Accesibilidad

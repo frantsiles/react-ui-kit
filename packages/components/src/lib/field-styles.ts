@@ -6,9 +6,9 @@ import type { ControlSize } from './types';
  * 14px desde `sm` para los tamaños sm/md.
  */
 export const controlSizeClasses: Record<ControlSize, string> = {
-  sm: 'min-h-ui-control-sm gap-1.5 px-2.5 text-base sm:text-sm',
-  md: 'min-h-ui-control-md gap-2 px-3 text-base sm:text-sm',
-  lg: 'min-h-ui-control-lg gap-2 px-4 text-base',
+  sm: 'min-h-ui-control-sm gap-1.5 px-2.5 text-ui-body ui-sm:text-ui-body-sm',
+  md: 'min-h-ui-control-md gap-2 px-3 text-ui-body ui-sm:text-ui-body-sm',
+  lg: 'min-h-ui-control-lg gap-2 px-4 text-ui-body',
 };
 
 export function fieldBoxClasses({
@@ -22,7 +22,7 @@ export function fieldBoxClasses({
 }) {
   return cn(
     'w-full rounded-md border bg-ui-surface text-ui-fg',
-    'transition-colors duration-[var(--ui-duration-fast)]',
+    'transition-colors duration-(--ui-duration-fast) ease-ui-standard',
     fieldFocusRing,
     invalid ? 'border-ui-danger' : 'border-ui-border hover:border-ui-border-hover',
     readOnly && 'bg-ui-surface-muted',
