@@ -1,6 +1,9 @@
-import { createContext, use, type ComponentProps, type ReactNode } from 'react';
+import { createContext, use, type ComponentProps, type MouseEvent, type ReactNode } from 'react';
 import { cn, focusRing } from '@my-ui/core';
+import { useMessages } from '../fundamentos/locale-provider';
 import type { ControlSize, Tone } from '../fundamentos/types';
+import { VisuallyHidden } from '../fundamentos/visually-hidden';
+import { Spinner } from './spinner';
 
 export type ButtonVariant = 'solid' | 'outline' | 'ghost';
 
@@ -24,6 +27,13 @@ export interface ButtonProps extends ComponentProps<'button'> {
   startIcon?: ReactNode;
   /** Ícono decorativo después del texto. */
   endIcon?: ReactNode;
+  /**
+   * Acción en curso: muestra un `Spinner`, ignora los clics (tampoco envía el
+   * formulario) y **conserva el foco**, a diferencia de `disabled`.
+   */
+  loading?: boolean | undefined;
+  /** Texto que se suma al nombre mientras carga. Por defecto "Cargando". */
+  loadingLabel?: string | undefined;
 }
 
 /* Clases escritas completas para que Tailwind las encuentre. */
@@ -64,6 +74,8 @@ const disabledClasses: Record<ButtonVariant, string> = {
   ghost: 'disabled:text-ui-fg-disabled',
 };
 
+const spinnerSize: Record<ControlSize, ControlSize> = { sm: 'sm', md: 'sm', lg: 'md' };
+
 export const buttonSizeClasses: Record<ControlSize, string> = {
   sm: 'min-h-ui-control-sm gap-1.5 px-3 text-ui-label',
   md: 'min-h-ui-control-md gap-2 px-4 text-ui-label',
@@ -75,7 +87,7 @@ export function buttonClasses(variant: ButtonVariant, tone: Tone) {
   return cn(
     'inline-flex shrink-0 cursor-pointer items-center justify-center rounded-md border select-none',
     'transition-colors duration-(--ui-duration-fast) ease-ui-standard',
-    'disabled:cursor-not-allowed',
+    'disabled:cursor-not-allowed data-loading:cursor-wait',
     variantClasses[variant](tone),
     disabledClasses[variant],
     focusRing,
@@ -107,6 +119,8 @@ export function useButtonDefaults(
  *   Usa `type="submit"` en el botón que envía.
  * - Una acción principal por vista (`solid`); el resto, `outline` o `ghost`.
  * - Para navegar a otra página usa un enlace, no un botón.
+ * - `loading` usa `aria-disabled` en vez de `disabled`: el foco no se pierde
+ *   y el lector de pantalla lee "Guardar Cargando".
  */
 export function Button({
   variant: variantProp,
@@ -115,11 +129,15 @@ export function Button({
   disabled: disabledProp,
   startIcon,
   endIcon,
+  loading = false,
+  loadingLabel,
   type = 'button',
   className,
   children,
+  onClick,
   ...props
 }: ButtonProps) {
+  const messages = useMessages();
   const { size, variant, tone, disabled } = useButtonDefaults({
     size: sizeProp,
     variant: variantProp,
@@ -127,13 +145,8 @@ export function Button({
     disabled: disabledProp,
   });
 
-  return (
-    <button
-      type={type}
-      disabled={disabled}
-      className={cn(buttonClasses(variant, tone), buttonSizeClasses[size], className)}
-      {...props}
-    >
+  const content = (
+    <>
       {startIcon && (
         <span aria-hidden="true" className="inline-flex shrink-0">
           {startIcon}
@@ -144,6 +157,46 @@ export function Button({
         <span aria-hidden="true" className="inline-flex shrink-0">
           {endIcon}
         </span>
+      )}
+    </>
+  );
+
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    if (loading) {
+      // También evita el envío del formulario (incluido Enter en un campo)
+      event.preventDefault();
+      return;
+    }
+    onClick?.(event);
+  };
+
+  return (
+    <button
+      type={type}
+      disabled={disabled}
+      aria-disabled={loading && !disabled ? true : undefined}
+      data-loading={loading ? '' : undefined}
+      className={cn(
+        buttonClasses(variant, tone),
+        buttonSizeClasses[size],
+        loading && 'relative',
+        className,
+      )}
+      onClick={handleClick}
+      {...props}
+    >
+      {loading ? (
+        <>
+          {/* El contenido sigue ahí, transparente: el botón no cambia de ancho y conserva su nombre */}
+          <span className="inline-flex items-center gap-[inherit] opacity-0">{content}</span>
+          <span className="absolute inset-0 flex items-center justify-center">
+            <Spinner decorative size={spinnerSize[size]} />
+          </span>
+          {/* El espacio separa las palabras del nombre también donde no hay CSS (p. ej. jsdom) */}{' '}
+          <VisuallyHidden>{loadingLabel ?? messages['spinner.label']}</VisuallyHidden>
+        </>
+      ) : (
+        content
       )}
     </button>
   );

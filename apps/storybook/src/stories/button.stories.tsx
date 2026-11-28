@@ -15,6 +15,7 @@ const meta = {
     tone: 'primary',
     size: 'md',
     disabled: false,
+    loading: false,
     onClick: fn(),
   },
   argTypes: {
@@ -115,6 +116,20 @@ export const Deshabilitado: Story = {
     for (const button of within(canvasElement).getAllByRole('button')) {
       await expect(button).toBeDisabled();
     }
+  },
+};
+
+/**
+ * Mientras la acción está en curso: el botón conserva el foco y su ancho, ignora
+ * los clics y el lector de pantalla lee "Guardar cambios Cargando".
+ */
+export const Cargando: Story = {
+  args: { loading: true },
+  play: async ({ args, canvasElement }) => {
+    const button = within(canvasElement).getByRole('button', { name: 'Guardar cambios Cargando' });
+    await expect(button).toHaveAttribute('aria-disabled', 'true');
+    await userEvent.click(button);
+    await expect(args.onClick).not.toHaveBeenCalled();
   },
 };
 

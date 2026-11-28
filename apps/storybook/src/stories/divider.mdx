@@ -1,0 +1,25 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as DividerStories from './divider.stories';
+
+<Meta of={DividerStories} />
+
+# Divider
+
+Línea que separa grupos de contenido. Es un `<hr>` nativo.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** entre secciones con significado distinto (datos personales / facturación), o para agrupar botones de una barra.
+- **No:** para dar aire. El espacio entre bloques lo da el layout (`Stack`, Fase 2), no una línea.
+
+## Accesibilidad
+
+- Rol [`separator`](https://www.w3.org/TR/wai-aria-1.2/#separator) nativo del `<hr>`. No es enfocable: no es el separador que cambia de tamaño (*window splitter*).
+- En vertical declara `aria-orientation="vertical"`.
+- `decorative` lo quita del árbol de accesibilidad (`role="none"`). Úsalo cuando la línea es solo visual, como entre botones.
+- El color es `border-ui-border-subtle`. No transmite información: si la separación importa, la explica un título.
+
+<Stories />
