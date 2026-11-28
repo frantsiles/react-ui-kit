@@ -1,0 +1,62 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as TabsStories from './tabs.stories';
+
+<Meta of={TabsStories} />
+
+# Tabs
+
+Pestañas: muestran una sección de contenido a la vez, sin cambiar de página.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** contenido relacionado que se puede dividir en secciones al mismo nivel, que la persona no necesita comparar entre sí ("Detalle", "Pagos", "Notas" de una factura).
+- **No:**
+  - **Navegar entre páginas** (cambia la URL): usa enlaces, como `NavBar` o `SideNav` (Fase 5). Unas pestañas no son un menú del sitio.
+  - **Secciones que conviene ver juntas o en orden:** muéstralas una debajo de otra, o con `Accordion` (Fase 5) si son largas.
+  - **Pasos de un proceso** (primero esto, después aquello): `Stepper` (Fase 5).
+  - **Elegir un valor en un formulario:** `RadioGroup` o un `ButtonGroup` de opciones.
+
+## Uso
+
+```tsx
+<Tabs defaultValue="detalle">
+  <TabList aria-label="Factura 2041">
+    <Tab value="detalle">Detalle</Tab>
+    <Tab value="pagos">Pagos</Tab>
+  </TabList>
+  <TabPanel value="detalle">…</TabPanel>
+  <TabPanel value="pagos">…</TabPanel>
+</Tabs>
+```
+
+- **Piezas:** `Tabs` envuelve todo; `TabList` lleva los `Tab`; cada `TabPanel` se une con su `Tab` por `value`.
+- **Nombre:** `TabList` necesita `aria-label` o `aria-labelledby` (por ejemplo, el título de la sección).
+- **Valor:** `value` con `onChange`, o `defaultValue`. Sin ninguno, empieza en la primera pestaña habilitada. `onChange` solo se llama cuando la persona cambia de pestaña.
+- **`orientation="vertical"`:** pestañas en columna, a un costado; para muchas pestañas o nombres largos.
+- **`activation="manual"`:** las flechas solo mueven el foco y `Enter` / `Espacio` eligen. Úsalo si mostrar un panel es lento (carga datos), para no cargar cada uno al pasar.
+- **Muchas pestañas:** la fila se desplaza en vez de partirse en dos líneas.
+
+### Hacer y evitar
+
+- **Hacer:** nombres de una o dos palabras, sin repetir el contexto ("Pagos", no "Pagos de la factura").
+- **Hacer:** si el estado debe sobrevivir a recargar la página, guárdalo en la URL con `value` / `onChange`.
+- **Evitar:** pestañas dentro de pestañas.
+- **Evitar:** deshabilitar pestañas sin explicar por qué; si nunca aplica, mejor no mostrarla.
+
+## Accesibilidad
+
+Patrón: [Tabs de WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/). Lo implementa React Aria.
+
+- **Roles:** `tablist` con nombre, `tab` con `aria-selected` y `aria-controls`, y `tabpanel` nombrado por su pestaña.
+- **Teclado:**
+  - `Tab` entra a la lista en la pestaña elegida (una sola parada) y el siguiente `Tab` entra al panel.
+  - Flechas izquierda y derecha (arriba y abajo en vertical) recorren las pestañas, dan la vuelta y saltan las deshabilitadas; `Inicio` y `Fin` van a la primera y la última. En RTL las flechas se invierten.
+  - Con activación automática, moverse elige; con manual, `Enter` o `Espacio`.
+- **Panel enfocable:** si el panel no tiene nada enfocable, el panel mismo recibe el foco, para que se pueda llegar a su contenido y leerlo.
+- **La elegida** se marca con una barra y el color del texto, no solo con color (WCAG 1.4.1).
+- **Táctil:** cada pestaña mide 40 px de alto (WCAG 2.5.8).
+
+<Stories />
