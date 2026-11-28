@@ -4,8 +4,9 @@ name: Actualizar capturas
 # (apps/storybook/src/stories/__screenshots__) en el mismo entorno que el CI y
 # las commitea en la rama del PR. Ver docs/adr/0006-regresion-visual.md.
 #
-# Uso: agregar la etiqueta "actualizar-capturas" al PR. Antes de mergear,
-# revisa las imágenes en la pestaña "Files changed" del PR.
+# Uso: agregar la etiqueta "actualizar-capturas" al PR. GitHub deja el CI del
+# commit del bot esperando aprobación: apruébalo en el PR ("Approve workflows
+# to run"). Antes de mergear, revisa las imágenes en "Files changed".
 
 on:
   pull_request:
@@ -14,7 +15,6 @@ on:
 permissions:
   contents: write
   pull-requests: write
-  actions: write
 
 concurrency:
   group: capturas-${{ github.head_ref }}
@@ -49,29 +49,19 @@ jobs:
         run: pnpm exec vitest run --update
 
       - name: Commitear capturas
-        id: commit
         run: |
           git add apps/storybook/src/stories/__screenshots__
           if git diff --cached --quiet; then
             echo "Sin cambios en las capturas"
-            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "test(storybook): actualiza capturas de referencia"
           git push
-          echo "changed=true" >> "$GITHUB_OUTPUT"
 
       - name: Quitar la etiqueta
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh pr edit ${{ github.event.pull_request.number }} --remove-label actualizar-capturas
-
-      # Un push hecho con GITHUB_TOKEN no dispara el CI: lo lanzamos a mano
-      - name: Volver a correr el CI
-        if: steps.commit.outputs.changed == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh workflow run ci.yml --ref ${{ github.head_ref }}

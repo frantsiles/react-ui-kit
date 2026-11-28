@@ -27,7 +27,7 @@ Las historias ya corren como tests en Chromium en los tres temas (`apps/storyboo
 - Después de render, `play` y axe, cada historia se captura en cada tema (`.storybook/vitest.setup.ts`). La captura toma el contenedor `[data-story-root]`, que el decorador agrega solo en los tests.
 - Las referencias son PNG en `apps/storybook/src/stories/__screenshots__`, versionadas en el repositorio y revisadas en el PR como cualquier cambio.
 - **Las capturas solo se comparan en el CI.** El renderizado de fuentes cambia entre sistemas operativos y versiones de Chromium, así que una referencia generada en otra máquina fallaría. En local se omiten, salvo con `VISUAL=1`.
-- **Las referencias se generan en el CI**, con el workflow *Actualizar capturas*: se activa con la etiqueta `actualizar-capturas` en un PR, corre `vitest --update` en el mismo entorno que el CI y commitea el resultado en la rama.
+- **Las referencias se generan en el CI**, con el workflow *Actualizar capturas*: se activa con la etiqueta `actualizar-capturas` en un PR, corre `vitest --update` en el mismo entorno que el CI y commitea el resultado en la rama. GitHub no corre automáticamente el CI sobre un commit del bot: queda esperando que alguien con permisos lo apruebe en el PR.
 - Si la comparación falla, el CI sube las capturas actuales y las diferencias como artefacto (`regresion-visual`).
 - Una historia que no tiene sentido capturar (p. ej. con contenido aleatorio) se excluye con `parameters: { visual: { disable: true } }`.
 
@@ -38,7 +38,7 @@ Las historias ya corren como tests en Chromium en los tres temas (`apps/storyboo
   - No hay servicio externo ni token.
   - Las capturas viven junto al código.
 - **Negativas:**
-  - **Un cambio visual intencional requiere un paso más:** poner la etiqueta y revisar las imágenes.
+  - **Un cambio visual intencional requiere pasos extra:** poner la etiqueta, aprobar el CI del commit del bot y revisar las imágenes.
   - **Cambios en GitHub Actions:** si cambia la imagen del runner (Ubuntu, fuentes) o la versión de Playwright, puede haber diferencias mínimas que obliguen a regenerar todas las capturas.
   - **Lo que queda fuera de la captura:** solo se captura el contenedor de la historia. Los overlays que se rendericen en un portal (Fase 3) quedarán fuera, y habrá que revisarlo al llegar.
   - **El repositorio crece:** son unas 100 imágenes pequeñas hoy, y crecen con las historias.
