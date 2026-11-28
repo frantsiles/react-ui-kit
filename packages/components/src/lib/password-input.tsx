@@ -3,9 +3,10 @@ import { IconEye, IconEyeOff } from '@my-ui/icons';
 import { useFieldControl } from './field';
 import { Input, type InputProps } from './input';
 import { InlineIconButton } from './internal/icon-button';
+import { useMessages } from './locale-provider';
 
 export interface PasswordInputProps extends Omit<InputProps, 'type' | 'endAdornment'> {
-  /** Nombre accesible del botón para mostrar/ocultar. Por defecto "Mostrar contraseña". */
+  /** Nombre accesible del botón para mostrar/ocultar. Por defecto el del `LocaleProvider` ("Mostrar contraseña"). */
   toggleLabel?: string;
 }
 
@@ -20,10 +21,11 @@ export interface PasswordInputProps extends Omit<InputProps, 'type' | 'endAdornm
  * - El botón usa aria-pressed: el lector anuncia "Mostrar contraseña, botón, presionado".
  */
 export function PasswordInput({
-  toggleLabel = 'Mostrar contraseña',
+  toggleLabel,
   autoComplete = 'current-password',
   ...props
 }: PasswordInputProps) {
+  const messages = useMessages();
   const [visible, setVisible] = useState(false);
   const fallbackId = useId();
   const { id: fieldId, disabled } = useFieldControl(props);
@@ -40,7 +42,7 @@ export function PasswordInput({
       autoCorrect="off"
       endAdornment={
         <InlineIconButton
-          aria-label={toggleLabel}
+          aria-label={toggleLabel ?? messages['passwordInput.show']}
           aria-pressed={visible}
           aria-controls={id}
           disabled={disabled}

@@ -1,7 +1,8 @@
 import type { Decorator, Preview } from '@storybook/react-vite';
+import { LocaleProvider } from '@my-ui/components';
 import '../src/storybook.css';
 
-/** Aplica el tema elegido en la barra de herramientas (data-theme en <html>). */
+/** Aplica el tema, la dirección y el idioma elegidos en la barra de herramientas. */
 const withTheme: Decorator = (Story, context) => {
   // En los tests de historias, cada proyecto de Vitest fija su tema (vitest.setup.ts)
   const theme = globalThis.__UI_TEST_THEME__ ?? (context.globals['theme'] as string);
@@ -9,15 +10,22 @@ const withTheme: Decorator = (Story, context) => {
   if (theme === 'light') root.removeAttribute('data-theme');
   else root.setAttribute('data-theme', theme);
   root.dir = context.globals['direction'] as string;
+  const locale = (context.globals['locale'] as string | undefined) ?? 'es';
+  root.lang = locale;
+  const story = (
+    <LocaleProvider locale={locale}>
+      <Story />
+    </LocaleProvider>
+  );
   // En los tests, un contenedor para la captura de regresión visual
   if (globalThis.__UI_TEST_THEME__) {
     return (
       <div data-story-root className="p-4">
-        <Story />
+        {story}
       </div>
     );
   }
-  return <Story />;
+  return story;
 };
 
 const preview: Preview = {
@@ -36,6 +44,18 @@ const preview: Preview = {
         dynamicTitle: true,
       },
     },
+    locale: {
+      description: 'Idioma de los textos internos',
+      toolbar: {
+        title: 'Idioma',
+        icon: 'globe',
+        items: [
+          { value: 'es', title: 'Español' },
+          { value: 'en', title: 'English' },
+        ],
+        dynamicTitle: true,
+      },
+    },
     direction: {
       description: 'Dirección del texto',
       toolbar: {
@@ -49,7 +69,7 @@ const preview: Preview = {
       },
     },
   },
-  initialGlobals: { theme: 'light', direction: 'ltr' },
+  initialGlobals: { theme: 'light', direction: 'ltr', locale: 'es' },
   parameters: {
     layout: 'padded',
     // 'error' hace fallar el test de la historia si axe encuentra violaciones
@@ -72,7 +92,7 @@ const preview: Preview = {
             'Iconografía',
           ],
           'Guías',
-          ['Accesibilidad', 'Formularios', 'Seguridad'],
+          ['Accesibilidad', 'Formularios', 'Idioma y RTL', 'Seguridad'],
           'Etiquetas',
           'Inputs',
           ['Field', 'Input', 'PasswordInput', 'SearchInput', 'Textarea'],

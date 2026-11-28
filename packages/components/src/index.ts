@@ -4,6 +4,12 @@ export { Field, useFieldControl, type FieldProps } from './lib/field';
 export { HelpText, type HelpTextProps } from './lib/help-text';
 export { Input, type InputProps } from './lib/input';
 export { Label, type LabelProps } from './lib/label';
+export {
+  LocaleProvider,
+  useLocale,
+  type LocaleProviderProps,
+} from './lib/locale-provider';
+export type { Messages } from './lib/messages';
 export { PasswordInput, type PasswordInputProps } from './lib/password-input';
 export { SearchInput, type SearchInputProps } from './lib/search-input';
 export { Tag, type TagProps } from './lib/tag';

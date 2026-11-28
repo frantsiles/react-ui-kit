@@ -3,6 +3,7 @@ import { cn } from '@my-ui/core';
 import { IconX } from '@my-ui/icons';
 import { InlineIconButton } from './internal/icon-button';
 import { devWarning } from './internal/dev-warning';
+import { useMessages } from './locale-provider';
 import { toneClasses } from './tone';
 import type { Tone } from './types';
 
@@ -16,7 +17,8 @@ export interface TagProps extends Omit<ComponentProps<'span'>, 'children'> {
   /** Si se pasa, el tag muestra un botón para quitarlo. */
   onRemove?: () => void;
   /**
-   * Nombre accesible del botón de quitar. Por defecto "Quitar {texto}" cuando
+   * Nombre accesible del botón de quitar. Por defecto "Quitar {texto}" (en el
+   * idioma del `LocaleProvider`) cuando
    * el contenido es texto; si no lo es, este prop es obligatorio.
    */
   removeLabel?: string;
@@ -45,12 +47,13 @@ export function Tag({
   className,
   ...props
 }: TagProps) {
+  const messages = useMessages();
   const text =
     typeof children === 'string' || typeof children === 'number'
       ? String(children)
       : undefined;
   const accessibleRemoveLabel =
-    removeLabel ?? (text !== undefined ? `Quitar ${text}` : undefined);
+    removeLabel ?? (text !== undefined ? messages['tag.remove'](text) : undefined);
 
   devWarning(
     Boolean(onRemove) && !accessibleRemoveLabel,
@@ -79,7 +82,7 @@ export function Tag({
       </span>
       {onRemove && (
         <InlineIconButton
-          aria-label={accessibleRemoveLabel ?? 'Quitar'}
+          aria-label={accessibleRemoveLabel ?? messages['tag.removeUnnamed']}
           onClick={onRemove}
           disabled={disabled}
           className="rounded-full text-current hover:text-current hover:bg-current/10"

@@ -38,7 +38,7 @@ Un proyecto concreto: `pnpm exec nx run <proyecto>:<target>` (p. ej. `@my-ui/com
 - **Partes compuestas** como exports con prefijo (`SelectItem`), no `Select.Item`.
 - **React Aria:** se envuelve, nunca se reexporta. La API pública es la del kit.
 - **Accesibilidad:** elementos nativos primero; patrón ARIA APG citado en la documentación; íconos decorativos por defecto; áreas táctiles ≥ 24 px; color + ícono o texto, nunca color solo; `role="menu"` solo para menús de acciones.
-- **Textos internos** en español, siempre sobrescribibles por prop.
+- **Textos internos** desde `useMessages()` (claves en `messages.ts`, en `es` y `en`), nunca strings fijos; siempre sobrescribibles por prop. Propiedades lógicas (`ps-`, `me-`), nunca `left`/`right`.
 - **Seguridad:** nunca `dangerouslySetInnerHTML`; nunca loguear ni persistir valores de inputs.
 - **Dependencias:** justificar en el PR; no usar versiones publicadas hace menos de 14 días.
 

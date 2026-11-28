@@ -1,0 +1,80 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { LocalePreview } from '../components/locale-preview';
+
+<Meta title="Guías/Idioma y RTL" />
+
+# Idioma y RTL
+
+Algunos componentes muestran o anuncian textos propios: "Mostrar contraseña", "Limpiar búsqueda", "Quitar React", "(opcional)". `LocaleProvider` los traduce todos de una vez, sin pasar una prop en cada uso.
+
+<LocalePreview />
+
+El tercer bloque usa un idioma que el kit no trae (árabe) con sus propios textos, y se espeja solo: `useLocale()` devuelve `direction: 'rtl'`.
+
+## Uso
+
+```tsx
+import { LocaleProvider, useLocale } from '@my-ui/components';
+
+function Root({ children }) {
+  return <LocaleProvider locale="en">{children}</LocaleProvider>;
+}
+```
+
+Un solo proveedor cerca de la raíz alcanza. **No toca el DOM**: pon `lang` y `dir` en `<html>`, que tu app ya controla (en Next.js, en el layout raíz).
+
+```tsx
+const { locale, direction } = useLocale(); // { locale: 'en', direction: 'ltr' }
+document.documentElement.lang = locale;
+document.documentElement.dir = direction;
+```
+
+- **`lang`** hace que el lector de pantalla pronuncie con la voz del idioma correcto (WCAG 3.1.1). Si una sección está en otro idioma, ponle su propio `lang` (WCAG 3.1.2).
+- **`dir="rtl"`** espeja el layout: los componentes usan propiedades lógicas (`ps-`, `me-`, `start`), así que se acomodan solos. Los íconos de dirección, como las flechas, también se espejan.
+
+## Qué idioma usa
+
+| `locale` | Textos |
+| --- | --- |
+| Sin proveedor | Español |
+| `es`, `es-CR`, `es-MX`… | Español |
+| `en`, `en-US`, `en-GB`… | Inglés |
+| Otro idioma (`fr`, `ar`…) | Español, salvo los que pases en `messages` |
+
+Primero se busca la etiqueta exacta (`es-CR`), luego el idioma (`es`) y, si no hay, español.
+
+## Textos propios
+
+`messages` reemplaza textos uno por uno; el resto sale del idioma. Sirve para cambiar un texto puntual o para traducir a un idioma que el kit no trae (el tipo `Messages` lista todas las claves):
+
+```tsx
+import type { Messages } from '@my-ui/components';
+
+const fr: Messages = {
+  'label.optional': '(facultatif)',
+  'passwordInput.show': 'Afficher le mot de passe',
+  'searchInput.clear': 'Effacer la recherche',
+  'tag.remove': (text) => `Retirer ${text}`,
+  'tag.removeUnnamed': 'Retirer',
+};
+
+<LocaleProvider locale="fr" messages={fr}>…</LocaleProvider>
+```
+
+## Prioridad
+
+De mayor a menor:
+
+1. **La prop del componente** (`toggleLabel`, `clearLabel`, `removeLabel`, `optionalText`): siempre gana.
+2. **`messages`** del proveedor más cercano, sumando los de proveedores superiores con el mismo idioma.
+3. **Los textos incluidos** del idioma.
+
+Un proveedor anidado sin `locale` hereda el idioma del superior; con otro `locale`, empieza de cero.
+
+## En Storybook
+
+La barra superior tiene **Idioma** (español, inglés) y **Dirección** (LTR, RTL) por separado, para probar RTL con cualquier idioma.
+
+## Más adelante
+
+Cuando lleguen los componentes con React Aria ([ADR 0005](https://github.com/frantsiles/react-ui-kit/blob/main/docs/adr/0005-react-aria-como-libreria-headless.md)), `LocaleProvider` también configurará su `I18nProvider`, así fechas, números y textos de esos componentes siguen el mismo idioma. Para la app no cambia nada: el proveedor sigue siendo el mismo.

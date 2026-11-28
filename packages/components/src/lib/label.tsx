@@ -1,5 +1,6 @@
 import type { ComponentProps } from 'react';
 import { cn } from '@my-ui/core';
+import { useMessages } from './locale-provider';
 import type { ControlSize } from './types';
 
 export interface LabelProps extends ComponentProps<'label'> {
@@ -10,7 +11,7 @@ export interface LabelProps extends ComponentProps<'label'> {
   required?: boolean;
   /** Muestra el texto de "opcional" (más claro que marcar los requeridos cuando son mayoría). */
   optional?: boolean;
-  /** Texto para `optional`. Por defecto "(opcional)". */
+  /** Texto para `optional`. Por defecto el del `LocaleProvider` ("(opcional)"). */
   optionalText?: string;
   disabled?: boolean;
   size?: ControlSize;
@@ -29,13 +30,14 @@ const sizeClasses: Record<ControlSize, string> = {
 export function Label({
   required = false,
   optional = false,
-  optionalText = '(opcional)',
+  optionalText,
   disabled = false,
   size = 'md',
   className,
   children,
   ...props
 }: LabelProps) {
+  const messages = useMessages();
   return (
     <label
       className={cn(
@@ -55,7 +57,7 @@ export function Label({
         </span>
       )}
       {optional && !required && (
-        <span className="font-ui-regular text-ui-fg-muted">{optionalText}</span>
+        <span className="font-ui-regular text-ui-fg-muted">{optionalText ?? messages['label.optional']}</span>
       )}
     </label>
   );

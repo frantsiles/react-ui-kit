@@ -118,8 +118,10 @@ No uses `isDisabled`, `color`, `kind`, `type` (para variantes) ni sinónimos de 
 
 ### Textos internos
 
-- Los textos que el componente muestra o anuncia por sí mismo ("Mostrar contraseña", "Quitar…") tienen valor por defecto en español y **siempre** se pueden cambiar por prop (`toggleLabel`, `clearLabel`, `removeLabel`).
-- Cuando exista el proveedor de idioma (Fase 0), los valores por defecto saldrán de ahí.
+- Los textos que el componente muestra o anuncia por sí mismo ("Mostrar contraseña", "Quitar…") **siempre** se pueden cambiar por prop (`toggleLabel`, `clearLabel`, `removeLabel`).
+- El valor por defecto sale de `useMessages()` (`LocaleProvider`), nunca de un string fijo en el componente: `toggleLabel ?? messages['passwordInput.show']`.
+- Un texto nuevo se agrega a la interfaz `Messages` y a **todos** los diccionarios de `messages.ts` (`es`, `en`); el tipo no compila si falta uno. Clave: `<componente>.<texto>`; si recibe datos, es una función (`'tag.remove': (text) => …`).
+- Usa propiedades lógicas (`ps-`, `me-`, `start-`, `text-start`), nunca `left`/`right`, para que el componente se espeje en RTL.
 
 ### Estado para estilos y automatización
 
