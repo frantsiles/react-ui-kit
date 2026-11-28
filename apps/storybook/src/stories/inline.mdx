@@ -1,0 +1,33 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as InlineStories from './inline.stories';
+
+<Meta of={InlineStories} />
+
+# Inline
+
+Pone sus hijos en fila con un espacio constante y los pasa a la línea siguiente cuando no entran.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** botones de una acción, etiquetas, metadatos ("Ana · hace 5 minutos"), enlaces de un pie de página, título con acciones al lado.
+- **No:**
+  - **Bloques en columna:** usa [`Stack`](?path=/docs/layout-stack--docs).
+  - **Botones relacionados que forman un control** (zoom, formato): usa [`ButtonGroup`](?path=/docs/acciones-buttongroup--docs).
+
+## Reglas de uso
+
+- `gap` usa la misma escala que `Stack` (por defecto `sm`).
+- `justify="between"` separa a los extremos: título a un lado, acciones al otro.
+- `align="baseline"` alinea textos de distinto tamaño por su línea base.
+- **Pasa de línea por defecto** (`wrap`). Sin `wrap`, el contenido se desborda a 320 px de ancho o con zoom al 200 % (WCAG 1.4.10): apágalo solo si el contenido siempre entra.
+
+## Accesibilidad
+
+- Sigue la dirección del texto: en RTL, el primer hijo queda a la derecha.
+- El orden visual es el del código: no uses `order` ni `flex-row-reverse` para reordenar, o el foco con `Tab` salta de un lado a otro.
+- Como `ul`/`ol` agrega `role="list"` para que Safari lo siga anunciando como lista.
+
+<Stories />

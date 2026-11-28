@@ -6,6 +6,7 @@ import {
   elevations,
   fontFamilies,
   fontWeights,
+  spaces,
   textStyles,
 } from './tokens.js';
 
@@ -24,6 +25,7 @@ const twMerge = extendTailwindMerge({
       shadow: ui(elevations),
       ease: ui(easings),
       container: ui(Object.keys(containerSizes)),
+      spacing: ui(spaces),
     },
   },
 });

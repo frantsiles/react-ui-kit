@@ -56,7 +56,25 @@ const isDesktop = window.matchMedia(mediaQuery('lg')).matches;
 | `--ui-control-height-sm` | 32 px | 28 px |
 | `--ui-control-height-md` | 40 px | 36 px |
 | `--ui-control-height-lg` | 48 px | 44 px |
+| `--ui-space-sm` … `2xl` | 8 · 16 · 24 · 32 · 48 px | 6 · 12 · 16 · 24 · 32 px |
 
 - Incluso en compacta, todos los controles superan el área táctil mínima de 24 × 24 px (WCAG 2.5.8).
+- El espaciado (`gap-ui-*`, `p-ui-*`) también se achica, así una sección compacta entera respira menos.
 - La densidad se hereda: una sección con `data-theme` propio dentro de una sección compacta sigue siendo compacta.
 - No uses la densidad compacta en formularios principales ni en pantallas táctiles.
+
+## Espaciado
+
+Escala para separar bloques de contenido: `gap-ui-md`, `p-ui-lg`, `space-y-ui-sm`… Es la que usan [`Stack`](?path=/docs/layout-stack--docs) e [`Inline`](?path=/docs/layout-inline--docs).
+
+| Token | Valor | Para |
+| --- | --- | --- |
+| `--ui-space-xs` | 4 px | Título y su descripción |
+| `--ui-space-sm` | 8 px | Elementos de una misma tarjeta |
+| `--ui-space-md` | 16 px | Campos de un formulario |
+| `--ui-space-lg` | 24 px | Grupos dentro de una sección |
+| `--ui-space-xl` | 32 px | Secciones de una página |
+| `--ui-space-2xl` | 48 px | Bloques grandes |
+
+- Los nombres están también en `@my-ui/core` (`spaces`, tipo `Space`).
+- Dentro de un componente (el espacio entre el ícono y el texto de un botón) siguen valiendo los pasos de Tailwind (`gap-2`): la escala es para el layout.

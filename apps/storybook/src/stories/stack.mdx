@@ -1,0 +1,46 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as StackStories from './stack.stories';
+
+<Meta of={StackStories} />
+
+# Stack
+
+Apila sus hijos en vertical con un espacio constante. Es la forma de separar bloques en el kit: el espacio lo decide el contenedor, no cada hijo con su margen.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** cualquier columna de bloques: secciones de una página, campos de un formulario, tarjetas en una lista.
+- **No:**
+  - **Elementos en fila** (botones, etiquetas): usa [`Inline`](?path=/docs/layout-inline--docs).
+  - **Columnas que se reacomodan:** usa `Grid` (esta misma fase).
+
+## Espacio
+
+`gap` usa la escala de espaciado del kit (`--ui-space-*`). Un mismo `gap` da el mismo ritmo en todo el producto, y la escala se achica en densidad compacta.
+
+| `gap` | Cómoda | Compacta | Para |
+| --- | --- | --- | --- |
+| `none` | 0 | 0 | Bloques pegados |
+| `xs` | 4 px | 4 px | Título y su descripción |
+| `sm` | 8 px | 6 px | Elementos de una misma tarjeta |
+| `md` | 16 px | 12 px | Campos de un formulario (por defecto) |
+| `lg` | 24 px | 16 px | Grupos dentro de una sección |
+| `xl` | 32 px | 24 px | Secciones de una página |
+| `2xl` | 48 px | 32 px | Bloques grandes de una página |
+
+## Reglas de uso
+
+- **Anida Stacks** con distinto `gap` en vez de agregar márgenes: el título y su texto con `xs`, dentro de una sección con `lg`.
+- **`as`** cambia el elemento: `section`, `form`, `ul`/`ol` (con `<li>` como hijos)… El elemento correcto da la semántica; el Stack solo el espacio.
+- `align` alinea los hijos en horizontal; por defecto se estiran a todo el ancho.
+
+## Accesibilidad
+
+- No agrega roles ni cambia el orden: lo que se ve es lo que se lee.
+- Como `ul`/`ol` agrega `role="list"`, porque Safari con VoiceOver deja de anunciar como lista un `<ul>` sin viñetas.
+- El espacio está en `rem`: crece con el tamaño de letra que la persona configuró.
+
+<Stories />

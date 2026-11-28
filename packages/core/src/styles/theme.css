@@ -31,8 +31,6 @@
   --color-ui-warning: var(--ui-color-warning);
   --color-ui-warning-soft: var(--ui-color-warning-soft);
 
-  --spacing-ui-control-sm: var(--ui-control-height-sm);
-  --spacing-ui-control-md: var(--ui-control-height-md);
   --color-ui-surface-raised: var(--ui-color-surface-raised);
   --color-ui-fg-hover: var(--ui-color-fg-hover);
   --color-ui-primary-hover: var(--ui-color-primary-hover);
@@ -43,6 +41,14 @@
   --spacing-ui-control-sm: var(--ui-control-height-sm);
   --spacing-ui-control-md: var(--ui-control-height-md);
   --spacing-ui-control-lg: var(--ui-control-height-lg);
+
+  /* Espaciado: gap-ui-md, p-ui-lg, space-y-ui-sm… */
+  --spacing-ui-xs: var(--ui-space-xs);
+  --spacing-ui-sm: var(--ui-space-sm);
+  --spacing-ui-md: var(--ui-space-md);
+  --spacing-ui-lg: var(--ui-space-lg);
+  --spacing-ui-xl: var(--ui-space-xl);
+  --spacing-ui-2xl: var(--ui-space-2xl);
 
   /* Tipografía: text-ui-body aplica tamaño, interlineado y peso a la vez */
   --font-ui-sans: var(--ui-font-sans);
