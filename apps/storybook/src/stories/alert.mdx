@@ -1,0 +1,48 @@
+import { Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Alert } from '@my-ui/components';
+import { DoDont } from '../docs/components/do-dont';
+import * as AlertStories from './alert.stories';
+
+<Meta of={AlertStories} />
+
+# Alert
+
+Aviso que se queda en la página: un error al enviar, una advertencia sobre la cuenta, un mantenimiento programado.
+
+<Primary />
+<Controls />
+
+## Cuándo usarlo
+
+- **Sí:** mensajes importantes **ligados a un lugar** de la página o a toda ella, que la persona puede leer con calma.
+- **No:**
+  - **Confirmaciones breves de una acción** ("Guardado"): usa un `Toast` (Fase 3), que se va solo.
+  - **Errores de un campo:** van en el `Field` (`error`), junto al campo.
+  - **Para pedir una decisión que bloquea:** usa `AlertDialog` (Fase 3).
+
+| Prop | Para |
+| --- | --- |
+| `tone` | `danger` error, `warning` advertencia, `success` éxito, `primary` información (por defecto), `neutral` nota |
+| `variant` | `inline` dentro del contenido; `banner` a lo ancho de una página o sección |
+| `title` | Resumen en una línea |
+| `children` | Detalle; puede llevar un `Link` |
+| `actions` | Botones `size="sm"` para resolver el aviso |
+| `onDismiss` | Muestra el botón de cerrar |
+
+<DoDont
+  doContent={<Alert tone="danger" title="No pudimos procesar el pago">La tarjeta fue rechazada. Prueba con otra o llama a tu banco.</Alert>}
+  doCaption="Dice qué pasó y qué hacer."
+  dontContent={<Alert tone="danger" title="Error 402" />}
+  dontCaption="Un código no ayuda a resolver nada."
+/>
+
+## Accesibilidad
+
+- **No depende del color:** cada tono tiene su ícono y un prefijo oculto para lectores de pantalla ("Error:", "Advertencia:"), traducido con `LocaleProvider` y sobrescribible con `toneLabel`.
+- **Anunciar o no:** un aviso que está desde que carga la página **no** lleva rol; se lee al recorrerla. Si aparece **después** de una acción:
+  - `role="alert"` para lo urgente (errores al enviar): se anuncia de inmediato, interrumpiendo. Patrón [ARIA APG: Alert](https://www.w3.org/WAI/ARIA/apg/patterns/alert/);
+  - `role="status"` para lo informativo: se anuncia sin interrumpir, pero solo si la región ya existía antes del cambio.
+- **Cerrar:** el botón tiene nombre ("Cerrar aviso", `dismissLabel` lo cambia). Al quitar el aviso, mueve el foco a un lugar lógico si estaba en el botón.
+- No uses `Alert` para mensajes que desaparecen solos: la persona podría no alcanzar a leerlos (WCAG 2.2.1).
+
+<Stories />

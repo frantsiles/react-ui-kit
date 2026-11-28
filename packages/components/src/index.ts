@@ -1,3 +1,4 @@
+export { Alert, type AlertProps } from './lib/acciones/alert';
 export { Avatar, type AvatarProps } from './lib/acciones/avatar';
 export { Badge, type BadgeProps } from './lib/fundamentos/badge';
 export { Button, type ButtonProps, type ButtonVariant } from './lib/acciones/button';
