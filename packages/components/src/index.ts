@@ -23,6 +23,7 @@ export {
 } from './lib/layout/card';
 export { Checkbox, type CheckboxProps } from './lib/acciones/checkbox';
 export { CheckboxGroup, type CheckboxGroupProps } from './lib/acciones/checkbox-group';
+export { Combobox, type ComboboxProps } from './lib/colecciones/combobox';
 export { Container, type ContainerProps, type ContainerWidth } from './lib/layout/container';
 export {
   Dialog,

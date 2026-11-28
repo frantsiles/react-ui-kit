@@ -12,6 +12,10 @@ export interface Messages {
   'alert.tone': (tone: 'neutral' | 'primary' | 'success' | 'warning' | 'danger') => string;
   /** Botón para cancelar un `AlertDialog`. */
   'alertDialog.cancel': string;
+  /** Texto de `Combobox` cuando lo escrito no coincide con ninguna opción. */
+  'combobox.empty': string;
+  /** Botón de `Combobox` que muestra todas las opciones. */
+  'combobox.showOptions': string;
   /** Botón para cerrar un `Dialog`. */
   'dialog.close': string;
   /** Etiqueta del campo opcional en `Label` / `Field`. */
@@ -43,6 +47,8 @@ const es: Messages = {
   'alert.tone': (tone) =>
     ({ neutral: 'Nota', primary: 'Información', success: 'Listo', warning: 'Advertencia', danger: 'Error' })[tone],
   'alertDialog.cancel': 'Cancelar',
+  'combobox.empty': 'Sin resultados',
+  'combobox.showOptions': 'Mostrar opciones',
   'dialog.close': 'Cerrar',
   'label.optional': '(opcional)',
   'listBox.empty': 'Sin opciones',
@@ -62,6 +68,8 @@ const en: Messages = {
   'alert.tone': (tone) =>
     ({ neutral: 'Note', primary: 'Info', success: 'Success', warning: 'Warning', danger: 'Error' })[tone],
   'alertDialog.cancel': 'Cancel',
+  'combobox.empty': 'No results',
+  'combobox.showOptions': 'Show options',
   'dialog.close': 'Close',
   'label.optional': '(optional)',
   'listBox.empty': 'No options',

@@ -105,7 +105,7 @@ Los bloques se adaptan al ancho de **su contenedor** (container queries), no al 
 | --- | --- | --- | --- |
 | ListBox (primitiva) | Listbox | Modelo de colecciones | 🚧 |
 | Select | Select-only combobox | Popover, ListBox, Field | 🚧 |
-| Combobox | Combobox | Select | ⏳ |
+| Combobox | Combobox | Select | 🚧 |
 | Multiselect | Combobox | Combobox, Tag | ⏳ |
 | Menu (menú de acciones) | Menu Button | Popover | ⏳ |
 | Menú contextual | Menu | Menu + clic derecho o pulsación larga | ⏳ |
